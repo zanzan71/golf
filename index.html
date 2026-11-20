@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ELAZYO, l’appli des clubs de foot amateur</title>
+<meta name="description" content="Convocations, présences, covoiturage, bénévoles, licences : ELAZYO simplifie la vie des coachs et des présidents de clubs amateurs. Gratuit pour les joueurs.">
+<link rel="canonical" href="https://www.elazyo.fr/">
+<meta name="theme-color" content="#09131D">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ELAZYO">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://www.elazyo.fr/">
+<meta property="og:title" content="ELAZYO, l’appli des clubs de foot amateur">
+<meta property="og:description" content="Convocations, présences, covoiturage, bénévoles, licences : toute la vie du club au même endroit. L’élan du collectif.">
+<meta property="og:image" content="https://www.elazyo.fr/assets/img/og-elazyo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ELAZYO : pas une app d’équipe, l’app de tout ton club.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Saira:ital,wght@1,700;1,800&amp;display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__elazyo)document.documentElement.classList.remove("js")},3000);</script>
+<script type="module" src="assets/js/main.js"></script>
+<link rel="modulepreload" href="assets/js/modules/env.js">
+<link rel="modulepreload" href="assets/js/modules/header.js">
+<link rel="modulepreload" href="assets/js/modules/reveal.js">
+<link rel="modulepreload" href="assets/js/modules/hero.js">
+<link rel="modulepreload" href="assets/js/modules/scroll-effects.js">
+<link rel="modulepreload" href="assets/js/modules/showcase.js">
+<link rel="modulepreload" href="assets/js/modules/tabs.js">
+<link rel="modulepreload" href="assets/js/modules/cards.js">
+<link rel="modulepreload" href="assets/js/modules/extras.js">
+<link rel="modulepreload" href="assets/js/modules/contact.js">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.elazyo.fr/#organisation",
+      "name": "ELAZYO",
+      "url": "https://www.elazyo.fr/",
+      "logo": "https://www.elazyo.fr/assets/icons/icon-512.png",
+      "slogan": "L’élan du collectif"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.elazyo.fr/#site",
+      "url": "https://www.elazyo.fr/",
+      "name": "ELAZYO",
+      "inLanguage": "fr-FR",
+      "publisher": { "@id": "https://www.elazyo.fr/#organisation" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "ELAZYO",
+      "url": "https://app.elazyo.fr/",
+      "applicationCategory": "SportsApplication",
+      "operatingSystem": "Web, Android, iOS",
+      "description": "L’appli des clubs de foot amateur : planning, convocations, présences, covoiturage, bénévoles, communication et finances du club.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Gratuit pour les joueurs et les familles" },
+      "publisher": { "@id": "https://www.elazyo.fr/#organisation" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "ELAZYO est-il gratuit ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui pour les joueurs et les familles. Pour les clubs, l’appli est gratuite pendant le lancement : les Clubs Fondateurs en profitent jusqu’au 30 juin 2027. MY CARD aura une base gratuite pour chaque joueur et une version avancée en option." } },
+        { "@type": "Question", "name": "Sur quels appareils fonctionne ELAZYO ?", "acceptedAnswer": { "@type": "Answer", "text": "Sur iPhone, sur Android et sur le web, à l’adresse app.elazyo.fr." } },
+        { "@type": "Question", "name": "Comment passer de SportEasy à ELAZYO ?", "acceptedAnswer": { "@type": "Answer", "text": "Inutile de tout changer d’un coup. On commence avec 2 ou 3 équipes. Le coach envoie lui-même les liens d’activation à ses joueurs depuis l’appli, et chaque famille active son compte. Le reste du club suit quand il est prêt." } },
+        { "@type": "Question", "name": "Comment sont protégées les données des enfants ?", "acceptedAnswer": { "@type": "Answer", "text": "Chaque personne ne voit que ce qui la concerne, selon son rôle. Pour les plus jeunes, c’est un parent qui crée le compte. Les évaluations comparent l’enfant à lui-même, jamais aux autres. La politique de confidentialité détaille vos droits et la façon de les exercer." } },
+        { "@type": "Question", "name": "Un parent peut-il aussi être coach ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Une même personne peut avoir plusieurs rôles, par exemple parent et coach, avec un seul compte." } },
+        { "@type": "Question", "name": "ELAZYO fonctionne-t-il pour d’autres sports que le football ?", "acceptedAnswer": { "@type": "Answer", "text": "Le football d’abord. D’autres sports suivront, par étapes." } },
+        { "@type": "Question", "name": "Qui est derrière ELAZYO ?", "acceptedAnswer": { "@type": "Answer", "text": "Une équipe d’associés issus du football amateur, dont un directeur sportif de club." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 5v14"/><path d="M15.5 5v14"/></symbol>
+  <symbol id="i-play-line" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 21V4M6 4h10.5l-2.5 4 2.5 4H6"/></symbol>
+  <symbol id="i-checkcircle" viewBox="0 0 24 24"><path d="M8 12.5l2.8 2.8L16.5 9.5M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/></symbol>
+  <symbol id="i-double" viewBox="0 0 24 24"><path d="M2.5 12.5l4.5 4.5 9.5-9.5M11 16l1 1 9.5-9.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+  <symbol id="i-whistle" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></symbol>
+  <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+  <symbol id="i-big-chevron" viewBox="0 0 400 220"><polyline points="18,214 200,32 382,214"/></symbol>
+</svg>
+
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+
+
+<header class="site-header" data-header>
+  <div class="announce" id="annonce">
+    <p class="container announce__inner">
+      <span class="announce__text"><span class="announce__long"><strong>Clubs Fondateurs</strong>&nbsp;: 10 places, ELAZYO gratuit pour tout le club jusqu’au 30 juin 2027.</span><span class="announce__short"><strong>Clubs Fondateurs</strong>&nbsp;: 10 places</span></span>
+      <a class="announce__link" href="#clubs-fondateurs">Candidater<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </p>
+  </div>
+  <div class="site-header__bar">
+  <div class="container site-header__inner">
+    <a class="site-header__logo" href="#accueil">
+      <img src="assets/img/logo/elazyo-fond-fonce.svg" alt="ELAZYO, retour en haut de page" width="157" height="28">
+    </a>
+    <nav class="site-nav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="#application" data-nav>L’appli</a></li>
+        <li><a href="#profils" data-nav>Pour qui</a></li>
+        <li><a href="#my-card" data-nav>MY CARD</a></li>
+        <li><a href="#clubs-fondateurs" data-nav>Clubs Fondateurs</a></li>
+        <li><a href="#contact" data-nav>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="site-header__actions">
+      <a class="site-header__login" href="https://app.elazyo.fr/" rel="noopener">Se connecter</a>
+      <a class="btn btn--elan btn--md" href="https://app.elazyo.fr/" rel="noopener">Essayer gratuitement</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-mobile" data-menu-toggle>
+        <span class="sr-only" data-menu-label>Ouvrir le menu</span>
+        <svg class="icon icon--menu" aria-hidden="true"><use href="#i-menu"/></svg>
+        <svg class="icon icon--close" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+  </div>
+  </div>
+  <div class="mobile-menu" id="menu-mobile" data-menu hidden>
+    <nav class="container mobile-menu__inner" aria-label="Navigation mobile">
+      <ul class="mobile-menu__list">
+        <li><a href="#application">L’appli</a></li>
+        <li><a href="#profils">Pour qui</a></li>
+        <li><a href="#my-card">MY CARD</a></li>
+        <li><a href="#clubs-fondateurs">Clubs Fondateurs</a></li>
+        <li><a href="#faq">Questions</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="mobile-menu__actions">
+        <a class="btn btn--elan btn--lg" href="https://app.elazyo.fr/" rel="noopener">Essayer gratuitement<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--ghost btn--lg" href="https://app.elazyo.fr/" rel="noopener">Se connecter</a>
+      </div>
+      <p class="mobile-menu__signature">L’élan du collectif.</p>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <!-- 02 · HERO -->
+  <section class="hero theme-night" id="accueil" aria-labelledby="hero-titre">
+    <div class="hero__chevrons" aria-hidden="true">
+      <svg class="chevron-big chevron-big--lime" data-parallax="-0.06"><use href="#i-big-chevron"/></svg>
+      <svg class="chevron-big chevron-big--olive" data-parallax="-0.12"><use href="#i-big-chevron"/></svg>
+      <svg class="chevron-big chevron-big--olive" data-parallax="-0.18"><use href="#i-big-chevron"/></svg>
+    </div>
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <p class="label hero__label" data-hero-step="0"><span class="chev" aria-hidden="true"></span>L’appli des clubs de foot amateur</p>
+        <h1 class="display display--hero" id="hero-titre" data-hero-title>
+          <span class="line"><span>Le sport nous</span></span>
+          <span class="line"><span>rassemble.</span></span>
+          <span class="line"><span>ELAZYO nous</span></span>
+          <span class="line"><span>fait <em class="accent">grandir.</em></span></span>
+        </h1>
+        <p class="lead hero__lead" data-hero-step="1">Convocations, présences, covoiturage, licences&nbsp;: ELAZYO simplifie la vie des coachs et des présidents, et transforme chaque saison en aventure pour les joueurs.</p>
+        <div class="hero__ctas" data-hero-step="2">
+          <a class="btn btn--elan btn--lg" href="https://app.elazyo.fr/" rel="noopener">Essayer gratuitement<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--ghost btn--lg" href="#application"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-play"/></svg>Voir l’appli en action</a>
+        </div>
+        <ul class="hero__proof" data-hero-step="3">
+          <li>Gratuit pour les joueurs</li>
+          <li>Web, Android et iPhone</li>
+          <li>Conçu par des gens du foot amateur</li>
+        </ul>
+      </div>
+
+      <div class="hero__visual" data-hero-visual>
+        <div class="hero__stage" data-tilt>
+          <figure class="phone phone--hero">
+            <div class="phone__frame">
+              <div class="phone__screen" data-slideshow aria-live="off">
+                <picture class="phone__shot is-active">
+                  <source type="image/avif" srcset="assets/img/ecrans/planning-360.avif 360w, assets/img/ecrans/planning-720.avif 720w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 280px, 62vw">
+                  <source type="image/webp" srcset="assets/img/ecrans/planning-360.webp 360w, assets/img/ecrans/planning-720.webp 720w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 280px, 62vw">
+                  <img src="assets/img/ecrans/planning-720.webp" width="1080" height="2004" alt="Écran Planning de l’appli ELAZYO en vue président : les matchs et événements d’octobre, filtrés par catégorie." fetchpriority="high" decoding="async">
+                </picture>
+                <picture class="phone__shot">
+                  <source type="image/avif" srcset="assets/img/ecrans/match-360.avif 360w, assets/img/ecrans/match-720.avif 720w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 280px, 62vw">
+                  <source type="image/webp" srcset="assets/img/ecrans/match-360.webp 360w, assets/img/ecrans/match-720.webp 720w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 280px, 62vw">
+                  <img src="assets/img/ecrans/match-720.webp" width="1080" height="2550" alt="Écran d’un match : présences, lieu, covoiturage et missions des bénévoles." loading="lazy" decoding="async">
+                </picture>
+                <picture class="phone__shot">
+                  <source type="image/avif" srcset="assets/img/ecrans/finance-360.avif 360w, assets/img/ecrans/finance-720.avif 720w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 280px, 62vw">
+                  <source type="image/webp" srcset="assets/img/ecrans/finance-360.webp 360w, assets/img/ecrans/finance-720.webp 720w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 280px, 62vw">
+                  <img src="assets/img/ecrans/finance-720.webp" width="1080" height="2004" alt="Écran Finances : disponible, recettes, dépenses, remboursements et cotisations dues." loading="lazy" decoding="async">
+                </picture>
+              </div>
+            </div>
+          </figure>
+          <ul class="hero__statuts" aria-label="Les quatre états d’une convocation">
+            <li class="statut statut--dispo" data-depth="0.6"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Disponible</li>
+            <li class="statut statut--convoque" data-depth="1"><svg class="icon" aria-hidden="true"><use href="#i-flag"/></svg>Convoqué</li>
+            <li class="statut statut--confirme" data-depth="1.4"><svg class="icon" aria-hidden="true"><use href="#i-checkcircle"/></svg>Confirmé</li>
+            <li class="statut statut--present" data-depth="0.8"><svg class="icon" aria-hidden="true"><use href="#i-double"/></svg>Présent</li>
+          </ul>
+        </div>
+        <div class="hero__meta">
+          <button class="motion-toggle" type="button" aria-pressed="false" data-slideshow-toggle>
+            <svg class="icon icon--pause" aria-hidden="true"><use href="#i-pause"/></svg>
+            <svg class="icon icon--play" aria-hidden="true"><use href="#i-play-line"/></svg>
+            <span class="sr-only">Mettre en pause le défilement des écrans</span>
+          </button>
+          <p class="hero__caption">Écrans réels de l’appli, club de démonstration.</p>
+        </div>
+      </div>
+    </div>
+    <a class="hero__scroll" href="#manifeste"><span>Découvrir</span><span class="hero__scroll-line" aria-hidden="true"></span></a>
+  </section>
+
+  <!-- 03 · MANIFESTE -->
+  <section class="manifeste theme-light" id="manifeste" aria-labelledby="manifeste-titre">
+    <div class="container manifeste__grid">
+      <p class="label manifeste__label"><span class="chev" aria-hidden="true"></span>Pourquoi ELAZYO existe</p>
+      <h2 class="display display--1 manifeste__title" id="manifeste-titre" data-reveal="lines">
+        <span class="line"><span>Un club, ce n’est</span></span>
+        <span class="line"><span>jamais seulement</span></span>
+        <span class="line"><span>du sport.</span></span>
+      </h2>
+      <div class="manifeste__text" data-words>
+        <p>Un club amateur ne tient pas seulement grâce aux joueurs. Derrière chaque match, il y a des dirigeants, des éducateurs, des parents, des bénévoles et des arbitres. Presque tous donnent leur temps gratuitement.</p>
+        <p>Leur quotidien est pourtant éparpillé entre les messages, les tableaux, les calendriers, les feuilles papier et plusieurs applications. Il faut relancer, vérifier, recopier, souvent le soir et le week-end.</p>
+      </div>
+      <p class="manifeste__close" data-reveal>ELAZYO prend en compte le club entier&nbsp;: ses équipes, mais aussi sa trésorerie, ses bénévoles, ses familles et l’éducation de ses jeunes joueurs.</p>
+    </div>
+  </section>
+
+  <!-- 04 · CHAQUE MAILLON COMPTE -->
+  <section class="maillons theme-bleu" id="maillons" aria-labelledby="maillons-titre">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="display display--1" id="maillons-titre" data-reveal="lines">
+          <span class="line"><span>Chaque maillon</span></span>
+          <span class="line"><span>compte.</span></span>
+        </h2>
+        <p class="lead section-head__lead" data-reveal>Derrière chaque joueur, il y a tout un collectif. ELAZYO relie celles et ceux qui font vivre le club, chacun avec ce qui le concerne.</p>
+      </div>
+      <div class="chain" data-chain>
+        <div class="chain__track" aria-hidden="true"><span class="chain__fill"></span></div>
+        <ul class="chain__list">
+          <li class="chain__item">
+            <span class="chain__node" aria-hidden="true"><span class="chev"></span></span>
+            <h3 class="chain__title">Les dirigeants</h3>
+            <p>Ils tiennent le club&nbsp;: les équipes, les comptes, les licences et les rendez-vous.</p>
+          </li>
+          <li class="chain__item">
+            <span class="chain__node" aria-hidden="true"><span class="chev"></span></span>
+            <h3 class="chain__title">Les éducateurs</h3>
+            <p>Ils entraînent, convoquent, font l’appel et transmettent les valeurs du sport.</p>
+          </li>
+          <li class="chain__item">
+            <span class="chain__node" aria-hidden="true"><span class="chev"></span></span>
+            <h3 class="chain__title">Les parents</h3>
+            <p>Ils répondent pour leurs enfants, organisent le covoiturage et encouragent au bord du terrain.</p>
+          </li>
+          <li class="chain__item">
+            <span class="chain__node" aria-hidden="true"><span class="chev"></span></span>
+            <h3 class="chain__title">Les bénévoles</h3>
+            <p>Buvette, installation, goûter, arbitre de touche&nbsp;: ils font tourner les journées de match.</p>
+          </li>
+          <li class="chain__item">
+            <span class="chain__node" aria-hidden="true"><span class="chev"></span></span>
+            <h3 class="chain__title">Les arbitres</h3>
+            <p>Sans eux, pas de match. Ils font partie du collectif, eux aussi.</p>
+          </li>
+          <li class="chain__item">
+            <span class="chain__node" aria-hidden="true"><span class="chev"></span></span>
+            <h3 class="chain__title">Les joueurs</h3>
+            <p>Ils grandissent, sur le terrain comme en dehors. Tout le reste est là pour eux.</p>
+          </li>
+        </ul>
+      </div>
+      <figure class="photo-slot" data-reveal="mask">
+        <div class="photo-slot__frame">
+          <div class="photo-slot__chevrons" aria-hidden="true" data-parallax="0.08">
+            <svg class="chevron-big chevron-big--lime"><use href="#i-big-chevron"/></svg>
+            <svg class="chevron-big chevron-big--olive"><use href="#i-big-chevron"/></svg>
+          </div>
+          <p class="photo-slot__quote">Derrière chaque joueur, il y a tout un collectif.</p>
+        </div>
+        <figcaption class="photo-slot__caption"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span><strong>Emplacement photo.</strong> Un samedi matin au club&nbsp;: parents, coach et joueurs au bord du terrain. À remplacer par une photo d’un club réel, avec l’accord des personnes photographiées et des parents pour les mineurs.</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 05 · LES QUATRE UNIVERS -->
+  <section class="univers theme-night" id="univers" aria-labelledby="univers-titre">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <h2 class="display display--1" id="univers-titre" data-reveal="lines">
+          <span class="line"><span>Une appli,</span></span>
+          <span class="line"><span>quatre univers.</span></span>
+        </h2>
+        <p class="lead section-head__lead" data-reveal>Le club, l’éducateur, les familles et les joueurs n’ont pas les mêmes besoins. Chacun retrouve les siens, au même endroit.</p>
+      </div>
+
+      <article class="monde" aria-labelledby="monde-1">
+        <div class="monde__num" aria-hidden="true" data-parallax="0.1">01</div>
+        <div class="monde__text" data-reveal>
+          <p class="label"><span class="chev" aria-hidden="true"></span>Le club</p>
+          <h3 class="display display--2" id="monde-1">Tout le club, d’un coup d’œil.</h3>
+          <p>Le président et le bureau voient ce qui reste à traiter, l’activité de chaque équipe, les prochains rendez-vous, la trésorerie et les cotisations.</p>
+          <ul class="ticks">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Trésorerie de l’exercice, compte et caisse</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Cotisations dues et licences impayées</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Avances des bénévoles à rembourser</li>
+          </ul>
+        </div>
+        <div class="monde__media" data-reveal="mask">
+          <figure class="phone phone--monde" data-parallax="-0.06">
+            <div class="phone__frame"><div class="phone__screen">
+              <picture class="phone__shot is-active">
+                <source type="image/avif" srcset="assets/img/ecrans/finance-360.avif 360w, assets/img/ecrans/finance-720.avif 720w" sizes="(min-width: 900px) 290px, 64vw">
+                <source type="image/webp" srcset="assets/img/ecrans/finance-360.webp 360w, assets/img/ecrans/finance-720.webp 720w" sizes="(min-width: 900px) 290px, 64vw">
+                <img src="assets/img/ecrans/finance-720.webp" width="1080" height="2004" alt="Écran Finances de l’appli : 4 860 € disponibles, recettes, dépenses, remboursements en attente et cotisations dues." loading="lazy" decoding="async">
+              </picture>
+            </div></div>
+          </figure>
+        </div>
+      </article>
+
+      <article class="monde monde--reverse" aria-labelledby="monde-2">
+        <div class="monde__num" aria-hidden="true" data-parallax="0.1">02</div>
+        <div class="monde__text" data-reveal>
+          <p class="label"><span class="chev" aria-hidden="true"></span>L’éducateur</p>
+          <h3 class="display display--2" id="monde-2">Moins de relances, plus de terrain.</h3>
+          <p>Le coach gère le planning de son équipe, crée ses entraînements pour plusieurs semaines en une fois, convoque ses joueurs, fait l’appel et remplit la feuille de match.</p>
+          <ul class="ticks">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Convocations et réponses au même endroit</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Présents, absents, en attente&nbsp;: l’appel d’un coup d’œil</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Composition et feuille de match</li>
+          </ul>
+        </div>
+        <div class="monde__media" data-reveal="mask">
+          <figure class="phone phone--monde phone--scroll" data-parallax="-0.06">
+            <div class="phone__frame"><div class="phone__screen">
+              <picture class="phone__shot is-active">
+                <source type="image/avif" srcset="assets/img/ecrans/match-360.avif 360w, assets/img/ecrans/match-720.avif 720w" sizes="(min-width: 900px) 290px, 64vw">
+                <source type="image/webp" srcset="assets/img/ecrans/match-360.webp 360w, assets/img/ecrans/match-720.webp 720w" sizes="(min-width: 900px) 290px, 64vw">
+                <img src="assets/img/ecrans/match-720.webp" width="1080" height="2550" alt="Écran d’un match : 11 présents, 2 absents, 1 en attente, informations du match, renfort et missions des bénévoles." loading="lazy" decoding="async">
+              </picture>
+            </div></div>
+          </figure>
+        </div>
+      </article>
+
+      <article class="monde" aria-labelledby="monde-3">
+        <div class="monde__num" aria-hidden="true" data-parallax="0.1">03</div>
+        <div class="monde__text" data-reveal>
+          <p class="label"><span class="chev" aria-hidden="true"></span>Les familles</p>
+          <h3 class="display display--2" id="monde-3">Où, quand, et qui emmène qui.</h3>
+          <p>Les parents répondent aux convocations pour leurs enfants, reçoivent les informations du club et organisent le covoiturage.</p>
+          <ul class="ticks">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Une réponse en un geste</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Des places proposées, attribuées automatiquement si besoin</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Un seul compte, même avec plusieurs rôles</li>
+          </ul>
+        </div>
+        <div class="monde__media" data-reveal="mask">
+          <figure class="phone phone--monde" data-parallax="-0.06">
+            <div class="phone__frame"><div class="phone__screen">
+              <picture class="phone__shot is-active">
+                <source type="image/avif" srcset="assets/img/ecrans/covoiturage-360.avif 360w, assets/img/ecrans/covoiturage-720.avif 720w" sizes="(min-width: 900px) 290px, 64vw">
+                <source type="image/webp" srcset="assets/img/ecrans/covoiturage-360.webp 360w, assets/img/ecrans/covoiturage-720.webp 720w" sizes="(min-width: 900px) 290px, 64vw">
+                <img src="assets/img/ecrans/covoiturage-720.webp" width="1080" height="2004" alt="Écran Transport : organisation complète, 12 participants, 3 voitures proposées par les familles." loading="lazy" decoding="async">
+              </picture>
+            </div></div>
+          </figure>
+        </div>
+      </article>
+
+      <article class="monde monde--reverse" aria-labelledby="monde-4">
+        <div class="monde__num" aria-hidden="true" data-parallax="0.1">04</div>
+        <div class="monde__text" data-reveal>
+          <p class="label"><span class="chev" aria-hidden="true"></span>Les joueurs</p>
+          <h3 class="display display--2" id="monde-4">Une saison qui se raconte.</h3>
+          <p>Les joueurs retrouvent leur saison et leurs rendez-vous. Bientôt, leur carte MY CARD montrera leur progression, sur le terrain comme dans leur attitude.</p>
+          <ul class="ticks">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Les convocations et le planning de l’équipe</li>
+            <li class="ticks__soon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Bientôt&nbsp;: MY CARD, la carte qui suit la progression</li>
+            <li class="ticks__soon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Comparé à lui-même, jamais aux autres</li>
+          </ul>
+        </div>
+        <div class="monde__media monde__media--card" data-reveal="mask">
+          <div class="mini-card" data-parallax="-0.06">
+            <div class="card card--bronze card--static" aria-label="Aperçu de la carte MY CARD, palier Bronze">
+              <div class="card__inner">
+                <div class="card__top"><img class="card__logo" src="assets/img/logo/elazyo-fond-fonce.svg" alt="" width="84" height="15"><span class="card__brand">MY CARD</span><span class="card__tier">Bronze</span></div>
+                <span class="card__number" aria-hidden="true">6</span>
+                <picture class="card__player">
+                  <source type="image/avif" srcset="assets/img/mycard/joueur-380.avif 380w, assets/img/mycard/joueur-760.avif 760w" sizes="220px">
+                  <source type="image/webp" srcset="assets/img/mycard/joueur-380.webp 380w, assets/img/mycard/joueur-760.webp 760w" sizes="220px">
+                  <img src="assets/img/mycard/joueur-380.webp" width="713" height="1628" alt="" loading="lazy" decoding="async">
+                </picture>
+                <div class="card__bottom"><span class="card__season">Saison 2026-2027</span></div>
+              </div>
+            </div>
+            <span class="soon-tag">Bientôt</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 06 · L’APPLICATION -->
+  <section class="showcase theme-surface" id="application" aria-labelledby="application-titre">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <h2 class="display display--1" id="application-titre" data-reveal="lines">
+          <span class="line"><span>L’appli</span></span>
+          <span class="line"><span>en action.</span></span>
+        </h2>
+        <p class="lead section-head__lead" data-reveal>Des écrans réels, sur un club de démonstration. Voici ce que vos coachs, vos familles et votre bureau ont dans la poche.</p>
+      </div>
+
+      <div class="showcase__grid" data-showcase>
+        <div class="showcase__device">
+          <div class="showcase__sticky">
+            <figure class="phone phone--showcase">
+              <div class="phone__frame">
+                <div class="phone__screen" data-showcase-screens>
+                  <picture class="phone__shot is-active" data-screen="0">
+                    <source type="image/avif" srcset="assets/img/ecrans/planning-360.avif 360w, assets/img/ecrans/planning-720.avif 720w" sizes="(min-width: 900px) 320px, 66vw">
+                    <source type="image/webp" srcset="assets/img/ecrans/planning-360.webp 360w, assets/img/ecrans/planning-720.webp 720w" sizes="(min-width: 900px) 320px, 66vw">
+                    <img src="assets/img/ecrans/planning-720.webp" width="1080" height="2004" alt="Écran Planning : matchs, entraînements et événements du club, filtrés par catégorie." loading="lazy" decoding="async">
+                  </picture>
+                  <picture class="phone__shot phone__shot--scroll" data-screen="1">
+                    <source type="image/avif" srcset="assets/img/ecrans/match-360.avif 360w, assets/img/ecrans/match-720.avif 720w" sizes="(min-width: 900px) 320px, 66vw">
+                    <source type="image/webp" srcset="assets/img/ecrans/match-360.webp 360w, assets/img/ecrans/match-720.webp 720w" sizes="(min-width: 900px) 320px, 66vw">
+                    <img src="assets/img/ecrans/match-720.webp" width="1080" height="2550" alt="Écran d’un match : présences, informations du match et missions des bénévoles." loading="lazy" decoding="async">
+                  </picture>
+                  <div class="phone__shot phone__shot--video" data-screen="2">
+                    <video muted playsinline preload="none" poster="assets/video/covoiturage-poster.webp" width="720" height="1336" aria-label="Vidéo réelle de l’appli : un parent propose sa voiture pour un déplacement." data-inview-video>
+                      <source src="assets/video/covoiturage.webm" type="video/webm">
+                      <source src="assets/video/covoiturage.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <picture class="phone__shot" data-screen="3">
+                    <source type="image/avif" srcset="assets/img/ecrans/communication-360.avif 360w, assets/img/ecrans/communication-720.avif 720w" sizes="(min-width: 900px) 320px, 66vw">
+                    <source type="image/webp" srcset="assets/img/ecrans/communication-360.webp 360w, assets/img/ecrans/communication-720.webp 720w" sizes="(min-width: 900px) 320px, 66vw">
+                    <img src="assets/img/ecrans/communication-720.webp" width="1080" height="2004" alt="Écran Communication : annonce d’un tournoi U11 et message de la vie du club." loading="lazy" decoding="async">
+                  </picture>
+                  <picture class="phone__shot" data-screen="4">
+                    <source type="image/avif" srcset="assets/img/ecrans/finance-360.avif 360w, assets/img/ecrans/finance-720.avif 720w" sizes="(min-width: 900px) 320px, 66vw">
+                    <source type="image/webp" srcset="assets/img/ecrans/finance-360.webp 360w, assets/img/ecrans/finance-720.webp 720w" sizes="(min-width: 900px) 320px, 66vw">
+                    <img src="assets/img/ecrans/finance-720.webp" width="1080" height="2004" alt="Écran Finances : disponible, recettes, dépenses, remboursements et cotisations dues." loading="lazy" decoding="async">
+                  </picture>
+                </div>
+              </div>
+            </figure>
+            <div class="showcase__dots" role="group" aria-label="Choisir un écran">
+              <button type="button" class="showcase__dot is-active" data-goto="0" aria-pressed="true"><span class="sr-only">Planning</span></button>
+              <button type="button" class="showcase__dot" data-goto="1" aria-pressed="false"><span class="sr-only">Match</span></button>
+              <button type="button" class="showcase__dot" data-goto="2" aria-pressed="false"><span class="sr-only">Covoiturage</span></button>
+              <button type="button" class="showcase__dot" data-goto="3" aria-pressed="false"><span class="sr-only">Communication</span></button>
+              <button type="button" class="showcase__dot" data-goto="4" aria-pressed="false"><span class="sr-only">Finances</span></button>
+            </div>
+          </div>
+        </div>
+
+        <ol class="showcase__steps" data-showcase-steps>
+          <li class="step is-active" data-step="0">
+            <p class="step__kicker"><span class="step__index">1</span>Planning</p>
+            <h3 class="step__title">Le planning de tout le club.</h3>
+            <p>Matchs, entraînements et événements, filtrés par catégorie. Ce qui reste à préparer saute aux yeux.</p>
+          </li>
+          <li class="step" data-step="1">
+            <p class="step__kicker"><span class="step__index">2</span>Match</p>
+            <h3 class="step__title">Le jour du match, tout est prêt.</h3>
+            <p>Présents, absents, en attente, lieu, covoiturage et missions des bénévoles&nbsp;: le coach voit tout sur un seul écran.</p>
+            <ul class="step__statuts" aria-label="Quatre états qui ne se mélangent jamais">
+              <li class="statut statut--dispo"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Disponible</li>
+              <li class="statut statut--convoque"><svg class="icon" aria-hidden="true"><use href="#i-flag"/></svg>Convoqué</li>
+              <li class="statut statut--confirme"><svg class="icon" aria-hidden="true"><use href="#i-checkcircle"/></svg>Confirmé</li>
+              <li class="statut statut--present"><svg class="icon" aria-hidden="true"><use href="#i-double"/></svg>Présent</li>
+            </ul>
+            <p class="step__note">Disponible, convoqué, confirmé et présent sont quatre choses différentes. L’appli ne les mélange jamais.</p>
+          </li>
+          <li class="step" data-step="2">
+            <p class="step__kicker"><span class="step__index">3</span>Covoiturage</p>
+            <h3 class="step__title">Le covoit’ s’organise tout seul.</h3>
+            <p>Les parents proposent leurs places, le point de rendez-vous et l’heure de départ. Les places peuvent être attribuées automatiquement, et chaque famille est prévenue.</p>
+          </li>
+          <li class="step" data-step="3">
+            <p class="step__kicker"><span class="step__index">4</span>Communication</p>
+            <h3 class="step__title">Les infos arrivent à tout le monde.</h3>
+            <p>Annonces du bureau, vie du club, moments partagés&nbsp;: les nouvelles du club ne se perdent plus dans les groupes.</p>
+          </li>
+          <li class="step" data-step="4">
+            <p class="step__kicker"><span class="step__index">5</span>Finances</p>
+            <h3 class="step__title">La trésorerie, sans tableur.</h3>
+            <p>Disponible, recettes, dépenses, remboursements des bénévoles et cotisations dues&nbsp;: le bureau suit l’exercice au même endroit.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="cta-row" data-reveal>
+        <a class="btn btn--primary btn--lg" href="https://app.elazyo.fr/" rel="noopener">Essayer gratuitement<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--ghost btn--lg" href="#contact" data-prefill-objet="demo">Demander une démo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · LES PROFILS -->
+  <section class="profils theme-night" id="profils" aria-labelledby="profils-titre">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <h2 class="display display--1" id="profils-titre" data-reveal="lines">
+          <span class="line"><span>Chacun voit ce</span></span>
+          <span class="line"><span>qui le concerne.</span></span>
+        </h2>
+        <p class="lead section-head__lead" data-reveal>Sept profils, une seule appli. Une même personne peut avoir plusieurs rôles, par exemple parent et coach, avec un seul compte.</p>
+      </div>
+
+      <div class="tabs" data-tabs>
+        <div class="tabs__list" role="tablist" aria-label="Profils" aria-orientation="vertical">
+          <button class="tabs__tab" role="tab" type="button" id="tab-president" aria-controls="panel-president" aria-selected="true">Président et direction</button>
+          <button class="tabs__tab" role="tab" type="button" id="tab-coach" aria-controls="panel-coach" aria-selected="false" tabindex="-1">Éducateur et coach</button>
+          <button class="tabs__tab" role="tab" type="button" id="tab-tresorerie" aria-controls="panel-tresorerie" aria-selected="false" tabindex="-1">Secrétariat et trésorerie</button>
+          <button class="tabs__tab" role="tab" type="button" id="tab-familles" aria-controls="panel-familles" aria-selected="false" tabindex="-1">Familles et parents</button>
+          <button class="tabs__tab" role="tab" type="button" id="tab-joueurs" aria-controls="panel-joueurs" aria-selected="false" tabindex="-1">Joueurs</button>
+          <button class="tabs__tab" role="tab" type="button" id="tab-benevoles" aria-controls="panel-benevoles" aria-selected="false" tabindex="-1">Bénévoles</button>
+          <button class="tabs__tab" role="tab" type="button" id="tab-supporters" aria-controls="panel-supporters" aria-selected="false" tabindex="-1">Supporters et collectionneurs<span class="tabs__soon">Bientôt</span></button>
+        </div>
+
+        <div class="tabs__panels">
+          <div class="tabs__panel" role="tabpanel" id="panel-president" aria-labelledby="tab-president" tabindex="0">
+            <div class="panel__text">
+              <h3 class="display display--2">Piloter tout le club.</h3>
+              <ul class="ticks">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Ce qui reste à traiter, d’un coup d’œil</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>L’activité de chaque équipe et les prochains rendez-vous</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>La trésorerie, les cotisations et les licences impayées</li>
+              </ul>
+            </div>
+            <figure class="panel__media phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
+              <source type="image/avif" srcset="assets/img/ecrans/planning-360.avif 360w, assets/img/ecrans/planning-720.avif 720w" sizes="(min-width: 900px) 240px, 52vw">
+              <source type="image/webp" srcset="assets/img/ecrans/planning-360.webp 360w, assets/img/ecrans/planning-720.webp 720w" sizes="(min-width: 900px) 240px, 52vw">
+              <img src="assets/img/ecrans/planning-360.webp" width="1080" height="2004" alt="Vue président du planning du club." loading="lazy" decoding="async">
+            </picture></div></div></figure>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-coach" aria-labelledby="tab-coach" tabindex="0" hidden>
+            <div class="panel__text">
+              <h3 class="display display--2">Convoquer, faire l’appel, transmettre.</h3>
+              <ul class="ticks">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Des entraînements créés pour plusieurs semaines en une fois</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Convocations, présences et feuille de match</li>
+                <li class="ticks__soon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Bientôt&nbsp;: l’évaluation de l’état d’esprit, qui remplit MY CARD</li>
+              </ul>
+            </div>
+            <figure class="panel__media phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
+              <source type="image/avif" srcset="assets/img/ecrans/match-360.avif 360w, assets/img/ecrans/match-720.avif 720w" sizes="(min-width: 900px) 240px, 52vw">
+              <source type="image/webp" srcset="assets/img/ecrans/match-360.webp 360w, assets/img/ecrans/match-720.webp 720w" sizes="(min-width: 900px) 240px, 52vw">
+              <img src="assets/img/ecrans/match-360.webp" width="1080" height="2550" alt="Écran du coach pour un match : présences et missions." loading="lazy" decoding="async">
+            </picture></div></div></figure>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-tresorerie" aria-labelledby="tab-tresorerie" tabindex="0" hidden>
+            <div class="panel__text">
+              <h3 class="display display--2">Les comptes du club, sans tableur.</h3>
+              <ul class="ticks">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Disponible, recettes et dépenses de l’exercice</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Cotisations dues, payées ou partielles</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Avances des bénévoles à rembourser</li>
+              </ul>
+            </div>
+            <figure class="panel__media phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
+              <source type="image/avif" srcset="assets/img/ecrans/finance-360.avif 360w, assets/img/ecrans/finance-720.avif 720w" sizes="(min-width: 900px) 240px, 52vw">
+              <source type="image/webp" srcset="assets/img/ecrans/finance-360.webp 360w, assets/img/ecrans/finance-720.webp 720w" sizes="(min-width: 900px) 240px, 52vw">
+              <img src="assets/img/ecrans/finance-360.webp" width="1080" height="2004" alt="Écran Finances de l’exercice." loading="lazy" decoding="async">
+            </picture></div></div></figure>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-familles" aria-labelledby="tab-familles" tabindex="0" hidden>
+            <div class="panel__text">
+              <h3 class="display display--2">Toutes les infos de l’enfant au même endroit.</h3>
+              <ul class="ticks">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Répondre aux convocations pour son enfant</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Recevoir les informations du club</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Proposer ou trouver une place de covoiturage</li>
+              </ul>
+            </div>
+            <figure class="panel__media phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
+              <source type="image/avif" srcset="assets/img/ecrans/covoiturage-depart-360.avif 360w, assets/img/ecrans/covoiturage-depart-720.avif 720w" sizes="(min-width: 900px) 240px, 52vw">
+              <source type="image/webp" srcset="assets/img/ecrans/covoiturage-depart-360.webp 360w, assets/img/ecrans/covoiturage-depart-720.webp 720w" sizes="(min-width: 900px) 240px, 52vw">
+              <img src="assets/img/ecrans/covoiturage-depart-360.webp" width="1080" height="2004" alt="Écran Transport : une offre de covoiturage publiée par un parent." loading="lazy" decoding="async">
+            </picture></div></div></figure>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-joueurs" aria-labelledby="tab-joueurs" tabindex="0" hidden>
+            <div class="panel__text">
+              <h3 class="display display--2">Sa saison, ses rendez-vous.</h3>
+              <ul class="ticks">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Les convocations et le planning de l’équipe</li>
+                <li class="ticks__soon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Bientôt&nbsp;: MY CARD, sa carte de saison</li>
+              </ul>
+            </div>
+            <div class="panel__media panel__media--card">
+              <div class="card card--argent card--static" aria-label="Aperçu de la carte MY CARD, palier Argent">
+                <div class="card__inner">
+                  <div class="card__top"><img class="card__logo" src="assets/img/logo/elazyo-fond-fonce.svg" alt="" width="84" height="15"><span class="card__brand">MY CARD</span><span class="card__tier">Argent</span></div>
+                  <span class="card__number" aria-hidden="true">6</span>
+                  <picture class="card__player">
+                    <source type="image/avif" srcset="assets/img/mycard/joueur-380.avif 380w" sizes="200px">
+                    <img src="assets/img/mycard/joueur-380.webp" width="713" height="1628" alt="" loading="lazy" decoding="async">
+                  </picture>
+                  <div class="card__bottom"><span class="card__season">Saison 2026-2027</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-benevoles" aria-labelledby="tab-benevoles" tabindex="0" hidden>
+            <div class="panel__text">
+              <h3 class="display display--2">La mission qui vous va.</h3>
+              <ul class="ticks">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Les missions du club&nbsp;: buvette, installation, goûter, arbitre de touche</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Se proposer sur les créneaux libres</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Les annonces du club au même endroit</li>
+              </ul>
+            </div>
+            <figure class="panel__media phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
+              <source type="image/avif" srcset="assets/img/ecrans/communication-360.avif 360w, assets/img/ecrans/communication-720.avif 720w" sizes="(min-width: 900px) 240px, 52vw">
+              <source type="image/webp" srcset="assets/img/ecrans/communication-360.webp 360w, assets/img/ecrans/communication-720.webp 720w" sizes="(min-width: 900px) 240px, 52vw">
+              <img src="assets/img/ecrans/communication-360.webp" width="1080" height="2004" alt="Annonce du club invitant les parents à s’inscrire dans les missions." loading="lazy" decoding="async">
+            </picture></div></div></figure>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-supporters" aria-labelledby="tab-supporters" tabindex="0" hidden>
+            <div class="panel__text">
+              <p class="badge"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Bientôt</p>
+              <h3 class="display display--2">Suivre le club, collectionner les cartes.</h3>
+              <ul class="ticks">
+                <li class="ticks__soon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Suivre la vie du club et de ses équipes</li>
+                <li class="ticks__soon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>La collection MY CARD, de Bronze à Élite</li>
+              </ul>
+            </div>
+            <div class="panel__media panel__media--card">
+              <div class="card card--or card--static" aria-label="Aperçu de la carte MY CARD, palier Or">
+                <div class="card__inner">
+                  <div class="card__top"><img class="card__logo" src="assets/img/logo/elazyo-fond-fonce.svg" alt="" width="84" height="15"><span class="card__brand">MY CARD</span><span class="card__tier">Or</span></div>
+                  <span class="card__number" aria-hidden="true">6</span>
+                  <picture class="card__player">
+                    <source type="image/avif" srcset="assets/img/mycard/joueur-380.avif 380w" sizes="200px">
+                    <img src="assets/img/mycard/joueur-380.webp" width="713" height="1628" alt="" loading="lazy" decoding="async">
+                  </picture>
+                  <div class="card__bottom"><span class="card__season">Saison 2026-2027</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · EXPÉRIENCE JOUEUR -->
+  <section class="saison theme-light" id="experience-joueur" aria-labelledby="saison-titre">
+    <div class="container">
+      <div class="section-head">
+        <p class="badge badge--soon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Prochaine étape</p>
+        <h2 class="display display--1" id="saison-titre" data-reveal="lines">
+          <span class="line"><span>Chaque saison devient</span></span>
+          <span class="line"><span>une histoire.</span></span>
+        </h2>
+        <p class="lead section-head__lead" data-reveal>Après chaque entraînement et chaque match, le coach évaluera chaque joueur sur cinq aspects. Ces évaluations rempliront sa carte, au fil de la saison.</p>
+      </div>
+
+      <figure class="season" data-season>
+        <div class="season__track">
+          <ol class="season__months" aria-label="La saison, de septembre à juin">
+            <li>Sept.</li><li>Oct.</li><li>Nov.</li><li>Déc.</li><li>Janv.</li><li>Févr.</li><li>Mars</li><li>Avril</li><li>Mai</li><li>Juin</li>
+          </ol>
+          <div class="season__line" aria-hidden="true"><span class="season__fill"></span><span class="season__marker"></span></div>
+        </div>
+        <ul class="season__aspects">
+          <li class="aspect"><span class="aspect__name">Technique</span><span class="aspect__bar" aria-hidden="true"><span></span></span></li>
+          <li class="aspect"><span class="aspect__name">Tactique</span><span class="aspect__bar" aria-hidden="true"><span></span></span></li>
+          <li class="aspect"><span class="aspect__name">Physique</span><span class="aspect__bar" aria-hidden="true"><span></span></span></li>
+          <li class="aspect"><span class="aspect__name">Mental</span><span class="aspect__bar" aria-hidden="true"><span></span></span></li>
+          <li class="aspect"><span class="aspect__name">Comportement</span><span class="aspect__bar" aria-hidden="true"><span></span></span></li>
+        </ul>
+        <figcaption class="season__caption">Illustration&nbsp;: la progression d’un joueur au fil de la saison. Une bonne partie de l’évaluation porte sur l’état d’esprit&nbsp;: l’effort, le respect des autres, l’entraide, la ponctualité, la réaction après une erreur ou une défaite.</figcaption>
+      </figure>
+
+      <ul class="principes" data-reveal="stagger">
+        <li class="principe">
+          <h3 class="principe__title">Comparé à lui-même, jamais aux autres.</h3>
+          <p>Il n’y a pas de classement entre joueurs. L’enfant voit sa propre progression.</p>
+        </li>
+        <li class="principe">
+          <h3 class="principe__title">Des faits, pas des impressions.</h3>
+          <p>Le coach note des faits précis. Un aspect qui n’a pas été évalué ne compte jamais comme zéro.</p>
+        </li>
+        <li class="principe">
+          <h3 class="principe__title">L’attitude compte autant que le talent.</h3>
+          <p>Un enfant peut progresser et être reconnu, même s’il n’est pas le plus doué de l’équipe.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 09 · COLLECTION MY CARD -->
+  <section class="mycard theme-night" id="my-card" aria-labelledby="mycard-titre">
+    <div class="container mycard__grid">
+      <div class="mycard__copy">
+        <p class="badge badge--lime"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Bientôt disponible</p>
+        <h2 class="display display--1" id="mycard-titre" data-reveal="lines">
+          <span class="line"><span>MY CARD,</span></span>
+          <span class="line"><span>la carte du joueur.</span></span>
+        </h2>
+        <p class="lead" data-reveal>Le joueur ajoutera une photo de son visage, et l’appli créera sa carte. Elle passera de palier en palier, au rythme de sa progression.</p>
+        <div class="tiers" role="group" aria-label="Choisir un palier" data-tier-buttons>
+          <button type="button" class="tier tier--bronze is-active" data-tier="0" aria-pressed="true">Bronze</button>
+          <button type="button" class="tier tier--argent" data-tier="1" aria-pressed="false">Argent</button>
+          <button type="button" class="tier tier--or" data-tier="2" aria-pressed="false">Or</button>
+          <button type="button" class="tier tier--diamant" data-tier="3" aria-pressed="false">Diamant</button>
+          <button type="button" class="tier tier--elite" data-tier="4" aria-pressed="false">Élite</button>
+        </div>
+        <p class="mycard__note">MY CARD sera gratuite pour chaque joueur. Une version avancée sera proposée en option.</p>
+      </div>
+
+      <div class="mycard__stage" data-cards>
+        <div class="deck" data-deck>
+          <article class="card card--bronze" data-card="0" aria-label="Carte MY CARD, palier Bronze">
+            <div class="card__inner">
+              <div class="card__top"><img class="card__logo" src="assets/img/logo/elazyo-fond-fonce.svg" alt="" width="84" height="15"><span class="card__brand">MY CARD</span><span class="card__tier">Bronze</span></div>
+              <span class="card__number" aria-hidden="true">6</span>
+              <picture class="card__player">
+                <source type="image/avif" srcset="assets/img/mycard/joueur-380.avif 380w, assets/img/mycard/joueur-760.avif 760w" sizes="(min-width: 900px) 280px, 56vw">
+                <source type="image/webp" srcset="assets/img/mycard/joueur-380.webp 380w, assets/img/mycard/joueur-760.webp 760w" sizes="(min-width: 900px) 280px, 56vw">
+                <img src="assets/img/mycard/joueur-760.webp" width="713" height="1628" alt="" loading="lazy" decoding="async">
+              </picture>
+              <div class="card__bottom"><span class="card__season">Saison 2026-2027</span></div>
+            </div>
+            <span class="card__sheen" aria-hidden="true"></span>
+          </article>
+          <article class="card card--argent" data-card="1" aria-label="Carte MY CARD, palier Argent">
+            <div class="card__inner">
+              <div class="card__top"><img class="card__logo" src="assets/img/logo/elazyo-fond-fonce.svg" alt="" width="84" height="15"><span class="card__brand">MY CARD</span><span class="card__tier">Argent</span></div>
+              <span class="card__number" aria-hidden="true">6</span>
+              <picture class="card__player">
+                <source type="image/avif" srcset="assets/img/mycard/joueur-380.avif 380w, assets/img/mycard/joueur-760.avif 760w" sizes="(min-width: 900px) 280px, 56vw">
+                <source type="image/webp" srcset="assets/img/mycard/joueur-380.webp 380w, assets/img/mycard/joueur-760.webp 760w" sizes="(min-width: 900px) 280px, 56vw">
+                <img src="assets/img/mycard/joueur-760.webp" width="713" height="1628" alt="" loading="lazy" decoding="async">
+              </picture>
+              <div class="card__bottom"><span class="card__season">Saison 2026-2027</span></div>
+            </div>
+            <span class="card__sheen" aria-hidden="true"></span>
+          </article>
+          <article class="card card--or" data-card="2" aria-label="Carte MY CARD, palier Or">
+            <div class="card__inner">
+              <div class="card__top"><img class="card__logo" src="assets/img/logo/elazyo-fond-fonce.svg" alt="" width="84" height="15"><span class="card__brand">MY CARD</span><span class="card__tier">Or</span></div>
+              <span class="card__number" aria-hidden="true">6</span>
+              <picture class="card__player">
+                <source type="image/avif" srcset="assets/img/mycard/joueur-380.avif 380w, assets/img/mycard/joueur-760.avif 760w" sizes="(min-width: 900px) 280px, 56vw">
+                <source type="image/webp" srcset="assets/img/mycard/joueur-380.webp 380w, assets/img/mycard/joueur-760.webp 760w" sizes="(min-width: 900px) 280px, 56vw">
+                <img src="assets/img/mycard/joueur-760.webp" width="713" height="1628" alt="" loading="lazy" decoding="async">
+              </picture>
+              <div class="card__bottom"><span class="card__season">Saison 2026-2027</span></div>
+            </div>
+            <span class="card__sheen" aria-hidden="true"></span>
+          </article>
+          <article class="card card--diamant" data-card="3" aria-label="Carte MY CARD, palier Diamant">
+            <div class="card__inner">
+              <div class="card__top"><img class="card__logo" src="assets/img/logo/elazyo-fond-fonce.svg" alt="" width="84" height="15"><span class="card__brand">MY CARD</span><span class="card__tier">Diamant</span></div>
+              <span class="card__number" aria-hidden="true">6</span>
+              <picture class="card__player">
+                <source type="image/avif" srcset="assets/img/mycard/joueur-380.avif 380w, assets/img/mycard/joueur-760.avif 760w" sizes="(min-width: 900px) 280px, 56vw">
+                <source type="image/webp" srcset="assets/img/mycard/joueur-380.webp 380w, assets/img/mycard/joueur-760.webp 760w" sizes="(min-width: 900px) 280px, 56vw">
+                <img src="assets/img/mycard/joueur-760.webp" width="713" height="1628" alt="" loading="lazy" decoding="async">
+              </picture>
+              <div class="card__bottom"><span class="card__season">Saison 2026-2027</span></div>
+            </div>
+            <span class="card__sheen" aria-hidden="true"></span>
+          </article>
+          <article class="card card--elite" data-card="4" aria-label="Carte MY CARD, palier Élite">
+            <div class="card__inner">
+              <div class="card__top"><img class="card__logo" src="assets/img/logo/elazyo-fond-fonce.svg" alt="" width="84" height="15"><span class="card__brand">MY CARD</span><span class="card__tier">Élite</span></div>
+              <span class="card__number" aria-hidden="true">6</span>
+              <picture class="card__player">
+                <source type="image/avif" srcset="assets/img/mycard/joueur-380.avif 380w, assets/img/mycard/joueur-760.avif 760w" sizes="(min-width: 900px) 280px, 56vw">
+                <source type="image/webp" srcset="assets/img/mycard/joueur-380.webp 380w, assets/img/mycard/joueur-760.webp 760w" sizes="(min-width: 900px) 280px, 56vw">
+                <img src="assets/img/mycard/joueur-760.webp" width="713" height="1628" alt="" loading="lazy" decoding="async">
+              </picture>
+              <div class="card__bottom"><span class="card__season">Saison 2026-2027</span></div>
+            </div>
+            <span class="card__sheen" aria-hidden="true"></span>
+          </article>
+        </div>
+        <p class="mycard__caption">Aperçu de la carte, joueur d’illustration.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · COMMUNAUTÉ -->
+  <section class="communaute theme-bleu" id="communaute" aria-labelledby="communaute-titre">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <h2 class="display display--1" id="communaute-titre" data-reveal="lines">
+          <span class="line"><span>Le club, c’est</span></span>
+          <span class="line"><span>tout le monde.</span></span>
+        </h2>
+        <p class="lead section-head__lead" data-reveal>Un club ne fonctionne que grâce à l’engagement de tous, bénévoles compris. ELAZYO donne à chacun une façon simple de participer.</p>
+      </div>
+    </div>
+
+    <div class="valeurs" aria-labelledby="valeurs-titre">
+      <h3 class="sr-only" id="valeurs-titre">Les valeurs que nous voulons transmettre aux enfants</h3>
+      <div class="valeurs__track" data-marquee>
+        <ul class="valeurs__list">
+          <li>Respect</li><li>Solidarité</li><li>Engagement</li><li>Assiduité</li><li>Inclusion</li><li>Fair-play</li><li>Maîtrise de ses émotions</li>
+        </ul>
+        <ul class="valeurs__list" aria-hidden="true">
+          <li>Respect</li><li>Solidarité</li><li>Engagement</li><li>Assiduité</li><li>Inclusion</li><li>Fair-play</li><li>Maîtrise de ses émotions</li>
+        </ul>
+      </div>
+      <button class="motion-toggle valeurs__toggle" type="button" aria-pressed="false" data-marquee-toggle>
+        <svg class="icon icon--pause" aria-hidden="true"><use href="#i-pause"/></svg>
+        <svg class="icon icon--play" aria-hidden="true"><use href="#i-play-line"/></svg>
+        <span class="sr-only">Mettre en pause le défilement des valeurs</span>
+      </button>
+    </div>
+
+    <div class="container">
+      <div class="communaute__grid" data-reveal="stagger">
+        <article class="engage">
+          <svg class="icon engage__icon" aria-hidden="true"><use href="#i-heart"/></svg>
+          <h3 class="engage__title">Bénévoles</h3>
+          <p>Buvette, maillots, goûter, arbitre de touche. Chacun se propose sur la mission qui lui va.</p>
+        </article>
+        <article class="engage">
+          <svg class="icon engage__icon" aria-hidden="true"><use href="#i-car"/></svg>
+          <h3 class="engage__title">Familles</h3>
+          <p>Le covoiturage s’organise au même endroit. Chaque famille sait qui emmène qui.</p>
+        </article>
+        <article class="engage engage--soon">
+          <svg class="icon engage__icon" aria-hidden="true"><use href="#i-megaphone"/></svg>
+          <h3 class="engage__title">Supporters <span class="soon-inline">Bientôt</span></h3>
+          <p>Suivre le club, ses équipes et ses joueurs, saison après saison.</p>
+        </article>
+        <article class="engage engage--academy">
+          <p class="badge badge--on-bleu"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Bientôt</p>
+          <h3 class="engage__title engage__title--display">ELAZYO ACADEMY</h3>
+          <p><strong>Des histoires qui font vivre les valeurs.</strong> Les enfants suivront les aventures de cinq jeunes joueurs d’un club amateur, en lien avec les thèmes du Programme Éducatif Fédéral. Les personnages se trompent, en discutent et changent&nbsp;: c’est ainsi que les valeurs se transmettent.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · NOTRE VISION -->
+  <section class="vision theme-light" id="vision" aria-labelledby="vision-titre">
+    <div class="container">
+      <div class="section-head">
+        <p class="label"><span class="chev" aria-hidden="true"></span>Notre vision</p>
+        <h2 class="display display--1 vision__title" id="vision-titre" data-reveal="lines">
+          <span class="line"><span>Le sport amateur</span></span>
+          <span class="line"><span>mérite de voir grand.</span></span>
+        </h2>
+        <p class="lead section-head__lead" data-reveal>Nous voulons qu’ELAZYO devienne l’outil de référence du sport amateur, d’abord dans le football puis dans d’autres sports, sans jamais perdre le lien de proximité avec les clubs.</p>
+      </div>
+
+      <ul class="missions" data-reveal="stagger">
+        <li class="mission"><span class="mission__verb">Simplifier</span><span class="mission__text">la vie de ceux qui organisent le club.</span></li>
+        <li class="mission"><span class="mission__verb">Rassembler</span><span class="mission__text">joueurs, éducateurs, dirigeants, parents, bénévoles et partenaires.</span></li>
+        <li class="mission"><span class="mission__verb">Valoriser</span><span class="mission__text">la progression et l’engagement de chacun, sur le terrain comme en dehors.</span></li>
+        <li class="mission"><span class="mission__verb">Redistribuer</span><span class="mission__text">une partie de la valeur créée au profit du sport amateur.</span></li>
+      </ul>
+
+      <div class="roadmap">
+        <h3 class="roadmap__title">La suite, par étapes</h3>
+        <ol class="roadmap__list" data-roadmap>
+          <li class="roadmap__step roadmap__step--live">
+            <span class="roadmap__status">Disponible</span>
+            <p>La gestion du club et des équipes&nbsp;: planning, convocations, présences, covoiturage, bénévoles, communication, finances.</p>
+          </li>
+          <li class="roadmap__step">
+            <span class="roadmap__status">Ensuite</span>
+            <p>La progression des joueurs et MY CARD, leur carte de saison.</p>
+          </li>
+          <li class="roadmap__step">
+            <span class="roadmap__status">Puis</span>
+            <p>ELAZYO ACADEMY, des compétitions, des partenariats et d’autres sports que le football.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="partners" data-reveal>
+        <p class="partners__text">Clubs, associations, collectivités, marques&nbsp;: parlons de ce que nous pouvons faire ensemble pour le sport amateur.</p>
+        <a class="btn btn--primary btn--lg" href="#contact" data-prefill-objet="partenariat" data-prefill-profil="partenaire">Devenir partenaire<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLUBS FONDATEURS -->
+  <section class="fondateurs theme-night" id="clubs-fondateurs" aria-labelledby="fondateurs-titre">
+    <div class="container fondateurs__grid">
+      <div class="ticket" data-reveal>
+        <p class="ticket__count"><span class="ticket__num" data-count-to="10">10</span><span class="ticket__unit">places</span></p>
+        <p class="ticket__label">de Club Fondateur cette saison</p>
+        <p class="ticket__offer">ELAZYO gratuit pour tout le club jusqu’au <strong>30 juin 2027</strong></p>
+        <svg class="ticket__chevron" aria-hidden="true"><use href="#i-big-chevron"/></svg>
+      </div>
+
+      <div class="fondateurs__copy">
+        <h2 class="display display--1" id="fondateurs-titre" data-reveal="lines">
+          <span class="line"><span>Devenez</span></span>
+          <span class="line"><span>Club Fondateur.</span></span>
+        </h2>
+        <p class="lead" data-reveal>Nous installons ELAZYO avec vous, équipe par équipe, sans bousculer ce qui marche déjà.</p>
+
+        <div class="engagements" data-reveal>
+          <div class="engagements__col">
+            <h3 class="engagements__title">ELAZYO s’engage à</h3>
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>L’appli gratuite pour tout le club jusqu’au 30 juin 2027</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>L’installation avec vos coachs</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Un tutoriel vidéo d’une minute pour les familles</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Une réponse sous 48&nbsp;h à tout problème</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Un tarif Fondateur réservé pour la saison suivante, annoncé avant le 31 mars 2027</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>L’export de vos données à tout moment</li>
+            </ul>
+          </div>
+          <div class="engagements__col">
+            <h3 class="engagements__title">Le club s’engage à</h3>
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Utiliser ELAZYO avec au moins 2 équipes pendant 8 semaines</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Désigner un référent</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Faire un point de 15 minutes toutes les deux semaines</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Nous autoriser à citer le club, s’il est satisfait</li>
+            </ul>
+          </div>
+        </div>
+
+        <ol class="steps-mini" data-reveal="stagger">
+          <li><span class="steps-mini__n">1</span>Une démo de 30 minutes, en visio ou au club</li>
+          <li><span class="steps-mini__n">2</span>Le choix de 2 ou 3 équipes pour commencer</li>
+          <li><span class="steps-mini__n">3</span>L’installation avec chaque coach, 20 minutes</li>
+          <li><span class="steps-mini__n">4</span>Le reste du club suit, quand vous le décidez</li>
+        </ol>
+
+        <div class="cta-row cta-row--left">
+          <a class="btn btn--elan btn--lg" href="#contact" data-prefill-objet="club-fondateur" data-prefill-profil="president">Candidater<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <p class="cta-row__note">Un simple accord par e-mail suffit pour réserver votre place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq theme-surface" id="faq" aria-labelledby="faq-titre">
+    <div class="container faq__grid">
+      <div class="faq__head">
+        <h2 class="display display--1" id="faq-titre" data-reveal="lines">
+          <span class="line"><span>Vos</span></span>
+          <span class="line"><span>questions.</span></span>
+        </h2>
+        <p class="faq__more">Une autre question&nbsp;? <a class="link" href="#contact" data-prefill-objet="question">Écrivez-nous</a>.</p>
+      </div>
+      <div class="faq__list">
+        <details class="qa" name="faq">
+          <summary>ELAZYO est-il gratuit&#8239;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="qa__body"><p>Oui pour les joueurs et les familles. Pour les clubs, l’appli est gratuite pendant le lancement&nbsp;: les Clubs Fondateurs en profitent jusqu’au 30 juin 2027. MY CARD aura une base gratuite pour chaque joueur et une version avancée en option.</p></div>
+        </details>
+        <details class="qa" name="faq">
+          <summary>Sur quels appareils fonctionne ELAZYO&#8239;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="qa__body"><p>Sur iPhone, sur Android et sur le web, à l’adresse <a class="link" href="https://app.elazyo.fr/" rel="noopener">app.elazyo.fr</a>.</p></div>
+        </details>
+        <details class="qa" name="faq">
+          <summary>Comment passer de SportEasy à ELAZYO&#8239;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="qa__body"><p>Inutile de tout changer d’un coup. On commence avec 2 ou 3 équipes. Le coach envoie lui-même les liens d’activation à ses joueurs depuis l’appli, et chaque famille active son compte. Le reste du club suit quand il est prêt.</p></div>
+        </details>
+        <details class="qa" name="faq">
+          <summary>Comment sont protégées les données des enfants&#8239;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="qa__body"><p>Chaque personne ne voit que ce qui la concerne, selon son rôle. Pour les plus jeunes, c’est un parent qui crée le compte. Les évaluations comparent l’enfant à lui-même, jamais aux autres. La <a class="link" href="confidentialite.html">politique de confidentialité</a> détaille vos droits et la façon de les exercer.</p></div>
+        </details>
+        <details class="qa" name="faq">
+          <summary>Un parent peut-il aussi être coach&#8239;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="qa__body"><p>Oui. Une même personne peut avoir plusieurs rôles, par exemple parent et coach, avec un seul compte.</p></div>
+        </details>
+        <details class="qa" name="faq">
+          <summary>Et pour d’autres sports que le football&#8239;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="qa__body"><p>Le football d’abord. D’autres sports suivront, par étapes.</p></div>
+        </details>
+        <details class="qa" name="faq">
+          <summary>Qui est derrière ELAZYO&#8239;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="qa__body"><p>Une équipe d’associés issus du football amateur, dont un directeur sportif de club.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 · CONTACT -->
+  <section class="contact theme-night" id="contact" aria-labelledby="contact-titre">
+    <div class="container contact__grid">
+      <div class="contact__intro">
+        <h2 class="display display--1" id="contact-titre" data-reveal="lines">
+          <span class="line"><span>Parlons de</span></span>
+          <span class="line"><span>votre club.</span></span>
+        </h2>
+        <p class="lead" data-reveal>Une démo, une candidature Club Fondateur, une question ou un partenariat&nbsp;: écrivez-nous, nous vous répondons par e-mail.</p>
+        <div class="contact__app" data-reveal>
+          <p class="contact__app-title">Envie d’essayer tout de suite&#8239;?</p>
+          <p>L’appli est en ligne, gratuite pour les joueurs, sur iPhone, Android et le web.</p>
+          <a class="btn btn--ghost btn--md" href="https://app.elazyo.fr/" rel="noopener">Ouvrir app.elazyo.fr<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
+        </div>
+      </div>
+
+      <form class="form" action="/api/contact" method="post" novalidate data-contact-form>
+        <div class="form__row form__row--2">
+          <div class="field">
+            <label for="f-nom">Nom et prénom</label>
+            <input id="f-nom" name="nom" type="text" autocomplete="name" required minlength="2" maxlength="80" aria-describedby="f-nom-err">
+            <p class="field__error" id="f-nom-err" data-error-for="nom"></p>
+          </div>
+          <div class="field">
+            <label for="f-email">Adresse e-mail</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" aria-describedby="f-email-err">
+            <p class="field__error" id="f-email-err" data-error-for="email"></p>
+          </div>
+        </div>
+        <div class="form__row form__row--2">
+          <div class="field">
+            <label for="f-profil">Vous êtes</label>
+            <div class="select">
+              <select id="f-profil" name="profil" required aria-describedby="f-profil-err">
+                <option value="">Choisissez</option>
+                <option value="president">Président ou dirigeant</option>
+                <option value="coach">Coach ou éducateur</option>
+                <option value="tresorerie">Secrétaire ou trésorier</option>
+                <option value="parent">Parent</option>
+                <option value="benevole">Bénévole</option>
+                <option value="partenaire">Partenaire, association ou collectivité</option>
+                <option value="autre">Autre</option>
+              </select>
+              <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </div>
+            <p class="field__error" id="f-profil-err" data-error-for="profil"></p>
+          </div>
+          <div class="field">
+            <label for="f-club">Votre club <span class="field__optional">facultatif</span></label>
+            <input id="f-club" name="club" type="text" autocomplete="organization" maxlength="120">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-objet">Objet</label>
+          <div class="select">
+            <select id="f-objet" name="objet" required aria-describedby="f-objet-err">
+              <option value="club-fondateur">Devenir Club Fondateur</option>
+              <option value="demo">Demander une démo</option>
+              <option value="question" selected>Poser une question</option>
+              <option value="partenariat">Proposer un partenariat</option>
+            </select>
+            <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+          </div>
+          <p class="field__error" id="f-objet-err" data-error-for="objet"></p>
+        </div>
+        <div class="field">
+          <label for="f-message">Votre message</label>
+          <textarea id="f-message" name="message" rows="5" required minlength="10" maxlength="2000" aria-describedby="f-message-hint f-message-err"></textarea>
+          <p class="field__hint" id="f-message-hint"><span data-count>0</span>&nbsp;/ 2000 caractères</p>
+          <p class="field__error" id="f-message-err" data-error-for="message"></p>
+        </div>
+        <div class="field field--hp" aria-hidden="true">
+          <label for="f-site">Laissez ce champ vide</label>
+          <input id="f-site" name="site_web" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" name="t" value="" data-form-time>
+        <div class="field field--check">
+          <input id="f-consent" name="consentement" type="checkbox" value="oui" required aria-describedby="f-consent-err">
+          <label for="f-consent">J’accepte qu’ELAZYO utilise ces informations pour répondre à ma demande. <a class="link" href="confidentialite.html">Politique de confidentialité</a></label>
+          <p class="field__error" id="f-consent-err" data-error-for="consentement"></p>
+        </div>
+        <div class="form__submit">
+          <button class="btn btn--elan btn--lg" type="submit" data-submit><span data-submit-label>Envoyer ma demande</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <p class="form__status" role="status" aria-live="polite" data-form-status></p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer theme-night">
+  <div class="container">
+    <p class="site-footer__signature" aria-hidden="true">L’élan du collectif.</p>
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <img src="assets/img/logo/elazyo-fond-fonce.svg" alt="ELAZYO" width="157" height="28" loading="lazy">
+        <p>L’appli des clubs de foot amateur. L’élan du collectif.</p>
+      </div>
+      <nav class="site-footer__nav" aria-label="Plan du site">
+        <ul>
+          <li><a class="link" href="#application">L’appli</a></li>
+          <li><a class="link" href="#profils">Pour qui</a></li>
+          <li><a class="link" href="#my-card">MY CARD</a></li>
+          <li><a class="link" href="#clubs-fondateurs">Clubs Fondateurs</a></li>
+          <li><a class="link" href="#faq">Questions</a></li>
+          <li><a class="link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="site-footer__app">
+        <a class="btn btn--elan btn--md" href="https://app.elazyo.fr/" rel="noopener">Ouvrir l’appli<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <div class="site-footer__legal">
+      <p>© 2026 ELAZYO</p>
+      <ul>
+        <li><a class="link" href="mentions-legales.html">Mentions légales</a></li>
+        <li><a class="link" href="confidentialite.html">Confidentialité et cookies</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

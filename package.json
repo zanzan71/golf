@@ -1,0 +1,12 @@
+{
+  "name": "elazyo-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site vitrine ELAZYO : HTML, CSS et JavaScript sans dépendance, fonction serverless pour le formulaire.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test \"tests/*.test.mjs\"",
+    "dev": "python3 -m http.server 8080"
+  }
+}
