@@ -50,7 +50,7 @@
     /* Espaces (grille de 4 px) */
     --gutter: clamp(20px, 5vw, 64px);
     --container: 1320px;
-    --pad-y: clamp(88px, 11vw, 176px);
+    --pad-y: clamp(72px, 9vw, 144px);
     --gap: clamp(16px, 2.2vw, 32px);
 
     /* Rayons */
@@ -130,7 +130,7 @@
   .container { width: 100%; max-width: calc(var(--container) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
   main > section { padding-block: var(--pad-y); position: relative; }
 
-  .section-head { display: grid; gap: clamp(20px, 2.4vw, 32px); margin-bottom: clamp(48px, 7vw, 104px); }
+  .section-head { display: grid; gap: clamp(20px, 2.4vw, 32px); margin-bottom: clamp(40px, 6vw, 88px); }
   .section-head__lead { max-width: 46ch; }
   @media (min-width: 960px) {
     .section-head--split { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: end; column-gap: var(--gap); }
@@ -630,7 +630,7 @@
 
   /* ---------- 05 · Quatre univers ---------- */
   .monde { position: relative; display: grid; gap: clamp(36px, 5vw, 64px); align-items: center; }
-  .monde + .monde { margin-top: clamp(96px, 12vw, 176px); }
+  .monde + .monde { margin-top: clamp(72px, 10vw, 144px); }
   .monde__num {
     position: absolute; z-index: 0; top: -.42em; left: -.04em;
     font-family: var(--font-display); font-style: italic; font-weight: 800; line-height: 1;
@@ -680,12 +680,12 @@
     .showcase__device { grid-column: 2; grid-row: 1; align-self: stretch; }
     .showcase__sticky { position: sticky; top: max(96px, calc(50svh - 340px)); align-self: start; }
     .showcase__steps { grid-column: 1; grid-row: 1; }
-    .step { min-height: 72vh; border-top: 0; padding: 0; }
-    .step:first-child { min-height: 58vh; align-content: start; padding-top: 6vh; }
-    .step:last-child { min-height: 64vh; }
+    .step { min-height: min(64vh, 600px); border-top: 0; padding: 0; }
+    .step:first-child { min-height: min(52vh, 480px); align-content: start; padding-top: min(6vh, 56px); }
+    .step:last-child { min-height: min(60vh, 560px); }
     .step { position: relative; }
     .step::before { content: ""; position: absolute; left: -28px; top: 50%; width: 4px; height: 0; border-radius: 2px; background: var(--bleu); translate: 0 -50%; transition: height .5s var(--ease-out); }
-    .step:first-child::before { top: calc(6vh + 120px); }
+    .step:first-child::before { top: calc(min(6vh, 56px) + 120px); }
     .step.is-active::before { height: 120px; }
     html.js .step:not(.is-active) .step__title { color: var(--fg-muted); }
     html.js .step:not(.is-active) .step__index { background: transparent; color: var(--fg-muted); box-shadow: inset 0 0 0 1.5px var(--line-strong); }
@@ -982,25 +982,23 @@
    à limiter les animations. Sans JS, tout est visible. */
 @layer motion {
   @media (prefers-reduced-motion: no-preference) {
-    /* Révélations au défilement */
-    html.js [data-reveal]:not([data-reveal="lines"]):not([data-reveal="mask"]):not([data-reveal="stagger"]) {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
-    }
-    html.js [data-reveal].is-visible:not([data-reveal="lines"]):not([data-reveal="mask"]):not([data-reveal="stagger"]) { opacity: 1; transform: none; }
+    /* Révélations au défilement : seuls les éléments marqués .reveal-pending par le script
+       (situés sous l'écran au chargement) partent d'un état caché. */
+    [data-reveal]:not([data-reveal="lines"]):not([data-reveal="mask"]):not([data-reveal="stagger"]) { transition: opacity 1s var(--ease-out), transform 1s var(--ease-out); }
+    .reveal-pending:not(.is-visible):not([data-reveal="lines"]):not([data-reveal="mask"]):not([data-reveal="stagger"]) { opacity: 0; transform: translateY(28px); }
 
-    html.js [data-reveal="lines"] .line > span { transform: translateY(108%) rotate(3deg); transform-origin: 0 100%; transition: transform 1.05s var(--ease-out); }
-    html.js [data-reveal="lines"] .line:nth-child(2) > span { transition-delay: .09s; }
-    html.js [data-reveal="lines"] .line:nth-child(3) > span { transition-delay: .18s; }
-    html.js [data-reveal="lines"] .line:nth-child(4) > span { transition-delay: .27s; }
-    html.js [data-reveal="lines"].is-visible .line > span { transform: none; }
+    [data-reveal="lines"] .line > span { transform-origin: 0 100%; transition: transform 1.05s var(--ease-out); }
+    [data-reveal="lines"] .line:nth-child(2) > span { transition-delay: .09s; }
+    [data-reveal="lines"] .line:nth-child(3) > span { transition-delay: .18s; }
+    [data-reveal="lines"] .line:nth-child(4) > span { transition-delay: .27s; }
+    .reveal-pending[data-reveal="lines"]:not(.is-visible) .line > span { transform: translateY(108%) rotate(3deg); }
 
-    html.js [data-reveal="mask"] { clip-path: inset(100% 0 0 0 round var(--r-lg)); transition: clip-path 1.25s var(--ease-out); }
-    html.js [data-reveal="mask"].is-visible { clip-path: inset(-25% -25% -25% -25% round 0); }
-    html.js [data-reveal="mask"].reveal-done { clip-path: none; }
+    [data-reveal="mask"] { transition: clip-path 1.25s var(--ease-out); }
+    .reveal-pending[data-reveal="mask"]:not(.is-visible) { clip-path: inset(100% 0 0 0 round var(--r-lg)); }
+    .reveal-pending[data-reveal="mask"].is-visible:not(.reveal-done) { clip-path: inset(-25% -25% -25% -25% round 0); }
 
-    html.js [data-reveal="stagger"] > * { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); transition-delay: calc(var(--i, 0) * 90ms); }
-    html.js [data-reveal="stagger"].is-visible > * { opacity: 1; transform: none; }
+    [data-reveal="stagger"] > * { transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); transition-delay: calc(var(--i, 0) * 90ms); }
+    .reveal-pending[data-reveal="stagger"]:not(.is-visible) > * { opacity: 0; transform: translateY(24px); }
 
     /* Hero : une seule séquence d'ouverture, en CSS pur pour ne pas attendre le JavaScript.
        Le paragraphe d'introduction reste visible dès le premier affichage (LCP). */
@@ -1052,7 +1050,7 @@
   }
 
   @media print {
-    html.js [data-reveal], html.js [data-reveal] *, html.js .hero * { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+    [data-reveal], [data-reveal] *, .hero * { opacity: 1 !important; transform: none !important; clip-path: none !important; animation: none !important; }
     .site-header, .announce, .hero__chevrons, .valeurs { display: none; }
   }
 }

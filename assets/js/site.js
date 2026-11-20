@@ -1,0 +1,1002 @@
+/* ELAZYO — script du site, assemblé depuis assets/js/modules par scripts/assembler-js.mjs.
+   Ne pas modifier ce fichier à la main : modifier les modules puis relancer l'assemblage. */
+(function () {
+'use strict';
+// ---- env.js ----
+// Environnement partagé : préférences de mouvement, type de pointeur, boucle d'images.
+
+const reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+const finePointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+const prefersReducedMotion = () => reduceQuery.matches;
+const hasFinePointer = () => finePointerQuery.matches;
+const isDesktop = (min = 900) => window.innerWidth >= min;
+
+const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v));
+
+// Une seule boucle requestAnimationFrame pour tous les effets liés au défilement.
+const subscribers = new Set();
+let ticking = false;
+
+function run() {
+  ticking = false;
+  const vh = window.innerHeight;
+  for (const fn of subscribers) fn(vh);
+}
+
+function requestFrame() {
+  if (!ticking) {
+    ticking = true;
+    requestAnimationFrame(run);
+  }
+}
+
+function onScrollFrame(fn) {
+  subscribers.add(fn);
+  requestFrame();
+  return () => subscribers.delete(fn);
+}
+
+window.addEventListener('scroll', requestFrame, { passive: true });
+window.addEventListener('resize', requestFrame, { passive: true });
+
+// Ne calcule un effet que lorsque son élément est proche de l'écran.
+function whenNear(el, margin = '25%') {
+  const state = { near: false };
+  if (!('IntersectionObserver' in window)) {
+    state.near = true;
+    return state;
+  }
+  new IntersectionObserver(([entry]) => {
+    state.near = entry.isIntersecting;
+    if (state.near) requestFrame();
+  }, { rootMargin: `${margin} 0px ${margin} 0px` }).observe(el);
+  return state;
+}
+
+// ---- header.js ----
+// En-tête : passe en mode compact au défilement, indique la section en cours,
+// gère le menu mobile (piège du focus, Échap, verrouillage du défilement).
+
+function initHeader() {
+  const header = document.querySelector('[data-header]');
+  if (!header) return;
+
+  const update = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+
+  // Section en cours dans la navigation
+  const links = [...header.querySelectorAll('[data-nav]')];
+  const byId = new Map(links.map((a) => [a.getAttribute('href').slice(1), a]));
+  if ('IntersectionObserver' in window && byId.size) {
+    const io = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        const link = byId.get(entry.target.id);
+        if (!link) continue;
+        if (entry.isIntersecting) {
+          links.forEach((a) => {
+            a.classList.toggle('is-current', a === link);
+            if (a === link) a.setAttribute('aria-current', 'true');
+            else a.removeAttribute('aria-current');
+          });
+        } else if (link.classList.contains('is-current')) {
+          link.classList.remove('is-current');
+          link.removeAttribute('aria-current');
+        }
+      }
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    byId.forEach((_, id) => {
+      const section = document.getElementById(id);
+      if (section) io.observe(section);
+    });
+  }
+
+  // Menu mobile
+  const toggle = header.querySelector('[data-menu-toggle]');
+  const menu = header.querySelector('[data-menu]');
+  const label = header.querySelector('[data-menu-label]');
+  if (!toggle || !menu) return;
+
+  menu.querySelectorAll('.mobile-menu__list li').forEach((li, i) => li.style.setProperty('--i', i));
+
+  const focusables = () => [toggle, ...menu.querySelectorAll('a, button')];
+
+  const open = () => {
+    menu.hidden = false;
+    header.classList.add('menu-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    label.textContent = 'Fermer le menu';
+    document.documentElement.style.overflow = 'hidden';
+    menu.querySelector('a')?.focus({ preventScroll: true });
+  };
+  const close = (returnFocus = true) => {
+    menu.hidden = true;
+    header.classList.remove('menu-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    label.textContent = 'Ouvrir le menu';
+    document.documentElement.style.overflow = '';
+    if (returnFocus) toggle.focus({ preventScroll: true });
+  };
+
+  toggle.addEventListener('click', () => (menu.hidden ? open() : close()));
+  menu.addEventListener('click', (event) => {
+    if (event.target.closest('a')) close(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (menu.hidden) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      close();
+    } else if (event.key === 'Tab') {
+      const items = focusables();
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+  window.addEventListener('resize', () => {
+    if (!menu.hidden && window.innerWidth > 760) close(false);
+  });
+}
+
+// ---- reveal.js ----
+// Révélations au défilement : titres ligne par ligne, masques sur les images,
+// blocs et listes en séquence. Les états de départ sont dans site.css (layer motion).
+//
+// Principe « complet au repos » : rien n'est caché par défaut. Seuls les éléments
+// situés sous l'écran au chargement reçoivent .reveal-pending, puis se révèlent en
+// arrivant à l'écran. Si le script ne tourne pas, ou si la page est affichée en
+// entier d'un coup (aperçu, capture), tout reste visible.
+
+function initReveal() {
+  const els = [...document.querySelectorAll('[data-reveal]')];
+
+  document.querySelectorAll('[data-reveal="stagger"]').forEach((list) => {
+    [...list.children].forEach((child, i) => child.style.setProperty('--i', i));
+  });
+
+  const show = (el) => {
+    if (el.classList.contains('is-visible')) return;
+    el.classList.add('is-visible');
+    if (el.dataset.reveal === 'mask') {
+      const done = (event) => {
+        if (event.target !== el || event.propertyName !== 'clip-path') return;
+        el.classList.add('reveal-done');
+        el.removeEventListener('transitionend', done);
+      };
+      el.addEventListener('transitionend', done);
+      setTimeout(() => el.classList.add('reveal-done'), 1600);
+    }
+  };
+
+  const vh = window.innerHeight;
+  const pending = els.filter((el) => el.getBoundingClientRect().top > vh * 0.9);
+  if (!pending.length || !('IntersectionObserver' in window)) return;
+
+  pending.forEach((el) => el.classList.add('reveal-pending'));
+
+  const io = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      show(entry.target);
+      io.unobserve(entry.target);
+    }
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+  pending.forEach((el) => io.observe(el));
+
+  // Filet de sécurité : si l'observateur ne se déclenche pas, la position à l'écran suffit.
+  onScrollFrame((h) => {
+    for (const el of pending) {
+      if (!el.classList.contains('is-visible') && el.getBoundingClientRect().top < h * 0.95) show(el);
+    }
+  });
+}
+
+// ---- hero.js ----
+// Hero : séquence d'ouverture, écrans réels qui se succèdent dans le téléphone,
+// léger relief qui suit le pointeur (ordinateur uniquement).
+
+const SLIDE_MS = 3600;
+
+function initHero() {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  // Deux images pour que les états de départ soient peints avant la transition.
+  requestAnimationFrame(() => requestAnimationFrame(() => hero.classList.add('is-ready')));
+
+  initSlideshow(hero);
+  initTilt(hero);
+}
+
+function initSlideshow(hero) {
+  const screen = hero.querySelector('[data-slideshow]');
+  const toggle = hero.querySelector('[data-slideshow-toggle]');
+  if (!screen) return;
+  const shots = [...screen.querySelectorAll('.phone__shot')];
+  if (shots.length < 2) return;
+
+  let index = 0;
+  let timer = null;
+  let inView = true;
+  let pausedByUser = false;
+  let hovered = false;
+
+  const show = (i) => {
+    shots[index].classList.remove('is-active');
+    index = (i + shots.length) % shots.length;
+    const next = shots[index];
+    next.querySelector('img')?.setAttribute('loading', 'eager');
+    next.classList.add('is-active');
+  };
+
+  const canRun = () => !prefersReducedMotion() && !pausedByUser && !hovered && inView && !document.hidden;
+  const stop = () => { clearInterval(timer); timer = null; };
+  const start = () => {
+    stop();
+    if (canRun()) timer = setInterval(() => show(index + 1), SLIDE_MS);
+  };
+
+  // Précharge les écrans suivants une fois la page chargée.
+  window.addEventListener('load', () => {
+    shots.forEach((s) => s.querySelector('img')?.setAttribute('loading', 'eager'));
+  }, { once: true });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      start();
+    }).observe(screen);
+  }
+  document.addEventListener('visibilitychange', start);
+  const stage = hero.querySelector('.hero__stage');
+  stage?.addEventListener('pointerenter', () => { hovered = true; start(); });
+  stage?.addEventListener('pointerleave', () => { hovered = false; start(); });
+
+  if (toggle) {
+    if (prefersReducedMotion()) toggle.hidden = true;
+    toggle.addEventListener('click', () => {
+      pausedByUser = !pausedByUser;
+      toggle.setAttribute('aria-pressed', String(pausedByUser));
+      toggle.querySelector('.sr-only').textContent = pausedByUser
+        ? 'Reprendre le défilement des écrans'
+        : 'Mettre en pause le défilement des écrans';
+      start();
+    });
+  }
+  start();
+}
+
+function initTilt(hero) {
+  const stage = hero.querySelector('[data-tilt]');
+  if (!stage || prefersReducedMotion() || !hasFinePointer()) return;
+  const chips = [...stage.querySelectorAll('[data-depth]')];
+  let frame = 0;
+  let target = { x: 0, y: 0 };
+
+  const apply = () => {
+    frame = 0;
+    stage.style.setProperty('--rx', `${(-target.y * 5).toFixed(2)}deg`);
+    stage.style.setProperty('--ry', `${(target.x * 7).toFixed(2)}deg`);
+    chips.forEach((chip) => {
+      const d = Number(chip.dataset.depth) || 1;
+      chip.style.translate = `${(target.x * 14 * d).toFixed(1)}px ${(target.y * 10 * d).toFixed(1)}px`;
+    });
+  };
+
+  hero.addEventListener('pointermove', (event) => {
+    if (window.innerWidth < 1100) return;
+    const rect = hero.getBoundingClientRect();
+    target = {
+      x: (event.clientX - rect.left) / rect.width - 0.5,
+      y: (event.clientY - rect.top) / rect.height - 0.5,
+    };
+    if (!frame) frame = requestAnimationFrame(apply);
+  });
+  hero.addEventListener('pointerleave', () => {
+    target = { x: 0, y: 0 };
+    if (!frame) frame = requestAnimationFrame(apply);
+  });
+}
+
+// ---- scroll-effects.js ----
+// Effets liés au défilement : parallaxe multicouche, chaîne des maillons,
+// manifeste qui s'éclaire mot à mot, saison qui se remplit, écran qui défile.
+
+function initScrollEffects() {
+  const reduce = prefersReducedMotion();
+  initChain(reduce);
+  initSeason(reduce);
+  if (reduce) return;
+  initParallax();
+  initWords();
+  initScreenScroll();
+}
+
+function initParallax() {
+  const els = [...document.querySelectorAll('[data-parallax]')].map((el) => ({
+    el,
+    factor: Number(el.dataset.parallax) || 0,
+    near: whenNear(el),
+    y: 0,
+  }));
+  if (!els.length) return;
+
+  onScrollFrame((vh) => {
+    const enabled = window.innerWidth >= 768;
+    for (const item of els) {
+      if (!enabled) {
+        if (item.y !== 0) { item.y = 0; item.el.style.translate = ''; }
+        continue;
+      }
+      if (!item.near.near) continue;
+      const rect = item.el.getBoundingClientRect();
+      const center = rect.top - item.y + rect.height / 2;
+      const y = Math.round((center - vh / 2) * item.factor * 10) / 10;
+      if (y !== item.y) {
+        item.y = y;
+        item.el.style.translate = `0 ${y}px`;
+      }
+    }
+  });
+}
+
+function initChain(reduce) {
+  const chain = document.querySelector('[data-chain]');
+  if (!chain) return;
+  const items = [...chain.querySelectorAll('.chain__item')];
+  if (reduce) {
+    chain.style.setProperty('--p', '1');
+    items.forEach((item) => item.classList.add('is-on'));
+    return;
+  }
+  const near = whenNear(chain);
+  let last = -1;
+  onScrollFrame((vh) => {
+    if (!near.near) return;
+    const rect = chain.getBoundingClientRect();
+    const p = isDesktop()
+      ? clamp((vh * 0.88 - rect.top) / (vh * 0.5))
+      : clamp((vh * 0.62 - rect.top) / Math.max(rect.height - 40, 1));
+    const rounded = Math.round(p * 1000) / 1000;
+    if (rounded === last) return;
+    last = rounded;
+    chain.style.setProperty('--p', String(rounded));
+    items.forEach((item, i) => item.classList.toggle('is-on', rounded >= i / (items.length - 1) - 0.02));
+  });
+}
+
+function initSeason(reduce) {
+  const season = document.querySelector('[data-season]');
+  if (!season) return;
+  if (reduce) {
+    season.style.setProperty('--p', '1');
+    return;
+  }
+  const near = whenNear(season);
+  let last = -1;
+  onScrollFrame((vh) => {
+    if (!near.near) return;
+    const rect = season.getBoundingClientRect();
+    const p = Math.round(clamp((vh * 0.85 - rect.top) / (rect.height + vh * 0.15)) * 1000) / 1000;
+    if (p === last) return;
+    last = p;
+    season.style.setProperty('--p', String(p));
+  });
+}
+
+// Le manifeste s'éclaire mot après mot, au rythme de la lecture.
+function initWords() {
+  const block = document.querySelector('[data-words]');
+  if (!block) return;
+  const words = [];
+  block.querySelectorAll('p').forEach((p) => {
+    const parts = p.textContent.split(/(\s+)/);
+    p.textContent = '';
+    for (const part of parts) {
+      if (!part) continue;
+      if (/^\s+$/.test(part)) {
+        p.append(part);
+      } else {
+        const span = document.createElement('span');
+        span.className = 'w';
+        span.textContent = part;
+        p.append(span);
+        words.push(span);
+      }
+    }
+  });
+  block.classList.add('is-split');
+  const near = whenNear(block);
+  let lit = -1;
+  onScrollFrame((vh) => {
+    if (!near.near) return;
+    const rect = block.getBoundingClientRect();
+    // Entièrement éclairé quand le haut du texte atteint 55 % de l'écran ; ne s'éteint jamais.
+    const p = clamp((vh * 0.92 - rect.top) / (rect.height * 0.55 + vh * 0.37));
+    const count = Math.round(p * words.length);
+    if (count <= lit) return;
+    for (let i = Math.max(lit, 0); i < count; i++) words[i].classList.add('is-lit');
+    lit = count;
+  });
+}
+
+// Une capture plus haute que l'écran défile avec la page (mouvement déclenché par la personne).
+function initScreenScroll() {
+  document.querySelectorAll('.phone--scroll').forEach((phone) => {
+    const img = phone.querySelector('img');
+    if (!img) return;
+    const near = whenNear(phone);
+    onScrollFrame((vh) => {
+      if (!near.near) return;
+      const rect = phone.getBoundingClientRect();
+      const p = clamp((vh * 0.9 - rect.top) / (vh * 0.9 + rect.height * 0.2));
+      img.style.transform = `translateY(${(-p * 21.4).toFixed(2)}%)`;
+    });
+  });
+}
+
+// ---- showcase.js ----
+// « L'appli en action » : sur ordinateur, le téléphone reste à l'écran et change
+// d'écran au fil des étapes ; sur mobile, les étapes défilent à l'horizontale.
+
+const MATCH_OVERFLOW = 21.4; // % de la capture « match » qui dépasse de l'écran
+
+function initShowcase() {
+  const root = document.querySelector('[data-showcase]');
+  if (!root) return;
+  const steps = [...root.querySelectorAll('.step')];
+  const shots = [...root.querySelectorAll('[data-showcase-screens] .phone__shot')];
+  const dots = [...root.querySelectorAll('.showcase__dot')];
+  const list = root.querySelector('[data-showcase-steps]');
+  const video = root.querySelector('video');
+  const desktop = window.matchMedia('(min-width: 900px)');
+  let active = 0;
+
+  const setActive = (i) => {
+    if (i === active && shots[i].classList.contains('is-active')) return;
+    active = i;
+    steps.forEach((s, j) => s.classList.toggle('is-active', j === i));
+    shots.forEach((s, j) => {
+      s.classList.toggle('is-active', j === i);
+      if (j === i) s.querySelector('img')?.setAttribute('loading', 'eager');
+    });
+    dots.forEach((d, j) => {
+      d.classList.toggle('is-active', j === i);
+      d.setAttribute('aria-pressed', String(j === i));
+    });
+    handleVideo(i);
+  };
+
+  // Vidéo réelle du covoiturage : lue une fois (4 s) quand l'étape devient active.
+  function handleVideo(i) {
+    if (!video) return;
+    const isVideoStep = shots[i]?.contains(video);
+    if (isVideoStep && !prefersReducedMotion()) {
+      video.preload = 'auto';
+      try { video.currentTime = 0; } catch { /* vidéo pas encore prête */ }
+      const play = video.play();
+      if (play && typeof play.catch === 'function') play.catch(() => {});
+    } else if (!isVideoStep) {
+      video.pause();
+    }
+  }
+
+  if ('IntersectionObserver' in window) {
+    // Ordinateur : l'étape au milieu de l'écran pilote le téléphone.
+    const pageIO = new IntersectionObserver((entries) => {
+      if (!desktop.matches) return;
+      for (const entry of entries) {
+        if (entry.isIntersecting) setActive(steps.indexOf(entry.target));
+      }
+    }, { rootMargin: '-48% 0px -48% 0px' });
+    steps.forEach((s) => pageIO.observe(s));
+
+    // Mobile : la carte la plus visible dans le carrousel pilote le téléphone.
+    const rowIO = new IntersectionObserver((entries) => {
+      if (desktop.matches) return;
+      for (const entry of entries) {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.6) setActive(steps.indexOf(entry.target));
+      }
+    }, { root: list, threshold: [0.6] });
+    steps.forEach((s) => rowIO.observe(s));
+  }
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const i = Number(dot.dataset.goto);
+      const step = steps[i];
+      if (desktop.matches) {
+        const top = step.getBoundingClientRect().top + window.scrollY - window.innerHeight / 2 + step.offsetHeight / 2;
+        window.scrollTo({ top, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+      } else {
+        list.scrollTo({ left: step.offsetLeft - list.offsetLeft - parseFloat(getComputedStyle(list).paddingLeft || '0'), behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+      }
+      setActive(i);
+    });
+  });
+
+  // La capture « match » défile avec la page tant que son étape est active.
+  const matchImg = root.querySelector('.phone__shot--scroll img');
+  const matchStep = steps[1];
+  if (matchImg && matchStep && !prefersReducedMotion()) {
+    onScrollFrame((vh) => {
+      if (!desktop.matches) {
+        matchImg.style.transform = '';
+        return;
+      }
+      const rect = matchStep.getBoundingClientRect();
+      if (rect.bottom < -vh || rect.top > vh * 2) return;
+      const p = clamp((vh * 0.75 - rect.top) / (rect.height + vh * 0.1));
+      matchImg.style.transform = `translateY(${(-p * MATCH_OVERFLOW).toFixed(2)}%)`;
+    });
+  }
+
+  setActive(0);
+}
+
+// ---- tabs.js ----
+// Onglets des profils, selon le modèle WAI-ARIA « Tabs » (activation automatique).
+
+function initTabs() {
+  document.querySelectorAll('[data-tabs]').forEach(setup);
+}
+
+function setup(root) {
+  const list = root.querySelector('[role="tablist"]');
+  const tabs = [...root.querySelectorAll('[role="tab"]')];
+  const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
+  const vertical = window.matchMedia('(min-width: 900px)');
+
+  const moveIndicator = () => {
+    const current = tabs.find((t) => t.getAttribute('aria-selected') === 'true');
+    if (!current) return;
+    if (vertical.matches) {
+      list.style.setProperty('--ind-y', `${current.offsetTop}px`);
+      list.style.setProperty('--ind-h', `${current.offsetHeight}px`);
+    } else {
+      const target = current.offsetLeft - list.clientWidth / 2 + current.offsetWidth / 2;
+      list.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+    }
+  };
+
+  const select = (tab, { focus = false } = {}) => {
+    tabs.forEach((t, i) => {
+      const selected = t === tab;
+      t.setAttribute('aria-selected', String(selected));
+      t.tabIndex = selected ? 0 : -1;
+      const panel = panels[i];
+      if (!panel) return;
+      if (selected) {
+        const wasHidden = panel.hidden;
+        panel.hidden = false;
+        if (wasHidden) {
+          panel.classList.remove('is-entering');
+          void panel.offsetWidth; // relance l'animation d'entrée
+          panel.classList.add('is-entering');
+        }
+        panel.querySelectorAll('img[loading="lazy"]').forEach((img) => img.setAttribute('loading', 'eager'));
+      } else {
+        panel.hidden = true;
+      }
+    });
+    if (focus) tab.focus();
+    moveIndicator();
+  };
+
+  tabs.forEach((tab) => tab.addEventListener('click', () => select(tab)));
+
+  list.addEventListener('keydown', (event) => {
+    const i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    let next = null;
+    switch (event.key) {
+      case 'ArrowDown':
+      case 'ArrowRight': next = tabs[(i + 1) % tabs.length]; break;
+      case 'ArrowUp':
+      case 'ArrowLeft': next = tabs[(i - 1 + tabs.length) % tabs.length]; break;
+      case 'Home': next = tabs[0]; break;
+      case 'End': next = tabs[tabs.length - 1]; break;
+      default: return;
+    }
+    event.preventDefault();
+    select(next, { focus: true });
+  });
+
+  window.addEventListener('resize', moveIndicator, { passive: true });
+  if (document.fonts?.ready) document.fonts.ready.then(moveIndicator);
+  moveIndicator();
+}
+
+// ---- cards.js ----
+// MY CARD : les cinq paliers en éventail. Le palier choisi passe devant ;
+// la carte active suit légèrement le pointeur, avec un reflet.
+
+function initCards() {
+  const stage = document.querySelector('[data-cards]');
+  if (!stage) return;
+  const cards = [...stage.querySelectorAll('[data-card]')];
+  const buttons = [...document.querySelectorAll('[data-tier-buttons] [data-tier]')];
+  const reduce = prefersReducedMotion();
+  let active = 0;
+  let userTouched = false;
+
+  const setActive = (i) => {
+    active = i;
+    cards.forEach((card, j) => {
+      const offset = j - i;
+      card.style.setProperty('--o', String(offset));
+      card.style.setProperty('--a', String(Math.abs(offset)));
+      card.classList.toggle('is-active', j === i);
+      card.setAttribute('aria-hidden', String(j !== i));
+    });
+    buttons.forEach((b, j) => {
+      b.classList.toggle('is-active', j === i);
+      b.setAttribute('aria-pressed', String(j === i));
+    });
+  };
+
+  buttons.forEach((button, i) => button.addEventListener('click', () => {
+    userTouched = true;
+    setActive(i);
+  }));
+  cards.forEach((card, i) => card.addEventListener('click', () => {
+    if (i === active) return;
+    userTouched = true;
+    setActive(i);
+  }));
+
+  setActive(0);
+
+  // À l'arrivée : une montée de palier, de Bronze à Élite (moins de 5 s, une seule fois).
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      io.disconnect();
+      let i = 0;
+      const step = () => {
+        if (userTouched || i >= cards.length - 1) return;
+        i += 1;
+        setActive(i);
+        setTimeout(step, 1000);
+      };
+      setTimeout(step, 900);
+    }, { threshold: 0.55 });
+    io.observe(stage);
+  }
+
+  // Relief et reflet sur la carte active (souris uniquement).
+  if (reduce || !hasFinePointer()) return;
+  let frame = 0;
+  let pos = null;
+  const apply = () => {
+    frame = 0;
+    const card = cards[active];
+    cards.forEach((c) => {
+      if (c !== card) {
+        c.style.removeProperty('--tx');
+        c.style.removeProperty('--ty');
+      }
+    });
+    if (!pos) {
+      card.style.setProperty('--tx', '0deg');
+      card.style.setProperty('--ty', '0deg');
+      return;
+    }
+    card.style.setProperty('--tx', `${(-pos.y * 12).toFixed(2)}deg`);
+    card.style.setProperty('--ty', `${(pos.x * 14).toFixed(2)}deg`);
+    card.style.setProperty('--sx', `${(130 - (pos.x + 0.5) * 160).toFixed(1)}%`);
+  };
+  stage.addEventListener('pointermove', (event) => {
+    const rect = cards[active].getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    pos = Math.abs(x) <= 0.7 && Math.abs(y) <= 0.7 ? { x, y } : null;
+    if (!frame) frame = requestAnimationFrame(apply);
+  });
+  stage.addEventListener('pointerleave', () => {
+    pos = null;
+    if (!frame) frame = requestAnimationFrame(apply);
+  });
+}
+
+// ---- extras.js ----
+// Petits comportements : compteurs, défilement des valeurs avec pause,
+// pré-remplissage du formulaire depuis les boutons d'appel.
+
+function initCounters() {
+  const els = [...document.querySelectorAll('[data-count-to]')];
+  if (!els.length || prefersReducedMotion() || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      io.unobserve(entry.target);
+      count(entry.target);
+    }
+  }, { threshold: 0.6 });
+  els.forEach((el) => io.observe(el));
+}
+
+function count(el) {
+  const to = Number(el.dataset.countTo);
+  const duration = 1200;
+  const start = performance.now();
+  el.setAttribute('aria-hidden', 'true');
+  const tick = (now) => {
+    const t = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - t, 4);
+    el.textContent = String(Math.round(eased * to));
+    if (t < 1) requestAnimationFrame(tick);
+    else el.removeAttribute('aria-hidden');
+  };
+  requestAnimationFrame(tick);
+}
+
+function initMarquee() {
+  const toggle = document.querySelector('[data-marquee-toggle]');
+  const band = toggle?.closest('.valeurs');
+  if (!toggle || !band) return;
+  toggle.addEventListener('click', () => {
+    const paused = band.classList.toggle('is-paused');
+    toggle.setAttribute('aria-pressed', String(paused));
+    toggle.querySelector('.sr-only').textContent = paused
+      ? 'Reprendre le défilement des valeurs'
+      : 'Mettre en pause le défilement des valeurs';
+  });
+}
+
+function initPrefill() {
+  const form = document.querySelector('[data-contact-form]');
+  if (!form) return;
+  document.querySelectorAll('[data-prefill-objet], [data-prefill-profil]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const objet = link.dataset.prefillObjet;
+      const profil = link.dataset.prefillProfil;
+      if (objet && form.objet) form.objet.value = objet;
+      if (profil && form.profil && !form.profil.value) form.profil.value = profil;
+      const delay = prefersReducedMotion() ? 0 : 700;
+      setTimeout(() => form.nom?.focus({ preventScroll: true }), delay);
+    });
+  });
+}
+
+// ---- contact.js ----
+// Formulaire de contact : validation côté navigateur (la vraie validation est
+// refaite côté serveur), envoi à /api/contact, ou, dans l'aperçu publié sur
+// claude.ai, enregistrement dans la base de la page.
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const PROFILS = ['president', 'coach', 'tresorerie', 'parent', 'benevole', 'partenaire', 'autre'];
+const OBJETS = ['club-fondateur', 'demo', 'question', 'partenariat'];
+const FIELDS = ['nom', 'email', 'profil', 'objet', 'message', 'consentement'];
+
+const TEXT = {
+  nomVide: 'Indiquez votre nom et prénom.',
+  nomCourt: 'Votre nom doit compter 2 caractères au moins.',
+  emailVide: 'Indiquez votre adresse e-mail.',
+  emailInvalide: 'Cette adresse e-mail n’est pas valide. Exemple : prenom@club.fr',
+  profil: 'Choisissez votre profil.',
+  objet: 'Choisissez l’objet de votre demande.',
+  messageVide: 'Écrivez votre message.',
+  messageCourt: 'Votre message doit compter 10 caractères au moins.',
+  messageLong: 'Votre message dépasse 2000 caractères.',
+  consentement: 'Cochez cette case pour que nous puissions vous répondre.',
+  envoi: 'Envoi en cours…',
+  bouton: 'Envoyer ma demande',
+  succesApi: (email) => `Merci, votre demande est envoyée. Nous vous répondons à ${email}.`,
+  succesApercu: 'Merci, votre demande est enregistrée dans la base de cet aperçu. Sur le site en ligne, elle part par e-mail à l’équipe ELAZYO.',
+  erreurReseau: 'L’envoi n’a pas abouti. Vérifiez votre connexion, puis réessayez.',
+  erreurLimite: 'Trop de demandes envoyées depuis cette connexion. Réessayez dans quelques minutes.',
+  erreurConfig: 'L’envoi en ligne n’est pas encore activé. Réessayez un peu plus tard.',
+  erreurApercu: 'Cet aperçu ne peut pas enregistrer votre demande avec ce compte. Ouvrez la page en étant connecté à claude.ai.',
+  aCorriger: (n) => (n === 1 ? 'Un champ est à corriger.' : `${n} champs sont à corriger.`),
+};
+
+function initContact() {
+  const form = document.querySelector('[data-contact-form]');
+  if (!form) return;
+  const status = form.querySelector('[data-form-status]');
+  const submit = form.querySelector('[data-submit]');
+  const submitLabel = form.querySelector('[data-submit-label]');
+  const counter = form.querySelector('[data-count]');
+  const time = form.querySelector('[data-form-time]');
+  if (time) time.value = String(Date.now());
+
+  const el = (name) => form.elements.namedItem(name);
+  let attempted = false;
+
+  el('message').addEventListener('input', () => {
+    counter.textContent = String(el('message').value.length);
+  });
+
+  const validate = (name) => {
+    const v = name === 'consentement' ? el(name).checked : el(name).value.trim();
+    switch (name) {
+      case 'nom': return !v ? TEXT.nomVide : v.length < 2 ? TEXT.nomCourt : '';
+      case 'email': return !v ? TEXT.emailVide : !EMAIL_RE.test(v) || v.length > 254 ? TEXT.emailInvalide : '';
+      case 'profil': return PROFILS.includes(v) ? '' : TEXT.profil;
+      case 'objet': return OBJETS.includes(v) ? '' : TEXT.objet;
+      case 'message': return !v ? TEXT.messageVide : v.length < 10 ? TEXT.messageCourt : v.length > 2000 ? TEXT.messageLong : '';
+      case 'consentement': return v ? '' : TEXT.consentement;
+      default: return '';
+    }
+  };
+
+  const showError = (name, message) => {
+    const input = el(name);
+    const out = form.querySelector(`[data-error-for="${name}"]`);
+    input.setAttribute('aria-invalid', message ? 'true' : 'false');
+    if (out) out.textContent = message;
+  };
+
+  FIELDS.forEach((name) => {
+    const input = el(name);
+    const evt = input.type === 'checkbox' || input.tagName === 'SELECT' ? 'change' : 'blur';
+    input.addEventListener(evt, () => { if (attempted) showError(name, validate(name)); });
+    if (evt === 'blur') input.addEventListener('input', () => {
+      if (attempted && input.getAttribute('aria-invalid') === 'true') showError(name, validate(name));
+    });
+  });
+
+  const setStatus = (kind, message) => {
+    status.classList.toggle('is-success', kind === 'success');
+    status.classList.toggle('is-error', kind === 'error');
+    status.textContent = message;
+  };
+
+  const setSending = (sending) => {
+    form.classList.toggle('is-sending', sending);
+    submit.setAttribute('aria-disabled', String(sending));
+    submitLabel.textContent = sending ? TEXT.envoi : TEXT.bouton;
+  };
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (form.classList.contains('is-sending')) return;
+    attempted = true;
+    const errors = FIELDS.map((name) => [name, validate(name)]);
+    errors.forEach(([name, message]) => showError(name, message));
+    const invalid = errors.filter(([, message]) => message);
+    if (invalid.length) {
+      setStatus('error', TEXT.aCorriger(invalid.length));
+      el(invalid[0][0]).focus();
+      return;
+    }
+
+    const data = {
+      nom: el('nom').value.trim(),
+      email: el('email').value.trim(),
+      profil: el('profil').value,
+      club: el('club').value.trim(),
+      objet: el('objet').value,
+      message: el('message').value.trim(),
+      consentement: el('consentement').checked,
+      site_web: el('site_web').value,
+      t: Number(time?.value) || 0,
+    };
+
+    setSending(true);
+    setStatus('', '');
+    try {
+      const result = await send(form, data);
+      if (result.errors) {
+        Object.entries(result.errors).forEach(([name, message]) => { if (el(name)) showError(name, message); });
+        setStatus('error', TEXT.aCorriger(Object.keys(result.errors).length));
+        return;
+      }
+      const email = data.email;
+      form.reset();
+      counter.textContent = '0';
+      if (time) time.value = String(Date.now());
+      attempted = false;
+      FIELDS.forEach((name) => showError(name, ''));
+      setStatus('success', result.mode === 'preview' ? TEXT.succesApercu : TEXT.succesApi(email));
+    } catch (error) {
+      const code = error?.message;
+      setStatus('error',
+        code === 'rate_limited' ? TEXT.erreurLimite
+          : code === 'not_configured' ? TEXT.erreurConfig
+            : code === 'preview_unavailable' ? TEXT.erreurApercu
+              : TEXT.erreurReseau);
+    } finally {
+      setSending(false);
+    }
+  });
+}
+
+async function send(form, data) {
+  // Champ piège rempli : un robot. On ne transmet rien et on ne lui dit rien.
+  if (data.site_web) return { ok: true, mode: 'ignored' };
+  const runtime = window.claude;
+  if (runtime && typeof runtime.use === 'function') return sendToPreview(runtime, data);
+  return sendToApi(form.getAttribute('action') || '/api/contact', data);
+}
+
+async function sendToApi(url, data) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 12000);
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(data),
+      signal: controller.signal,
+      credentials: 'same-origin',
+    });
+    const body = await response.json().catch(() => ({}));
+    if (response.ok && body.ok) return { ok: true, mode: 'api' };
+    if (response.status === 422 && body.errors) return { ok: false, errors: body.errors };
+    throw new Error(body.error || `http_${response.status}`);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// Aperçu claude.ai : la demande est rangée dans la base de la page, sous le
+// sous-dossier de la personne connectée (règles « boîte à idées »).
+async function sendToPreview(runtime, data) {
+  const withTimeout = (promise, ms = 10000) => Promise.race([
+    promise,
+    new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), ms)),
+  ]);
+  const db = await withTimeout(runtime.use('db'));
+  const user = await withTimeout(runtime.use('user'));
+  const uid = user && typeof user.id === 'function' ? await withTimeout(user.id()) : null;
+  if (!db || !uid) throw new Error('preview_unavailable');
+  const { site_web: _hp, t: _t, ...demande } = data;
+  try {
+    await withTimeout(db.collection(`demandes/${uid}/envois`).add({
+      ...demande,
+      envoyeeLe: new Date().toISOString(),
+      source: 'apercu',
+    }));
+  } catch (error) {
+    if (error?.code === 'invalid_argument' || error?.code === 'not_granted') throw new Error('preview_unavailable');
+    throw error;
+  }
+  return { ok: true, mode: 'preview' };
+}
+
+// ---- main.js ----
+// ELAZYO — point d'entrée. Chaque module est indépendant : si l'un échoue,
+// les autres continuent et le contenu reste lisible.
+
+
+
+
+
+
+
+
+
+window.__elazyo = true;
+
+const modules = [
+  initHeader,
+  initHero,
+  initReveal,
+  initScrollEffects,
+  initShowcase,
+  initTabs,
+  initCards,
+  initCounters,
+  initMarquee,
+  initPrefill,
+  initContact,
+];
+
+for (const init of modules) {
+  try {
+    init();
+  } catch (error) {
+    console.error(`[ELAZYO] ${init.name} n'a pas pu démarrer`, error);
+  }
+}
+})();

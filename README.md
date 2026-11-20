@@ -28,7 +28,8 @@ confidentialite.html       à compléter (voir plus bas)
 merci.html, 404.html
 api/contact.js             fonction serverless du formulaire (Vercel, Node 20+)
 assets/css/site.css        styles, organisés en couches (@layer) : tokens, composants, sections, mouvement
-assets/js/main.js          point d’entrée ; un module par comportement dans assets/js/modules/
+assets/js/site.js          script chargé par les pages, assemblé depuis main.js + assets/js/modules/
+                           (npm run build:js après chaque modification d’un module)
 assets/img, video, icons   images AVIF + WebP en deux tailles, vidéo réelle du covoiturage
 scripts/preparer-images.py régénère les images à partir des sources
 tests/api-contact.test.mjs tests de la fonction du formulaire (npm test)
@@ -39,6 +40,7 @@ vercel.json                en-têtes de sécurité (CSP stricte, HSTS…), cache
 
 ```bash
 python3 -m http.server 8080      # puis http://localhost:8080
+npm run build:js                 # réassemble assets/js/site.js après une modification des modules
 npm test                         # 12 tests de /api/contact
 ```
 
@@ -66,6 +68,8 @@ Sans variable configurée, le formulaire répond « envoi pas encore activé » 
 ## Animations et accessibilité
 
 - Une seule séquence d’ouverture (hero), en CSS pur : elle n’attend pas le JavaScript.
+- Rien n’est caché par défaut : seuls les blocs situés sous l’écran au chargement attendent d’arriver à l’écran pour apparaître. Si le script ne tourne pas, tout reste visible.
+- Un seul script classique (`site.js`) plutôt que des modules : il fonctionne aussi dans les cadres isolés (aperçus, intégrations), où les modules sont bloqués.
 - Révélations au défilement, parallaxe multicouche, chaîne des maillons, manifeste éclairé mot à mot, téléphone qui change d’écran avec les étapes, saison qui se remplit, cartes MY CARD en 3D.
 - `prefers-reduced-motion` respecté partout : les animations disparaissent et tout le contenu reste visible.
 - Les contenus qui bougent seuls ont un bouton pause (écrans du hero, défilement des valeurs) ; la vidéo est lue une fois (4 s).
