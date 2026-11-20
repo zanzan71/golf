@@ -164,11 +164,6 @@
 
   <!-- 02 · HERO -->
   <section class="hero theme-night" id="accueil" aria-labelledby="hero-titre">
-    <div class="hero__chevrons" aria-hidden="true">
-      <svg class="chevron-big chevron-big--lime" data-parallax="-0.06"><use href="#i-big-chevron"/></svg>
-      <svg class="chevron-big chevron-big--olive" data-parallax="-0.12"><use href="#i-big-chevron"/></svg>
-      <svg class="chevron-big chevron-big--olive" data-parallax="-0.18"><use href="#i-big-chevron"/></svg>
-    </div>
     <div class="container hero__grid">
       <div class="hero__copy">
         <p class="label hero__label" data-hero-step="0"><span class="chev" aria-hidden="true"></span>L’appli des clubs de foot amateur</p>
@@ -191,42 +186,53 @@
       </div>
 
       <div class="hero__visual" data-hero-visual>
-        <div class="hero__stage" data-tilt>
-          <figure class="phone phone--hero">
-            <div class="phone__frame">
-              <div class="phone__screen" data-slideshow aria-live="off">
-                <picture class="phone__shot is-active">
-                  <source type="image/avif" srcset="assets/img/ecrans/planning-360.avif 360w, assets/img/ecrans/planning-720.avif 720w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 280px, 62vw">
-                  <source type="image/webp" srcset="assets/img/ecrans/planning-360.webp 360w, assets/img/ecrans/planning-720.webp 720w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 280px, 62vw">
-                  <img src="assets/img/ecrans/planning-720.webp" width="1080" height="2004" alt="Écran Planning de l’appli ELAZYO en vue président : les matchs et événements d’octobre, filtrés par catégorie." fetchpriority="high" decoding="async">
-                </picture>
-                <picture class="phone__shot">
-                  <source type="image/avif" srcset="assets/img/ecrans/match-360.avif 360w, assets/img/ecrans/match-720.avif 720w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 280px, 62vw">
-                  <source type="image/webp" srcset="assets/img/ecrans/match-360.webp 360w, assets/img/ecrans/match-720.webp 720w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 280px, 62vw">
-                  <img src="assets/img/ecrans/match-720.webp" width="1080" height="2550" alt="Écran d’un match : présences, lieu, covoiturage et missions des bénévoles." loading="lazy" decoding="async">
-                </picture>
-                <picture class="phone__shot">
-                  <source type="image/avif" srcset="assets/img/ecrans/finance-360.avif 360w, assets/img/ecrans/finance-720.avif 720w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 280px, 62vw">
-                  <source type="image/webp" srcset="assets/img/ecrans/finance-360.webp 360w, assets/img/ecrans/finance-720.webp 720w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 280px, 62vw">
-                  <img src="assets/img/ecrans/finance-720.webp" width="1080" height="2004" alt="Écran Finances : disponible, recettes, dépenses, remboursements et cotisations dues." loading="lazy" decoding="async">
-                </picture>
+        <div class="scene" data-scene>
+          <div class="scene__glow" aria-hidden="true"></div>
+          <div class="scene__pitch" aria-hidden="true">
+            <svg class="pitch" viewBox="0 0 1050 680" preserveAspectRatio="xMidYMid meet" focusable="false">
+              <rect x="10" y="10" width="1030" height="660" pathLength="1"/>
+              <path d="M525 10V670" pathLength="1"/>
+              <circle cx="525" cy="340" r="91.5" pathLength="1"/>
+              <rect x="10" y="138.4" width="165" height="403.2" pathLength="1"/>
+              <rect x="875" y="138.4" width="165" height="403.2" pathLength="1"/>
+              <rect x="10" y="248.4" width="55" height="183.2" pathLength="1"/>
+              <rect x="985" y="248.4" width="55" height="183.2" pathLength="1"/>
+              <path d="M175 266.9A91.5 91.5 0 0 1 175 413.1" pathLength="1"/>
+              <path d="M875 266.9A91.5 91.5 0 0 0 875 413.1" pathLength="1"/>
+              <circle class="pitch__spot" cx="525" cy="340" r="4"/>
+              <circle class="pitch__spot" cx="120" cy="340" r="4"/>
+              <circle class="pitch__spot" cx="930" cy="340" r="4"/>
+            </svg>
+          </div>
+          <div class="scene__stage" data-tilt>
+            <span class="scene__shadow" aria-hidden="true"></span>
+            <figure class="phone phone--hero scene__phone">
+              <div class="phone__frame">
+                <div class="phone__screen" data-slideshow aria-live="off">
+                  <picture class="phone__shot is-active"><source type="image/avif" srcset="assets/img/ecrans/accueil-president-360.avif 360w, assets/img/ecrans/accueil-president-720.avif 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><source type="image/webp" srcset="assets/img/ecrans/accueil-president-360.webp 360w, assets/img/ecrans/accueil-president-720.webp 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><img src="assets/img/ecrans/accueil-president-720.webp" width="1080" height="2004" alt="Écran d’accueil du président dans l’appli ELAZYO : mise en route du club et demandes à traiter." fetchpriority="high" decoding="async"></picture>
+                  <picture class="phone__shot"><source type="image/avif" srcset="assets/img/ecrans/equipe-coach-360.avif 360w, assets/img/ecrans/equipe-coach-720.avif 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><source type="image/webp" srcset="assets/img/ecrans/equipe-coach-360.webp 360w, assets/img/ecrans/equipe-coach-720.webp 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><img src="assets/img/ecrans/equipe-coach-720.webp" width="1080" height="2004" alt="Écran Équipe du coach : effectif et présences, prochain match, invitation des joueurs." loading="lazy" decoding="async"></picture>
+                  <picture class="phone__shot"><source type="image/avif" srcset="assets/img/ecrans/finance-v2-360.avif 360w, assets/img/ecrans/finance-v2-720.avif 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><source type="image/webp" srcset="assets/img/ecrans/finance-v2-360.webp 360w, assets/img/ecrans/finance-v2-720.webp 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><img src="assets/img/ecrans/finance-v2-720.webp" width="1080" height="2004" alt="Écran Finance : trésorerie disponible, recettes, dépenses, cotisations dues." loading="lazy" decoding="async"></picture>
+                </div>
               </div>
-            </div>
-          </figure>
-          <ul class="hero__statuts" aria-label="Les quatre états d’une convocation">
-            <li class="statut statut--dispo" data-depth="0.6"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Disponible</li>
-            <li class="statut statut--convoque" data-depth="1"><svg class="icon" aria-hidden="true"><use href="#i-flag"/></svg>Convoqué</li>
-            <li class="statut statut--confirme" data-depth="1.4"><svg class="icon" aria-hidden="true"><use href="#i-checkcircle"/></svg>Confirmé</li>
-            <li class="statut statut--present" data-depth="0.8"><svg class="icon" aria-hidden="true"><use href="#i-double"/></svg>Présent</li>
-          </ul>
+            </figure>
+            <div class="frag frag--seances" aria-hidden="true"><div class="frag__fly"><div class="frag__float"><picture><source type="image/avif" srcset="assets/img/fragments/seances-400.avif 400w, assets/img/fragments/seances-800.avif 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><source type="image/webp" srcset="assets/img/fragments/seances-400.webp 400w, assets/img/fragments/seances-800.webp 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><img src="assets/img/fragments/seances-800.webp" width="964" height="522" alt="" decoding="async" fetchpriority="low"></picture></div></div></div>
+            <div class="frag frag--match" aria-hidden="true"><div class="frag__fly"><div class="frag__float"><picture><source type="image/avif" srcset="assets/img/fragments/match-400.avif 400w, assets/img/fragments/match-800.avif 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><source type="image/webp" srcset="assets/img/fragments/match-400.webp 400w, assets/img/fragments/match-800.webp 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><img src="assets/img/fragments/match-800.webp" width="964" height="395" alt="" decoding="async" fetchpriority="low"></picture></div></div></div>
+            <div class="frag frag--tresorerie" aria-hidden="true"><div class="frag__fly"><div class="frag__float"><picture><source type="image/avif" srcset="assets/img/fragments/tresorerie-400.avif 400w, assets/img/fragments/tresorerie-800.avif 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><source type="image/webp" srcset="assets/img/fragments/tresorerie-400.webp 400w, assets/img/fragments/tresorerie-800.webp 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><img src="assets/img/fragments/tresorerie-800.webp" width="964" height="505" alt="" decoding="async" fetchpriority="low"></picture></div></div></div>
+            <ul class="hero__statuts" aria-label="Les quatre états d’une convocation">
+              <li class="statut statut--dispo"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Disponible</li>
+              <li class="statut statut--convoque"><svg class="icon" aria-hidden="true"><use href="#i-flag"/></svg>Convoqué</li>
+              <li class="statut statut--confirme"><svg class="icon" aria-hidden="true"><use href="#i-checkcircle"/></svg>Confirmé</li>
+              <li class="statut statut--present"><svg class="icon" aria-hidden="true"><use href="#i-double"/></svg>Présent</li>
+            </ul>
+          </div>
         </div>
         <div class="hero__meta">
           <button class="motion-toggle" type="button" aria-pressed="false" data-slideshow-toggle>
             <svg class="icon icon--pause" aria-hidden="true"><use href="#i-pause"/></svg>
             <svg class="icon icon--play" aria-hidden="true"><use href="#i-play-line"/></svg>
-            <span class="sr-only">Mettre en pause le défilement des écrans</span>
+            <span class="sr-only">Mettre en pause les animations</span>
           </button>
-          <p class="hero__caption">Écrans réels de l’appli, club de démonstration.</p>
+          <p class="hero__caption">Écrans et morceaux d’écran réels de l’appli, club de démonstration.</p>
         </div>
       </div>
     </div>
@@ -295,15 +301,42 @@
           </li>
         </ul>
       </div>
-      <figure class="photo-slot" data-reveal="mask">
-        <div class="photo-slot__frame">
-          <div class="photo-slot__chevrons" aria-hidden="true" data-parallax="0.08">
+      <figure class="mur" data-reveal="mask">
+        <div class="mur__frame" data-mur>
+          <div class="mur__plan" aria-hidden="true">
+            <div class="mur__col">
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/accueil-president-360.avif"><img src="assets/img/ecrans/accueil-president-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/covoiturage-360.avif"><img src="assets/img/ecrans/covoiturage-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/seances-coach-360.avif"><img src="assets/img/ecrans/seances-coach-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+            </div>
+            <div class="mur__col">
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/planning-president-360.avif"><img src="assets/img/ecrans/planning-president-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/gestion-360.avif"><img src="assets/img/ecrans/gestion-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/communication-v2-360.avif"><img src="assets/img/ecrans/communication-v2-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+            </div>
+            <div class="mur__col">
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/finance-v2-360.avif"><img src="assets/img/ecrans/finance-v2-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/equipe-coach-360.avif"><img src="assets/img/ecrans/equipe-coach-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/connexion-360.avif"><img src="assets/img/ecrans/connexion-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+            </div>
+            <div class="mur__col">
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/communication-v2-360.avif"><img src="assets/img/ecrans/communication-v2-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/covoiturage-depart-360.avif"><img src="assets/img/ecrans/covoiturage-depart-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/planning-president-360.avif"><img src="assets/img/ecrans/planning-president-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+            </div>
+            <div class="mur__col">
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/seances-coach-360.avif"><img src="assets/img/ecrans/seances-coach-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/accueil-president-360.avif"><img src="assets/img/ecrans/accueil-president-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+              <picture class="mur__tuile"><source type="image/avif" srcset="assets/img/ecrans/finance-v2-360.avif"><img src="assets/img/ecrans/finance-v2-360.webp" width="1080" height="2004" alt="" loading="lazy" decoding="async"></picture>
+            </div>
+          </div>
+          <div class="mur__chevrons" aria-hidden="true">
             <svg class="chevron-big chevron-big--lime"><use href="#i-big-chevron"/></svg>
             <svg class="chevron-big chevron-big--olive"><use href="#i-big-chevron"/></svg>
           </div>
-          <p class="photo-slot__quote">Derrière chaque joueur, il y a tout un collectif.</p>
+          <p class="mur__titre">Pas une appli d’équipe. <span>L’appli de tout le club.</span></p>
         </div>
-        <figcaption class="photo-slot__caption"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span><strong>Emplacement photo.</strong> Un samedi matin au club&nbsp;: parents, coach et joueurs au bord du terrain. À remplacer par une photo d’un club réel, avec l’accord des personnes photographiées et des parents pour les mineurs.</span></figcaption>
+        <figcaption class="mur__legende">Écrans réels de l’appli, sur un club de démonstration&nbsp;: accueil du président, planning, gestion, finance, communication, équipe, séances et transport.</figcaption>
       </figure>
     </div>
   </section>
@@ -326,18 +359,18 @@
           <h3 class="display display--2" id="monde-1">Tout le club, d’un coup d’œil.</h3>
           <p>Le président et le bureau voient ce qui reste à traiter, l’activité de chaque équipe, les prochains rendez-vous, la trésorerie et les cotisations.</p>
           <ul class="ticks">
-            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Trésorerie de l’exercice, compte et caisse</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Cotisations dues et licences impayées</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Avances des bénévoles à rembourser</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Membres, rôles et accès, bénévoles compris</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Équipes et catégories&nbsp;: création, composition, encadrement</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Les demandes à valider, au même endroit</li>
           </ul>
         </div>
         <div class="monde__media" data-reveal="mask">
           <figure class="phone phone--monde" data-parallax="-0.06">
             <div class="phone__frame"><div class="phone__screen">
               <picture class="phone__shot is-active">
-                <source type="image/avif" srcset="assets/img/ecrans/finance-360.avif 360w, assets/img/ecrans/finance-720.avif 720w" sizes="(min-width: 900px) 290px, 64vw">
-                <source type="image/webp" srcset="assets/img/ecrans/finance-360.webp 360w, assets/img/ecrans/finance-720.webp 720w" sizes="(min-width: 900px) 290px, 64vw">
-                <img src="assets/img/ecrans/finance-720.webp" width="1080" height="2004" alt="Écran Finances de l’appli : 4 860 € disponibles, recettes, dépenses, remboursements en attente et cotisations dues." loading="lazy" decoding="async">
+                <source type="image/avif" srcset="assets/img/ecrans/gestion-360.avif 360w, assets/img/ecrans/gestion-720.avif 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 250px, 64vw">
+                <source type="image/webp" srcset="assets/img/ecrans/gestion-360.webp 360w, assets/img/ecrans/gestion-720.webp 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 250px, 64vw">
+                <img src="assets/img/ecrans/gestion-720.webp" width="1080" height="2004" alt="Écran Gestion de l’appli : membres, équipe, demandes à valider, personnes, équipes et catégories." loading="lazy" decoding="async">
               </picture>
             </div></div>
           </figure>
@@ -445,40 +478,46 @@
               <div class="phone__frame">
                 <div class="phone__screen" data-showcase-screens>
                   <picture class="phone__shot is-active" data-screen="0">
-                    <source type="image/avif" srcset="assets/img/ecrans/planning-360.avif 360w, assets/img/ecrans/planning-720.avif 720w" sizes="(min-width: 900px) 320px, 66vw">
-                    <source type="image/webp" srcset="assets/img/ecrans/planning-360.webp 360w, assets/img/ecrans/planning-720.webp 720w" sizes="(min-width: 900px) 320px, 66vw">
-                    <img src="assets/img/ecrans/planning-720.webp" width="1080" height="2004" alt="Écran Planning : matchs, entraînements et événements du club, filtrés par catégorie." loading="lazy" decoding="async">
+                    <source type="image/avif" srcset="assets/img/ecrans/planning-president-360.avif 360w, assets/img/ecrans/planning-president-720.avif 720w" sizes="(min-width: 900px) 320px, 70vw">
+                    <source type="image/webp" srcset="assets/img/ecrans/planning-president-360.webp 360w, assets/img/ecrans/planning-president-720.webp 720w" sizes="(min-width: 900px) 320px, 70vw">
+                    <img src="assets/img/ecrans/planning-president-720.webp" width="1080" height="2004" alt="Écran Planning : matchs et entraînements du mois, avec rendez-vous, coup d’envoi et ce qui reste à préparer." loading="lazy" decoding="async">
                   </picture>
-                  <picture class="phone__shot phone__shot--scroll" data-screen="1">
+                  <picture class="phone__shot" data-screen="1">
+                    <source type="image/avif" srcset="assets/img/ecrans/seances-coach-360.avif 360w, assets/img/ecrans/seances-coach-720.avif 720w" sizes="(min-width: 900px) 320px, 70vw">
+                    <source type="image/webp" srcset="assets/img/ecrans/seances-coach-360.webp 360w, assets/img/ecrans/seances-coach-720.webp 720w" sizes="(min-width: 900px) 320px, 70vw">
+                    <img src="assets/img/ecrans/seances-coach-720.webp" width="1080" height="2004" alt="Écran Séances du coach : planifier, préparer et animer ses séances, bibliothèque d’exercices." loading="lazy" decoding="async">
+                  </picture>
+                  <picture class="phone__shot phone__shot--scroll" data-screen="2">
                     <source type="image/avif" srcset="assets/img/ecrans/match-360.avif 360w, assets/img/ecrans/match-720.avif 720w" sizes="(min-width: 900px) 320px, 66vw">
                     <source type="image/webp" srcset="assets/img/ecrans/match-360.webp 360w, assets/img/ecrans/match-720.webp 720w" sizes="(min-width: 900px) 320px, 66vw">
                     <img src="assets/img/ecrans/match-720.webp" width="1080" height="2550" alt="Écran d’un match : présences, informations du match et missions des bénévoles." loading="lazy" decoding="async">
                   </picture>
-                  <div class="phone__shot phone__shot--video" data-screen="2">
+                  <div class="phone__shot phone__shot--video" data-screen="3">
                     <video muted playsinline preload="none" poster="assets/video/covoiturage-poster.webp" width="720" height="1336" aria-label="Vidéo réelle de l’appli : un parent propose sa voiture pour un déplacement." data-inview-video>
                       <source src="assets/video/covoiturage.webm" type="video/webm">
                       <source src="assets/video/covoiturage.mp4" type="video/mp4">
                     </video>
                   </div>
-                  <picture class="phone__shot" data-screen="3">
-                    <source type="image/avif" srcset="assets/img/ecrans/communication-360.avif 360w, assets/img/ecrans/communication-720.avif 720w" sizes="(min-width: 900px) 320px, 66vw">
-                    <source type="image/webp" srcset="assets/img/ecrans/communication-360.webp 360w, assets/img/ecrans/communication-720.webp 720w" sizes="(min-width: 900px) 320px, 66vw">
-                    <img src="assets/img/ecrans/communication-720.webp" width="1080" height="2004" alt="Écran Communication : annonce d’un tournoi U11 et message de la vie du club." loading="lazy" decoding="async">
-                  </picture>
                   <picture class="phone__shot" data-screen="4">
-                    <source type="image/avif" srcset="assets/img/ecrans/finance-360.avif 360w, assets/img/ecrans/finance-720.avif 720w" sizes="(min-width: 900px) 320px, 66vw">
-                    <source type="image/webp" srcset="assets/img/ecrans/finance-360.webp 360w, assets/img/ecrans/finance-720.webp 720w" sizes="(min-width: 900px) 320px, 66vw">
-                    <img src="assets/img/ecrans/finance-720.webp" width="1080" height="2004" alt="Écran Finances : disponible, recettes, dépenses, remboursements et cotisations dues." loading="lazy" decoding="async">
+                    <source type="image/avif" srcset="assets/img/ecrans/communication-v2-360.avif 360w, assets/img/ecrans/communication-v2-720.avif 720w" sizes="(min-width: 900px) 320px, 70vw">
+                    <source type="image/webp" srcset="assets/img/ecrans/communication-v2-360.webp 360w, assets/img/ecrans/communication-v2-720.webp 720w" sizes="(min-width: 900px) 320px, 70vw">
+                    <img src="assets/img/ecrans/communication-v2-720.webp" width="1080" height="2004" alt="Écran Communication : annonces du club et messages privés avec les joueurs, les parents ou le staff." loading="lazy" decoding="async">
+                  </picture>
+                  <picture class="phone__shot" data-screen="5">
+                    <source type="image/avif" srcset="assets/img/ecrans/finance-v2-360.avif 360w, assets/img/ecrans/finance-v2-720.avif 720w" sizes="(min-width: 900px) 320px, 70vw">
+                    <source type="image/webp" srcset="assets/img/ecrans/finance-v2-360.webp 360w, assets/img/ecrans/finance-v2-720.webp 720w" sizes="(min-width: 900px) 320px, 70vw">
+                    <img src="assets/img/ecrans/finance-v2-720.webp" width="1080" height="2004" alt="Écran Finance : trésorerie disponible, banque et caisse, recettes, dépenses, cotisations dues et remboursements en attente." loading="lazy" decoding="async">
                   </picture>
                 </div>
               </div>
             </figure>
             <div class="showcase__dots" role="group" aria-label="Choisir un écran">
               <button type="button" class="showcase__dot is-active" data-goto="0" aria-pressed="true"><span class="sr-only">Planning</span></button>
-              <button type="button" class="showcase__dot" data-goto="1" aria-pressed="false"><span class="sr-only">Match</span></button>
-              <button type="button" class="showcase__dot" data-goto="2" aria-pressed="false"><span class="sr-only">Covoiturage</span></button>
-              <button type="button" class="showcase__dot" data-goto="3" aria-pressed="false"><span class="sr-only">Communication</span></button>
-              <button type="button" class="showcase__dot" data-goto="4" aria-pressed="false"><span class="sr-only">Finances</span></button>
+              <button type="button" class="showcase__dot" data-goto="1" aria-pressed="false"><span class="sr-only">Séances</span></button>
+              <button type="button" class="showcase__dot" data-goto="2" aria-pressed="false"><span class="sr-only">Match</span></button>
+              <button type="button" class="showcase__dot" data-goto="3" aria-pressed="false"><span class="sr-only">Covoiturage</span></button>
+              <button type="button" class="showcase__dot" data-goto="4" aria-pressed="false"><span class="sr-only">Communication</span></button>
+              <button type="button" class="showcase__dot" data-goto="5" aria-pressed="false"><span class="sr-only">Finances</span></button>
             </div>
           </div>
         </div>
@@ -487,10 +526,16 @@
           <li class="step is-active" data-step="0">
             <p class="step__kicker"><span class="step__index">1</span>Planning</p>
             <h3 class="step__title">Le planning de tout le club.</h3>
-            <p>Matchs, entraînements et événements, filtrés par catégorie. Ce qui reste à préparer saute aux yeux.</p>
+            <p>Matchs, entraînements et événements, avec l’heure de rendez-vous et le coup d’envoi. Un calendrier existant s’importe, et ce qui reste à préparer saute aux yeux.</p>
           </li>
           <li class="step" data-step="1">
-            <p class="step__kicker"><span class="step__index">2</span>Match</p>
+            <p class="step__kicker"><span class="step__index">2</span>Séances</p>
+            <h3 class="step__title">Des séances prêtes à animer.</h3>
+            <p>Le coach planifie, prépare et anime ses entraînements&nbsp;: il crée ses séances, les réutilise et les programme, avec une bibliothèque d’exercices classés par thème et par catégorie.</p>
+            <p class="step__note">Une partie de cet espace est en cours d’ouverture.</p>
+          </li>
+          <li class="step" data-step="2">
+            <p class="step__kicker"><span class="step__index">3</span>Match</p>
             <h3 class="step__title">Le jour du match, tout est prêt.</h3>
             <p>Présents, absents, en attente, lieu, covoiturage et missions des bénévoles&nbsp;: le coach voit tout sur un seul écran.</p>
             <ul class="step__statuts" aria-label="Quatre états qui ne se mélangent jamais">
@@ -501,20 +546,20 @@
             </ul>
             <p class="step__note">Disponible, convoqué, confirmé et présent sont quatre choses différentes. L’appli ne les mélange jamais.</p>
           </li>
-          <li class="step" data-step="2">
-            <p class="step__kicker"><span class="step__index">3</span>Covoiturage</p>
+          <li class="step" data-step="3">
+            <p class="step__kicker"><span class="step__index">4</span>Covoiturage</p>
             <h3 class="step__title">Le covoit’ s’organise tout seul.</h3>
             <p>Les parents proposent leurs places, le point de rendez-vous et l’heure de départ. Les places peuvent être attribuées automatiquement, et chaque famille est prévenue.</p>
           </li>
-          <li class="step" data-step="3">
-            <p class="step__kicker"><span class="step__index">4</span>Communication</p>
-            <h3 class="step__title">Les infos arrivent à tout le monde.</h3>
-            <p>Annonces du bureau, vie du club, moments partagés&nbsp;: les nouvelles du club ne se perdent plus dans les groupes.</p>
-          </li>
           <li class="step" data-step="4">
-            <p class="step__kicker"><span class="step__index">5</span>Finances</p>
+            <p class="step__kicker"><span class="step__index">5</span>Communication</p>
+            <h3 class="step__title">Les infos arrivent à tout le monde.</h3>
+            <p>Annonces du club, messages privés avec les joueurs, les parents ou le staff, moments de vie du club&nbsp;: les nouvelles ne se perdent plus dans les groupes.</p>
+          </li>
+          <li class="step" data-step="5">
+            <p class="step__kicker"><span class="step__index">6</span>Finances</p>
             <h3 class="step__title">La trésorerie, sans tableur.</h3>
-            <p>Disponible, recettes, dépenses, remboursements des bénévoles et cotisations dues&nbsp;: le bureau suit l’exercice au même endroit.</p>
+            <p>Trésorerie disponible, banque et caisse, recettes, dépenses, cotisations dues et remboursements en attente&nbsp;: le bureau suit l’exercice au même endroit.</p>
           </li>
         </ol>
       </div>
@@ -553,15 +598,16 @@
             <div class="panel__text">
               <h3 class="display display--2">Piloter tout le club.</h3>
               <ul class="ticks">
-                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Ce qui reste à traiter, d’un coup d’œil</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>La mise en route du club, étape par étape</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Ce qui reste à traiter&nbsp;: demandes, validations, actions</li>
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>L’activité de chaque équipe et les prochains rendez-vous</li>
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>La trésorerie, les cotisations et les licences impayées</li>
               </ul>
             </div>
             <figure class="panel__media phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
-              <source type="image/avif" srcset="assets/img/ecrans/planning-360.avif 360w, assets/img/ecrans/planning-720.avif 720w" sizes="(min-width: 900px) 240px, 52vw">
-              <source type="image/webp" srcset="assets/img/ecrans/planning-360.webp 360w, assets/img/ecrans/planning-720.webp 720w" sizes="(min-width: 900px) 240px, 52vw">
-              <img src="assets/img/ecrans/planning-360.webp" width="1080" height="2004" alt="Vue président du planning du club." loading="lazy" decoding="async">
+              <source type="image/avif" srcset="assets/img/ecrans/accueil-president-360.avif 360w, assets/img/ecrans/accueil-president-720.avif 720w" sizes="(min-width: 1100px) 250px, (min-width: 700px) 220px, 56vw">
+              <source type="image/webp" srcset="assets/img/ecrans/accueil-president-360.webp 360w, assets/img/ecrans/accueil-president-720.webp 720w" sizes="(min-width: 1100px) 250px, (min-width: 700px) 220px, 56vw">
+              <img src="assets/img/ecrans/accueil-president-360.webp" width="1080" height="2004" alt="Accueil du président : mise en route du club et demandes à traiter." loading="lazy" decoding="async">
             </picture></div></div></figure>
           </div>
 
@@ -569,15 +615,16 @@
             <div class="panel__text">
               <h3 class="display display--2">Convoquer, faire l’appel, transmettre.</h3>
               <ul class="ticks">
-                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Des entraînements créés pour plusieurs semaines en une fois</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Son équipe en un écran&nbsp;: effectif, présences, prochain match</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Ses joueurs invités par lien ou QR code</li>
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Convocations, présences et feuille de match</li>
                 <li class="ticks__soon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Bientôt&nbsp;: l’évaluation de l’état d’esprit, qui remplit MY CARD</li>
               </ul>
             </div>
             <figure class="panel__media phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
-              <source type="image/avif" srcset="assets/img/ecrans/match-360.avif 360w, assets/img/ecrans/match-720.avif 720w" sizes="(min-width: 900px) 240px, 52vw">
-              <source type="image/webp" srcset="assets/img/ecrans/match-360.webp 360w, assets/img/ecrans/match-720.webp 720w" sizes="(min-width: 900px) 240px, 52vw">
-              <img src="assets/img/ecrans/match-360.webp" width="1080" height="2550" alt="Écran du coach pour un match : présences et missions." loading="lazy" decoding="async">
+              <source type="image/avif" srcset="assets/img/ecrans/equipe-coach-360.avif 360w, assets/img/ecrans/equipe-coach-720.avif 720w" sizes="(min-width: 1100px) 250px, (min-width: 700px) 220px, 56vw">
+              <source type="image/webp" srcset="assets/img/ecrans/equipe-coach-360.webp 360w, assets/img/ecrans/equipe-coach-720.webp 720w" sizes="(min-width: 1100px) 250px, (min-width: 700px) 220px, 56vw">
+              <img src="assets/img/ecrans/equipe-coach-360.webp" width="1080" height="2004" alt="Écran Équipe du coach : effectif et présences, prochain match, bouton pour inviter un joueur." loading="lazy" decoding="async">
             </picture></div></div></figure>
           </div>
 
@@ -585,15 +632,15 @@
             <div class="panel__text">
               <h3 class="display display--2">Les comptes du club, sans tableur.</h3>
               <ul class="ticks">
-                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Disponible, recettes et dépenses de l’exercice</li>
-                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Cotisations dues, payées ou partielles</li>
-                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Avances des bénévoles à rembourser</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Trésorerie disponible, banque et caisse</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Recettes et dépenses de l’exercice</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Cotisations dues et remboursements en attente</li>
               </ul>
             </div>
             <figure class="panel__media phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
-              <source type="image/avif" srcset="assets/img/ecrans/finance-360.avif 360w, assets/img/ecrans/finance-720.avif 720w" sizes="(min-width: 900px) 240px, 52vw">
-              <source type="image/webp" srcset="assets/img/ecrans/finance-360.webp 360w, assets/img/ecrans/finance-720.webp 720w" sizes="(min-width: 900px) 240px, 52vw">
-              <img src="assets/img/ecrans/finance-360.webp" width="1080" height="2004" alt="Écran Finances de l’exercice." loading="lazy" decoding="async">
+              <source type="image/avif" srcset="assets/img/ecrans/finance-v2-360.avif 360w, assets/img/ecrans/finance-v2-720.avif 720w" sizes="(min-width: 1100px) 250px, (min-width: 700px) 220px, 56vw">
+              <source type="image/webp" srcset="assets/img/ecrans/finance-v2-360.webp 360w, assets/img/ecrans/finance-v2-720.webp 720w" sizes="(min-width: 1100px) 250px, (min-width: 700px) 220px, 56vw">
+              <img src="assets/img/ecrans/finance-v2-360.webp" width="1080" height="2004" alt="Écran Finance : exercice 2026-2027, trésorerie disponible, recettes et dépenses." loading="lazy" decoding="async">
             </picture></div></div></figure>
           </div>
 
@@ -646,17 +693,18 @@
               </ul>
             </div>
             <figure class="panel__media phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
-              <source type="image/avif" srcset="assets/img/ecrans/communication-360.avif 360w, assets/img/ecrans/communication-720.avif 720w" sizes="(min-width: 900px) 240px, 52vw">
-              <source type="image/webp" srcset="assets/img/ecrans/communication-360.webp 360w, assets/img/ecrans/communication-720.webp 720w" sizes="(min-width: 900px) 240px, 52vw">
-              <img src="assets/img/ecrans/communication-360.webp" width="1080" height="2004" alt="Annonce du club invitant les parents à s’inscrire dans les missions." loading="lazy" decoding="async">
+              <source type="image/avif" srcset="assets/img/ecrans/communication-v2-360.avif 360w, assets/img/ecrans/communication-v2-720.avif 720w" sizes="(min-width: 1100px) 250px, (min-width: 700px) 220px, 56vw">
+              <source type="image/webp" srcset="assets/img/ecrans/communication-v2-360.webp 360w, assets/img/ecrans/communication-v2-720.webp 720w" sizes="(min-width: 1100px) 250px, (min-width: 700px) 220px, 56vw">
+              <img src="assets/img/ecrans/communication-v2-360.webp" width="1080" height="2004" alt="Écran Communication : nouvelle communication, annonces et messages." loading="lazy" decoding="async">
             </picture></div></div></figure>
           </div>
 
           <div class="tabs__panel" role="tabpanel" id="panel-supporters" aria-labelledby="tab-supporters" tabindex="0" hidden>
             <div class="panel__text">
-              <p class="badge"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Bientôt</p>
+              
               <h3 class="display display--2">Suivre le club, collectionner les cartes.</h3>
               <ul class="ticks">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Rejoindre son club avec son lien ou son QR code</li>
                 <li class="ticks__soon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Suivre la vie du club et de ses équipes</li>
                 <li class="ticks__soon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>La collection MY CARD, de Bronze à Élite</li>
               </ul>

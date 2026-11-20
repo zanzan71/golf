@@ -79,8 +79,9 @@ export function initShowcase() {
   });
 
   // La capture « match » défile avec la page tant que son étape est active.
-  const matchImg = root.querySelector('.phone__shot--scroll img');
-  const matchStep = steps[1];
+  const matchShot = root.querySelector('.phone__shot--scroll');
+  const matchImg = matchShot?.querySelector('img');
+  const matchStep = steps[shots.indexOf(matchShot)];
   if (matchImg && matchStep && !prefersReducedMotion()) {
     onScrollFrame((vh) => {
       if (!desktop.matches) {

@@ -200,10 +200,11 @@ function initReveal() {
 }
 
 // ---- hero.js ----
-// Hero : séquence d'ouverture, écrans réels qui se succèdent dans le téléphone,
-// léger relief qui suit le pointeur (ordinateur uniquement).
+// Hero : séquence d'ouverture (en CSS), écrans réels qui se succèdent dans le téléphone,
+// scène 3D qui suit le pointeur et s'ouvre au défilement. Le JavaScript ne pose que
+// trois variables (--tilt-x, --tilt-y, --s) : la mise en scène reste dans le CSS.
 
-const SLIDE_MS = 3600;
+const SLIDE_MS = 3800;
 
 function initHero() {
   const hero = document.querySelector('.hero');
@@ -212,22 +213,23 @@ function initHero() {
   // Deux images pour que les états de départ soient peints avant la transition.
   requestAnimationFrame(() => requestAnimationFrame(() => hero.classList.add('is-ready')));
 
-  initSlideshow(hero);
-  initTilt(hero);
+  const scene = hero.querySelector('[data-scene]');
+  const slideshow = initSlideshow(hero);
+  initPauseToggle(hero, scene, slideshow);
+  if (!scene || prefersReducedMotion()) return;
+  initVisibility(scene, slideshow);
+  initPointer(hero, scene);
+  initSceneScroll(scene);
 }
 
 function initSlideshow(hero) {
   const screen = hero.querySelector('[data-slideshow]');
-  const toggle = hero.querySelector('[data-slideshow-toggle]');
-  if (!screen) return;
-  const shots = [...screen.querySelectorAll('.phone__shot')];
-  if (shots.length < 2) return;
+  const shots = screen ? [...screen.querySelectorAll('.phone__shot')] : [];
+  const state = { inView: true, pausedByUser: false, hovered: false, start() {} };
+  if (shots.length < 2) return state;
 
   let index = 0;
   let timer = null;
-  let inView = true;
-  let pausedByUser = false;
-  let hovered = false;
 
   const show = (i) => {
     shots[index].classList.remove('is-active');
@@ -237,10 +239,10 @@ function initSlideshow(hero) {
     next.classList.add('is-active');
   };
 
-  const canRun = () => !prefersReducedMotion() && !pausedByUser && !hovered && inView && !document.hidden;
-  const stop = () => { clearInterval(timer); timer = null; };
-  const start = () => {
-    stop();
+  const canRun = () => !prefersReducedMotion() && !state.pausedByUser && !state.hovered && state.inView && !document.hidden;
+  state.start = () => {
+    clearInterval(timer);
+    timer = null;
     if (canRun()) timer = setInterval(() => show(index + 1), SLIDE_MS);
   };
 
@@ -249,60 +251,77 @@ function initSlideshow(hero) {
     shots.forEach((s) => s.querySelector('img')?.setAttribute('loading', 'eager'));
   }, { once: true });
 
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => {
-      inView = entry.isIntersecting;
-      start();
-    }).observe(screen);
-  }
-  document.addEventListener('visibilitychange', start);
-  const stage = hero.querySelector('.hero__stage');
-  stage?.addEventListener('pointerenter', () => { hovered = true; start(); });
-  stage?.addEventListener('pointerleave', () => { hovered = false; start(); });
-
-  if (toggle) {
-    if (prefersReducedMotion()) toggle.hidden = true;
-    toggle.addEventListener('click', () => {
-      pausedByUser = !pausedByUser;
-      toggle.setAttribute('aria-pressed', String(pausedByUser));
-      toggle.querySelector('.sr-only').textContent = pausedByUser
-        ? 'Reprendre le défilement des écrans'
-        : 'Mettre en pause le défilement des écrans';
-      start();
-    });
-  }
-  start();
+  document.addEventListener('visibilitychange', () => state.start());
+  const phone = hero.querySelector('.scene__phone');
+  phone?.addEventListener('pointerenter', () => { state.hovered = true; state.start(); });
+  phone?.addEventListener('pointerleave', () => { state.hovered = false; state.start(); });
+  state.start();
+  return state;
 }
 
-function initTilt(hero) {
-  const stage = hero.querySelector('[data-tilt]');
-  if (!stage || prefersReducedMotion() || !hasFinePointer()) return;
-  const chips = [...stage.querySelectorAll('[data-depth]')];
+// Un seul bouton met en pause tout ce qui bouge seul dans le hero (WCAG 2.2.2).
+function initPauseToggle(hero, scene, slideshow) {
+  const toggle = hero.querySelector('[data-slideshow-toggle]');
+  if (!toggle) return;
+  if (prefersReducedMotion()) { toggle.hidden = true; return; }
+  toggle.addEventListener('click', () => {
+    const paused = !slideshow.pausedByUser;
+    slideshow.pausedByUser = paused;
+    scene?.classList.toggle('is-paused', paused);
+    toggle.setAttribute('aria-pressed', String(paused));
+    toggle.querySelector('.sr-only').textContent = paused ? 'Reprendre les animations' : 'Mettre en pause les animations';
+    slideshow.start();
+  });
+}
+
+// Hors de l'écran, plus rien ne tourne.
+function initVisibility(scene, slideshow) {
+  if (!('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([entry]) => {
+    scene.classList.toggle('is-offscreen', !entry.isIntersecting);
+    slideshow.inView = entry.isIntersecting;
+    slideshow.start();
+  }).observe(scene);
+}
+
+// Ordinateur : la scène s'oriente vers le pointeur. Les profondeurs (translateZ)
+// font le reste, sans calcul par élément.
+function initPointer(hero, scene) {
+  if (!hasFinePointer()) return;
   let frame = 0;
   let target = { x: 0, y: 0 };
-
   const apply = () => {
     frame = 0;
-    stage.style.setProperty('--rx', `${(-target.y * 5).toFixed(2)}deg`);
-    stage.style.setProperty('--ry', `${(target.x * 7).toFixed(2)}deg`);
-    chips.forEach((chip) => {
-      const d = Number(chip.dataset.depth) || 1;
-      chip.style.translate = `${(target.x * 14 * d).toFixed(1)}px ${(target.y * 10 * d).toFixed(1)}px`;
-    });
+    scene.style.setProperty('--tilt-x', target.x.toFixed(3));
+    scene.style.setProperty('--tilt-y', target.y.toFixed(3));
   };
+  const queue = () => { if (!frame) frame = requestAnimationFrame(apply); };
 
   hero.addEventListener('pointermove', (event) => {
-    if (window.innerWidth < 1100) return;
-    const rect = hero.getBoundingClientRect();
+    if (window.innerWidth < 1100 || event.pointerType !== 'mouse') return;
+    const rect = scene.getBoundingClientRect();
     target = {
-      x: (event.clientX - rect.left) / rect.width - 0.5,
-      y: (event.clientY - rect.top) / rect.height - 0.5,
+      x: clamp((event.clientX - (rect.left + rect.width / 2)) / (window.innerWidth / 2), -1, 1),
+      y: clamp((event.clientY - (rect.top + rect.height / 2)) / (window.innerHeight / 2), -1, 1),
     };
-    if (!frame) frame = requestAnimationFrame(apply);
+    queue();
   });
-  hero.addEventListener('pointerleave', () => {
-    target = { x: 0, y: 0 };
-    if (!frame) frame = requestAnimationFrame(apply);
+  hero.addEventListener('pointerleave', () => { target = { x: 0, y: 0 }; queue(); });
+}
+
+// Défilement : quand la scène remonte vers le haut de l'écran, elle s'incline et les
+// morceaux s'écartent. Mesuré sur la scène elle-même pour qu'elle soit toujours vue
+// au repos en arrivant (sur mobile, elle est sous le texte).
+function initSceneScroll(scene) {
+  let last = -1;
+  onScrollFrame((vh) => {
+    const rect = scene.getBoundingClientRect();
+    if (rect.bottom < -200 || rect.top > vh) return;
+    const s = Math.round(clamp((vh * 0.22 - rect.top) / (rect.height * 0.9)) * 1000) / 1000;
+    if (s !== last) {
+      last = s;
+      scene.style.setProperty('--s', String(s));
+    }
   });
 }
 
@@ -318,6 +337,26 @@ function initScrollEffects() {
   initParallax();
   initWords();
   initScreenScroll();
+  initMur();
+}
+
+// Mur d'écrans : les colonnes glissent en sens opposés pendant que le mur traverse l'écran.
+function initMur() {
+  const frame = document.querySelector('[data-mur]');
+  const plan = frame?.querySelector('.mur__plan');
+  if (!plan) return;
+  const near = whenNear(frame);
+  let last = null;
+  onScrollFrame((vh) => {
+    if (!near.near) return;
+    const rect = frame.getBoundingClientRect();
+    const p = clamp((rect.top + rect.height / 2 - vh / 2) / (vh / 2 + rect.height / 2), -1, 1);
+    const v = Math.round(p * 1000) / 1000;
+    if (v !== last) {
+      last = v;
+      plan.style.setProperty('--p', String(v));
+    }
+  });
 }
 
 function initParallax() {
@@ -524,8 +563,9 @@ function initShowcase() {
   });
 
   // La capture « match » défile avec la page tant que son étape est active.
-  const matchImg = root.querySelector('.phone__shot--scroll img');
-  const matchStep = steps[1];
+  const matchShot = root.querySelector('.phone__shot--scroll');
+  const matchImg = matchShot?.querySelector('img');
+  const matchStep = steps[shots.indexOf(matchShot)];
   if (matchImg && matchStep && !prefersReducedMotion()) {
     onScrollFrame((vh) => {
       if (!desktop.matches) {

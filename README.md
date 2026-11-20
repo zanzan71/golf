@@ -17,7 +17,12 @@ Tout vient du design system **« ELAZYO »** (artefact Claude, `tokens.json`) :
 | Affiche | Saira italique 800, capitales |
 | Motif | le chevron du maillon, seul motif autorisé |
 
-Le logo SVG (`assets/img/logo/`) reprend les tracés du design system. Les écrans montrés sont les **vraies captures de l’appli** (branche `elazyo-video-assets`, club de démonstration). La barre d’onglets, qui affiche encore l’ancien nom PLAYCARD, est coupée.
+Le logo SVG (`assets/img/logo/`) reprend les tracés du design system. Les écrans montrés sont les **vraies captures de l’appli**, sur un club de démonstration :
+
+- captures récentes (20 novembre 2026) : accueil du président, planning, gestion, finance, communication, équipe du coach, séances, connexion ; branche `elazyo-video-assets`, dossier `ecrans-v2/` ;
+- anciennes captures, gardées tant que l’appli récente n’a pas d’équivalent : détail d’un match, transport (covoiturage) et la vidéo du covoiturage.
+
+Pour mettre un écran à jour : déposer la nouvelle capture du téléphone (1080 × 2412) dans les sources, puis relancer `scripts/preparer-images.py`.
 
 ## Arborescence
 
@@ -30,7 +35,8 @@ api/contact.js             fonction serverless du formulaire (Vercel, Node 20+)
 assets/css/site.css        styles, organisés en couches (@layer) : tokens, composants, sections, mouvement
 assets/js/site.js          script chargé par les pages, assemblé depuis main.js + assets/js/modules/
                            (npm run build:js après chaque modification d’un module)
-assets/img, video, icons   images AVIF + WebP en deux tailles, vidéo réelle du covoiturage
+assets/img, video, icons   images AVIF + WebP en deux tailles, morceaux d’écran du hero
+                           (assets/img/fragments), vidéo réelle du covoiturage
 scripts/preparer-images.py régénère les images à partir des sources
 tests/api-contact.test.mjs tests de la fonction du formulaire (npm test)
 vercel.json                en-têtes de sécurité (CSP stricte, HSTS…), cache, URLs propres
@@ -60,27 +66,28 @@ Sans variable configurée, le formulaire répond « envoi pas encore activé » 
 - [ ] **Mentions légales et confidentialité** : les champs surlignés en jaune (adresse du siège, SIREN, directeur de la publication, hébergeur, prestataire d’e-mail, lien vers la politique de l’appli).
 - [ ] **Adresse e-mail de contact** à afficher, si vous en voulez une en plus du formulaire.
 - [ ] **Liens App Store et Google Play** : le site renvoie pour l’instant vers app.elazyo.fr.
-- [ ] **Photo** de la section « Chaque maillon compte » : un vrai club, avec l’accord des personnes (et des parents pour les mineurs). L’emplacement est signalé sur la page.
-- [ ] **Captures** « Accueil coach » et « Fiche séance », si vous voulez les ajouter à « L’appli en action ».
+- [ ] **Espace Séances** : l’étape « Séances » de « L’appli en action » indique qu’une partie de l’espace est en cours d’ouverture (cadenas sur la capture). À mettre à jour quand tout est ouvert.
+- [ ] **Captures plus nettes** (facultatif) : les écrans exportés directement depuis l’appli (sans barre du téléphone ni du navigateur), en 1290 px de large, rendraient le hero et le mur d’écrans encore plus nets.
 - [ ] **Offre Club Fondateur** : le texte reprend le kit de recrutement (10 places, gratuit jusqu’au 30 juin 2027). À confirmer avant publication.
 - [ ] **Polices hébergées sur le site** (recommandé, RGPD et vitesse) : déposer Manrope et Saira (licence OFL) en WOFF2 dans `assets/fonts/`, remplacer le lien Google Fonts par un `@font-face` local, retirer `fonts.googleapis.com` et `fonts.gstatic.com` de la CSP et le paragraphe « Polices » de la page confidentialité.
 
 ## Animations et accessibilité
 
-- Une seule séquence d’ouverture (hero), en CSS pur : elle n’attend pas le JavaScript.
+- Une seule séquence d’ouverture (hero), en CSS pur : elle n’attend pas le JavaScript. Le terrain se trace, le téléphone se relève depuis la pelouse, les morceaux d’écran en sortent et se placent en profondeur (CSS 3D, aucune bibliothèque). Le script ne pose que l’inclinaison suivant le pointeur et l’ouverture au défilement.
+- Règle à garder : ne jamais animer l’opacité d’un élément en `preserve-3d` (Chrome l’aplatit et les plaques d’épaisseur du téléphone passeraient devant l’écran).
 - Rien n’est caché par défaut : seuls les blocs situés sous l’écran au chargement attendent d’arriver à l’écran pour apparaître. Si le script ne tourne pas, tout reste visible.
 - Un seul script classique (`site.js`) plutôt que des modules : il fonctionne aussi dans les cadres isolés (aperçus, intégrations), où les modules sont bloqués.
-- Révélations au défilement, parallaxe multicouche, chaîne des maillons, manifeste éclairé mot à mot, téléphone qui change d’écran avec les étapes, saison qui se remplit, cartes MY CARD en 3D.
+- Révélations au défilement, parallaxe multicouche, chaîne des maillons, mur d’écrans dont les colonnes glissent en sens opposés, manifeste éclairé mot à mot, téléphone qui change d’écran avec les étapes, saison qui se remplit, cartes MY CARD en 3D.
 - `prefers-reduced-motion` respecté partout : les animations disparaissent et tout le contenu reste visible.
-- Les contenus qui bougent seuls ont un bouton pause (écrans du hero, défilement des valeurs) ; la vidéo est lue une fois (4 s).
+- Les contenus qui bougent seuls ont un bouton pause (scène du hero : écrans et flottement ; défilement des valeurs) ; la vidéo est lue une fois (4 s). Hors de l’écran, la scène du hero s’arrête.
 - Navigation au clavier, focus visible, onglets au modèle WAI-ARIA, menu mobile avec piège du focus et touche Échap, formulaire avec erreurs reliées aux champs.
 
 ## Mesures (tests Playwright, 20 novembre 2026)
 
 | Profil | LCP | CLS | Blocage |
 |---|---|---|---|
-| Mobile, 4G lente, processeur ÷4 | 1,9 s | 0,001 | ≈ 140 ms |
-| Ordinateur, fibre | 0,3 s | 0,04 | ≈ 50 ms |
+| Mobile, 4G lente, processeur ÷4 | 1,7 s | 0,003 | ≈ 0 ms |
+| Ordinateur, fibre | 0,4 s | 0,015 | ≈ 40 ms |
 
 Mesures en laboratoire, polices servies localement. À confirmer en conditions réelles (PageSpeed Insights, rapport Core Web Vitals de la Search Console).
 

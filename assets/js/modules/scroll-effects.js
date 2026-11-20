@@ -10,6 +10,26 @@ export function initScrollEffects() {
   initParallax();
   initWords();
   initScreenScroll();
+  initMur();
+}
+
+// Mur d'écrans : les colonnes glissent en sens opposés pendant que le mur traverse l'écran.
+function initMur() {
+  const frame = document.querySelector('[data-mur]');
+  const plan = frame?.querySelector('.mur__plan');
+  if (!plan) return;
+  const near = whenNear(frame);
+  let last = null;
+  onScrollFrame((vh) => {
+    if (!near.near) return;
+    const rect = frame.getBoundingClientRect();
+    const p = clamp((rect.top + rect.height / 2 - vh / 2) / (vh / 2 + rect.height / 2), -1, 1);
+    const v = Math.round(p * 1000) / 1000;
+    if (v !== last) {
+      last = v;
+      plan.style.setProperty('--p', String(v));
+    }
+  });
 }
 
 function initParallax() {

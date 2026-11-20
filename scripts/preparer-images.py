@@ -4,14 +4,16 @@ Usage :
     python3 scripts/preparer-images.py <dossier_sources> <dossier_site>
 
 <dossier_sources> doit contenir :
-    ecrans/*.png                   captures réelles de l'appli (branche elazyo-video-assets)
+    ecrans/*.png                   anciennes captures (match, transport), branche elazyo-video-assets
+    ecrans-v2/*.jpg                captures récentes de l'appli (téléphone 1080 × 2412, nov. 2026)
     mycard/corps.webp, tete.webp   joueur MY CARD (corps détouré 720 × 1660, tête 520 × 650)
     instagram/n2-01.jpg            visuel Instagram validé (sert à l'image de partage)
     logo_paths.json                tracés du logo (design system ELAZYO)
     video/covoiturage-je-conduis.mp4|webm
 
 Le script écrit dans <dossier_site>/assets : écrans en AVIF + WebP (360 et 720 px),
-joueur détouré, logos SVG, icônes, image de partage 1200 × 630.
+morceaux d'écran pour la scène 3D du hero (400 et 800 px), joueur détouré, logos SVG,
+icônes, image de partage 1200 × 630.
 Dépendance : Pillow (avec AVIF), ffmpeg pour l'affiche de la vidéo.
 """
 import json
@@ -32,18 +34,31 @@ BLEU = "#01284F"
 BLANC = "#FFFFFF"
 NOIR_LOGO = "#0D0D0D"
 
-# Les captures « Accueil, Planning, Gestion, Finance, Comm. » ont une barre d'onglets
-# qui affiche encore l'ancien nom PLAYCARD : on la coupe (y >= 1784) et on prolonge le fond.
 SCREEN_W, SCREEN_H = 1080, 2004
-TAB_BAR_TOP = 1784
-SCREENS = {
-    "planning": True,
-    "finance": True,
-    "communication": True,
-    "match": False,
-    "covoiturage": False,
-    "covoiturage-depart": False,
-    "covoiturage-formulaire": False,
+# Anciennes captures gardées tant que l'appli récente n'a pas d'équivalent :
+# le détail d'un match (qui défile dans le téléphone) et le transport.
+SCREENS = ["match", "covoiturage", "covoiturage-depart"]
+
+# Captures récentes (nov. 2026), 1080 × 2412. On retire la barre d'état du téléphone,
+# la barre d'adresse et la barre du navigateur pour ne garder que l'appli (1080 × 2004).
+#   « navigateur » : appli ouverte dans le navigateur, on garde y 264 → 2268 ;
+#   « natif »      : appli installée, on garde y 120 → 1902 puis la barre d'onglets
+#                    de l'appli (y 2190 → 2412), recollée juste dessous.
+SCREENS_V2 = {
+    "accueil-president": "natif",
+    "planning-president": "natif",
+    "communication-v2": "navigateur",
+    "connexion": "navigateur",
+    "equipe-coach": "navigateur",
+    "finance-v2": "navigateur",
+    "gestion": "navigateur",
+    "seances-coach": "navigateur",
+}
+# Morceaux d'écran qui flottent dans la scène 3D du hero (boîtes en px sur l'écran recadré).
+FRAGMENTS = {
+    "match": ("planning-president", (58, 1343, 1022, 1738)),
+    "tresorerie": ("finance-v2", (58, 1343, 1022, 1848)),
+    "seances": ("seances-coach", (58, 706, 1022, 1228)),
 }
 
 
@@ -57,19 +72,35 @@ def save_variants(img: Image.Image, base: Path, widths, quality_webp=80, quality
 
 
 def prepare_screens():
-    for name, has_tab_bar in SCREENS.items():
+    for name in SCREENS:
         im = Image.open(SRC / "ecrans" / f"{name}.png").convert("RGB")
-        if has_tab_bar:
-            content = im.crop((0, 0, SCREEN_W, TAB_BAR_TOP))
-            bg = content.getpixel((SCREEN_W // 2, TAB_BAR_TOP - 4))
-            canvas = Image.new("RGB", (SCREEN_W, SCREEN_H), bg)
-            canvas.paste(content, (0, 0))
-            im = canvas
-        elif name != "match":
+        if name != "match":
             im = im.crop((0, 0, SCREEN_W, SCREEN_H))
         # « match » garde sa hauteur (2550 px) : l'écran défile doucement dans le téléphone.
         save_variants(im, OUT / "img" / "ecrans" / name, (360, 720))
         print("écran", name, im.size)
+
+
+def crop_v2(im: Image.Image, kind: str) -> Image.Image:
+    if kind == "navigateur":
+        return im.crop((0, 264, SCREEN_W, 2268))
+    out = Image.new("RGB", (SCREEN_W, SCREEN_H))
+    out.paste(im.crop((0, 120, SCREEN_W, 1902)), (0, 0))
+    out.paste(im.crop((0, 2190, SCREEN_W, 2412)), (0, 1782))
+    return out
+
+
+def prepare_screens_v2():
+    cropped = {}
+    for name, kind in SCREENS_V2.items():
+        im = crop_v2(Image.open(SRC / "ecrans-v2" / f"{name}.jpg").convert("RGB"), kind)
+        cropped[name] = im
+        save_variants(im, OUT / "img" / "ecrans" / name, (360, 720))
+        print("écran récent", name, im.size)
+    for name, (screen, box) in FRAGMENTS.items():
+        save_variants(cropped[screen].crop(box), OUT / "img" / "fragments" / name, (400, 800),
+                      quality_webp=82, quality_avif=60)
+        print("morceau d'écran", name)
 
 
 def prepare_player():
@@ -186,6 +217,7 @@ def prepare_video():
 
 if __name__ == "__main__":
     prepare_screens()
+    prepare_screens_v2()
     prepare_player()
     prepare_logos()
     prepare_og()
