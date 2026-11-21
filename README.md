@@ -20,7 +20,8 @@ Tout vient du design system **« ELAZYO »** (artefact Claude, `tokens.json`) :
 Le logo SVG (`assets/img/logo/`) reprend les tracés du design system. Les écrans montrés sont les **vraies captures de l’appli**, sur un club de démonstration :
 
 - captures récentes (20 novembre 2026) : accueil du président, planning, gestion, finance, communication, équipe du coach, séances, connexion ; branche `elazyo-video-assets`, dossier `ecrans-v2/` ;
-- anciennes captures, gardées tant que l’appli récente n’a pas d’équivalent : détail d’un match, transport (covoiturage) et la vidéo du covoiturage.
+- anciennes captures, gardées tant que l’appli récente n’a pas d’équivalent : détail d’un match et transport (covoiturage). Attention : ces deux écrans ont été complétés à la main pour la vidéo de présentation (joueurs, présences, voitures). Le site ne les présente donc pas comme des captures brutes. À remplacer par de vraies captures récentes dès que possible ;
+- la vidéo du covoiturage, enregistrée dans l’appli.
 
 Pour mettre un écran à jour : déposer la nouvelle capture du téléphone (1080 × 2412) dans les sources, puis relancer `scripts/preparer-images.py`.
 
