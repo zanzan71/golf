@@ -4,7 +4,7 @@
 import { prefersReducedMotion, hasFinePointer, onScrollFrame, clamp } from './env.js';
 
 // Durée de chaque étape de la semaine (mardi, jeudi, samedi, lundi), en millisecondes.
-const BEAT_MS = [3400, 3300, 3400, 4600];
+const BEAT_MS = [3400, 3600, 3400, 4600];
 // La première étape attend que le téléphone soit levé (animation d'entrée du CSS).
 const FIRST_DELAY = 1500;
 
@@ -102,7 +102,7 @@ function initSemaine(hero, scene) {
   }));
 
   if (reduced) {
-    // Image fixe : 11/11 confirmés et la carte déjà passée en Argent.
+    // Image fixe : 14/14 confirmés et la carte déjà passée en Argent.
     scene.classList.add('is-argent');
     show(0);
     return state;

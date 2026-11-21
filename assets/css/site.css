@@ -625,9 +625,9 @@
   .beat__big small { font-size: .5em; color: var(--fg-muted); margin-left: .08em; }
   .beat__sub { font-weight: 700; }
   .beat__sub b { color: var(--lime); }
-  .beat__dots { list-style: none; display: flex; flex-wrap: wrap; gap: .32em; margin-top: .2em; }
-  .beat__dots li { width: .78em; height: .78em; border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .28); transition: none; }
-  .beat__cars { list-style: none; display: grid; gap: .42em; margin-top: .15em; }
+  .beat__dots { list-style: none; display: flex; flex-wrap: wrap; gap: .26em; margin-top: .2em; }
+  .beat__dots li { width: .7em; height: .7em; border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .28); transition: none; }
+  .beat__cars { list-style: none; display: grid; gap: .36em; margin-top: .15em; }
   .beat__car { display: flex; align-items: center; gap: .38em; }
   .beat__car .icon { width: 1.35em; height: 1.35em; color: var(--fg-muted); margin-right: .2em; }
   .beat__car span { width: 1.05em; height: 1.05em; border-radius: .25em; box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .28); }
@@ -649,11 +649,11 @@
 
   /* États « joués » : visibles d'emblée sans JavaScript ou avec mouvement réduit,
      rejoués à chaque passage sinon (classe is-play posée au début de chaque étape). */
-  :is(.scene:not(.is-live), .scene.is-play) .beat__dots li { background: var(--lime); box-shadow: none; transition: background .25s calc(.35s + var(--i) * 85ms); }
-  :is(.scene:not(.is-live), .scene.is-play) .beat__car span { background: var(--lime); box-shadow: none; transition: background .25s calc(.4s + var(--i) * 95ms); }
-  .scene .beat__car:last-child span:last-child { background: none; box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .28); }
+  :is(.scene:not(.is-live), .scene.is-play) .beat__dots li { background: var(--lime); box-shadow: none; transition: background .25s calc(.35s + var(--i) * 70ms); }
+  :is(.scene:not(.is-live), .scene.is-play) .beat__car span { background: var(--lime); box-shadow: none; transition: background .25s calc(.4s + var(--i) * 85ms); }
+  .scene .beat__car:last-child span:nth-last-child(-n+2) { background: none; box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .28); }
   .scene.is-live .beat--covoit .beat__sub--ok, .scene.is-live .beat--match .beat__sub--win { opacity: 0; translate: 0 .4em; }
-  .scene.is-live.is-play .beat--covoit .beat__sub--ok { opacity: 1; translate: 0 0; transition: opacity .4s 1.6s, translate .5s var(--ease-out) 1.6s; }
+  .scene.is-live.is-play .beat--covoit .beat__sub--ok { opacity: 1; translate: 0 0; transition: opacity .4s 1.9s, translate .5s var(--ease-out) 1.9s; }
   .scene.is-live.is-play .beat--match .beat__sub--win { opacity: 1; translate: 0 0; transition: opacity .4s 1.75s, translate .5s var(--ease-spring) 1.75s; }
   .scene.is-live .beat__flip > span:first-child { margin-top: 0; }
   .scene.is-live.is-play .beat__flip > span:first-child { margin-top: -1em; transition: margin-top .45s var(--ease-out) 1.2s; }
