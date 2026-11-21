@@ -205,9 +205,9 @@ function initReveal() {
 // trois variables (--tilt-x, --tilt-y, --s) : la mise en scène reste dans le CSS.
 
 // Durée de chaque étape de la semaine (mardi, jeudi, samedi, lundi), en millisecondes.
-const BEAT_MS = [3400, 3600, 3400, 4600];
+const BEAT_MS = [2300, 2600, 2400, 3200];
 // La première étape attend que le téléphone soit levé (animation d'entrée du CSS).
-const FIRST_DELAY = 1500;
+const FIRST_DELAY = 1400;
 
 function initHero() {
   const hero = document.querySelector('.hero');
@@ -250,7 +250,7 @@ function initSemaine(hero, scene) {
     later(() => {
       const t0 = performance.now();
       const step = (now) => {
-        const k = Math.min(1, (now - t0) / 1100);
+        const k = Math.min(1, (now - t0) / 800);
         counter.textContent = String(Math.round(to * (1 - Math.pow(1 - k, 3))));
         if (k < 1) tween = requestAnimationFrame(step);
       };
@@ -283,10 +283,10 @@ function initSemaine(hero, scene) {
     later(() => {
       scene.classList.add('is-play');
       hero.classList.add('is-playing');
-      if (beat === 0) countUp(250);
+      if (beat === 0) countUp(150);
       if (beat === 3) {
-        later(() => scene.classList.add('is-xp'), 1300);
-        later(() => scene.classList.add('is-argent'), 2150);
+        later(() => scene.classList.add('is-xp'), 900);
+        later(() => scene.classList.add('is-argent'), 1500);
       }
       if (canRun()) later(() => { show(beat + 1); play(); }, BEAT_MS[beat]);
     }, delay);
@@ -314,7 +314,7 @@ function initSemaine(hero, scene) {
   window.addEventListener('load', () => {
     shots.forEach((s) => s.querySelector('img')?.setAttribute('loading', 'eager'));
   }, { once: true });
-  later(() => scene.classList.add('is-started'), FIRST_DELAY + 1200);
+  later(() => scene.classList.add('is-started'), FIRST_DELAY + 1000);
 
   state.start = () => {
     if (canRun()) { hero.classList.remove('is-paused'); play(); }
