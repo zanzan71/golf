@@ -183,10 +183,11 @@
           <li>Web, Android et iPhone</li>
           <li>Conçu par des gens du foot amateur</li>
         </ul>
+        <p class="hero__caption hero__caption--copy">Animation&nbsp;: convocations et résultat issus du F.C. Epagny Metz-Tessy&nbsp;; covoiturage, bilan et carte donnés en exemple.</p>
       </div>
 
       <div class="hero__visual" data-hero-visual>
-        <div class="scene" data-scene>
+        <div class="scene" data-scene data-beat="0">
           <div class="scene__glow" aria-hidden="true"></div>
           <div class="scene__pitch" aria-hidden="true">
             <svg class="pitch" viewBox="0 0 1050 680" preserveAspectRatio="xMidYMid meet" focusable="false">
@@ -208,29 +209,71 @@
             <span class="scene__shadow" aria-hidden="true"></span>
             <figure class="phone phone--hero scene__phone">
               <div class="phone__frame">
-                <div class="phone__screen" data-slideshow aria-live="off">
-                  <picture class="phone__shot is-active"><source type="image/avif" srcset="assets/img/ecrans/accueil-president-360.avif 360w, assets/img/ecrans/accueil-president-720.avif 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><source type="image/webp" srcset="assets/img/ecrans/accueil-president-360.webp 360w, assets/img/ecrans/accueil-president-720.webp 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><img src="assets/img/ecrans/accueil-president-720.webp" width="1080" height="2004" alt="Écran d’accueil du président dans l’appli ELAZYO : mise en route du club et demandes à traiter." fetchpriority="high" decoding="async"></picture>
-                  <picture class="phone__shot"><source type="image/avif" srcset="assets/img/ecrans/equipe-coach-360.avif 360w, assets/img/ecrans/equipe-coach-720.avif 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><source type="image/webp" srcset="assets/img/ecrans/equipe-coach-360.webp 360w, assets/img/ecrans/equipe-coach-720.webp 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><img src="assets/img/ecrans/equipe-coach-720.webp" width="1080" height="2004" alt="Écran Équipe du coach : effectif et présences, prochain match, invitation des joueurs." loading="lazy" decoding="async"></picture>
-                  <picture class="phone__shot"><source type="image/avif" srcset="assets/img/ecrans/finance-v2-360.avif 360w, assets/img/ecrans/finance-v2-720.avif 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><source type="image/webp" srcset="assets/img/ecrans/finance-v2-360.webp 360w, assets/img/ecrans/finance-v2-720.webp 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><img src="assets/img/ecrans/finance-v2-720.webp" width="1080" height="2004" alt="Écran Finance : trésorerie disponible, recettes, dépenses, cotisations dues." loading="lazy" decoding="async"></picture>
+                <div class="phone__screen" data-beat-screens>
+                  <picture class="phone__shot is-active"><source type="image/avif" srcset="assets/img/ecrans/planning-president-360.avif 360w, assets/img/ecrans/planning-president-720.avif 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><source type="image/webp" srcset="assets/img/ecrans/planning-president-360.webp 360w, assets/img/ecrans/planning-president-720.webp 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><img src="assets/img/ecrans/planning-president-720.webp" width="1080" height="2004" alt="Écran Planning de l’appli ELAZYO : matchs et entraînements de la semaine, convoqués et confirmés." fetchpriority="high" decoding="async"></picture>
+                  <picture class="phone__shot"><source type="image/avif" srcset="assets/img/ecrans/covoiturage-360.avif 360w, assets/img/ecrans/covoiturage-720.avif 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><source type="image/webp" srcset="assets/img/ecrans/covoiturage-360.webp 360w, assets/img/ecrans/covoiturage-720.webp 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><img src="assets/img/ecrans/covoiturage-720.webp" width="1080" height="2004" alt="Écran Transport : trajets proposés par les familles pour un déplacement." fetchpriority="low" decoding="async"></picture>
+                  <picture class="phone__shot"><source type="image/avif" srcset="assets/img/ecrans/match-360.avif 360w, assets/img/ecrans/match-720.avif 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><source type="image/webp" srcset="assets/img/ecrans/match-360.webp 360w, assets/img/ecrans/match-720.webp 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><img src="assets/img/ecrans/match-720.webp" width="1080" height="2004" alt="Écran Match : fiche du match avec le score et les faits de jeu." fetchpriority="low" decoding="async"></picture>
+                  <picture class="phone__shot"><source type="image/avif" srcset="assets/img/ecrans/equipe-coach-360.avif 360w, assets/img/ecrans/equipe-coach-720.avif 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><source type="image/webp" srcset="assets/img/ecrans/equipe-coach-360.webp 360w, assets/img/ecrans/equipe-coach-720.webp 720w" sizes="(min-width: 1100px) 290px, (min-width: 700px) 260px, 60vw"><img src="assets/img/ecrans/equipe-coach-720.webp" width="1080" height="2004" alt="Écran Équipe du coach : effectif, présences et prochain match." fetchpriority="low" decoding="async"></picture>
                 </div>
               </div>
             </figure>
-            <div class="frag frag--seances" aria-hidden="true"><div class="frag__fly"><div class="frag__float"><span class="frag__tag"><svg class="icon"><use href="#i-whistle"/></svg>Séances</span><picture><source type="image/avif" srcset="assets/img/fragments/seances-400.avif 400w, assets/img/fragments/seances-800.avif 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><source type="image/webp" srcset="assets/img/fragments/seances-400.webp 400w, assets/img/fragments/seances-800.webp 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><img src="assets/img/fragments/seances-800.webp" width="964" height="522" alt="" decoding="async" fetchpriority="low"></picture></div></div></div>
-            <div class="frag frag--match" aria-hidden="true"><div class="frag__fly"><div class="frag__float"><span class="frag__tag"><svg class="icon"><use href="#i-calendar"/></svg>Convocations</span><picture><source type="image/avif" srcset="assets/img/fragments/match-400.avif 400w, assets/img/fragments/match-800.avif 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><source type="image/webp" srcset="assets/img/fragments/match-400.webp 400w, assets/img/fragments/match-800.webp 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><img src="assets/img/fragments/match-800.webp" width="964" height="395" alt="" decoding="async" fetchpriority="low"></picture></div></div></div>
-            <div class="frag frag--tresorerie" aria-hidden="true"><div class="frag__fly"><div class="frag__float"><span class="frag__tag"><svg class="icon"><use href="#i-wallet"/></svg>Trésorerie</span><picture><source type="image/avif" srcset="assets/img/fragments/tresorerie-400.avif 400w, assets/img/fragments/tresorerie-800.avif 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><source type="image/webp" srcset="assets/img/fragments/tresorerie-400.webp 400w, assets/img/fragments/tresorerie-800.webp 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><img src="assets/img/fragments/tresorerie-800.webp" width="964" height="505" alt="" decoding="async" fetchpriority="low"></picture></div></div></div>
-            <div class="frag frag--covoit" aria-hidden="true"><div class="frag__fly"><div class="frag__float"><span class="frag__tag"><svg class="icon"><use href="#i-car"/></svg>Covoiturage</span><picture><source type="image/avif" srcset="assets/img/fragments/covoiturage-400.avif 400w, assets/img/fragments/covoiturage-800.avif 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><source type="image/webp" srcset="assets/img/fragments/covoiturage-400.webp 400w, assets/img/fragments/covoiturage-800.webp 800w" sizes="(min-width: 1100px) 300px, (min-width: 700px) 270px, 52vw"><img src="assets/img/fragments/covoiturage-800.webp" width="1010" height="780" alt="" decoding="async" fetchpriority="low"></picture></div></div></div>
-            <p class="sr-only">Morceaux d’écran de l’appli autour du téléphone&nbsp;: une offre de covoiturage, la convocation d’un match, la trésorerie du club et les séances du coach.</p>
+
+            <div class="beat beat--convoc" data-beat-card="0" aria-hidden="true">
+              <p class="beat__tag"><svg class="icon"><use href="#i-calendar"/></svg>Convocations</p>
+              <p class="beat__meta">Match du dimanche</p>
+              <p class="beat__big"><span data-beat-count="11">11</span><small>/11</small></p>
+              <p class="beat__sub">joueurs confirmés</p>
+              <ol class="beat__dots"><li style="--i:0"></li><li style="--i:1"></li><li style="--i:2"></li><li style="--i:3"></li><li style="--i:4"></li><li style="--i:5"></li><li style="--i:6"></li><li style="--i:7"></li><li style="--i:8"></li><li style="--i:9"></li><li style="--i:10"></li></ol>
+            </div>
+            <div class="beat beat--covoit" data-beat-card="1" aria-hidden="true">
+              <p class="beat__tag"><svg class="icon"><use href="#i-car"/></svg>Covoiturage</p>
+              <p class="beat__meta">Déplacement de dimanche</p>
+              <ul class="beat__cars"><li class="beat__car" style="--c:0"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg><span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span></li><li class="beat__car" style="--c:1"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span></li><li class="beat__car" style="--c:2"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg><span style="--i:8"></span><span style="--i:9"></span><span style="--i:10"></span><span style="--i:11"></span></li></ul>
+              <p class="beat__sub beat__sub--ok"><svg class="icon"><use href="#i-checkcircle"/></svg>Tout le monde a sa place</p>
+            </div>
+            <div class="beat beat--match" data-beat-card="2" aria-hidden="true">
+              <p class="beat__tag beat__tag--live"><span class="beat__live"></span>En direct</p>
+              <p class="beat__meta">U15 F · 2<sup>e</sup> mi-temps</p>
+              <div class="beat__score"><span class="beat__team">Epagny</span><b class="beat__goals"><span class="beat__flip"><span>2</span><span>3</span></span><span class="beat__sep">–</span>2</b><span class="beat__team">Marignier</span></div>
+              <p class="beat__sub beat__sub--win">Victoire 3-2&nbsp;!</p>
+            </div>
+            <div class="beat beat--bilan" data-beat-card="3" aria-hidden="true">
+              <p class="beat__tag"><svg class="icon"><use href="#i-whistle"/></svg>Bilan du coach</p>
+              <ul class="beat__bars"><li style="--v:7;--i:0"><span>Technique</span><b>7</b><i></i></li><li style="--v:6;--i:1"><span>Tactique</span><b>6</b><i></i></li><li style="--v:8;--i:2"><span>Physique</span><b>8</b><i></i></li><li style="--v:7;--i:3"><span>Psychologique</span><b>7</b><i></i></li></ul>
+              <p class="beat__sub">Objectifs Argent&nbsp;: <b>7/7</b></p>
+            </div>
+            <span class="xp" style="--i:0" aria-hidden="true"></span><span class="xp" style="--i:1" aria-hidden="true"></span><span class="xp" style="--i:2" aria-hidden="true"></span><span class="xp" style="--i:3" aria-hidden="true"></span><span class="xp" style="--i:4" aria-hidden="true"></span><span class="xp" style="--i:5" aria-hidden="true"></span><span class="xp" style="--i:6" aria-hidden="true"></span>
+            <div class="hcard" aria-hidden="true">
+              <div class="card card--bronze hcard__card" data-hcard>
+                <div class="card__inner">
+                  <picture class="hcard__art hcard__art--bronze"><source type="image/avif" srcset="assets/img/mycard/mascotte-bronze.avif"><img src="assets/img/mycard/mascotte-bronze.webp" width="294" height="398" alt="" decoding="async"></picture>
+                  <picture class="hcard__art hcard__art--argent"><source type="image/avif" srcset="assets/img/mycard/mascotte-argent.avif"><img src="assets/img/mycard/mascotte-argent.webp" width="294" height="398" alt="" decoding="async"></picture>
+                  <div class="card__top"><img class="card__logo" src="assets/img/logo/elazyo-fond-fonce.svg" alt="" width="84" height="15"><span class="card__brand">MY CARD</span><span class="card__tier"><span class="hcard__t hcard__t--bronze">Bronze</span><span class="hcard__t hcard__t--argent">Argent</span></span></div>
+                  <div class="card__bottom"><span class="card__season">Saison 2026-2027</span></div>
+                </div>
+                <span class="hcard__sheen"></span>
+              </div>
+            </div>
+            <p class="sr-only">Une semaine de club dans l’appli. Mardi, 11 joueurs sur 11 confirment leur convocation. Jeudi, trois voitures emmènent tout le monde au match. Samedi, l’équipe gagne 3-2, suivie en direct. Lundi, le bilan du coach fait passer la carte MY CARD d’un joueur de Bronze à Argent.</p>
           </div>
         </div>
       </div>
 
       <div class="hero__meta">
-        <button class="motion-toggle" type="button" aria-pressed="false" data-slideshow-toggle>
-          <svg class="icon icon--pause" aria-hidden="true"><use href="#i-pause"/></svg>
-          <svg class="icon icon--play" aria-hidden="true"><use href="#i-play-line"/></svg>
-          <span class="sr-only">Mettre en pause les animations</span>
-        </button>
-        <p class="hero__caption">Écrans et morceaux d’écran réels de l’appli, club de démonstration.</p>
+        <div class="semaine" role="group" aria-label="Une semaine de club, étape par étape">
+          <button class="motion-toggle" type="button" aria-pressed="false" data-slideshow-toggle>
+            <svg class="icon icon--pause" aria-hidden="true"><use href="#i-pause"/></svg>
+            <svg class="icon icon--play" aria-hidden="true"><use href="#i-play-line"/></svg>
+            <span class="sr-only">Mettre en pause l’animation</span>
+          </button>
+          <ol class="semaine__jours">
+            <li><button type="button" class="semaine__jour" data-goto-beat="0" aria-pressed="true"><span class="semaine__j">Mar.</span><span class="semaine__quoi">Convocations</span><span class="semaine__barre" aria-hidden="true"></span></button></li>
+            <li><button type="button" class="semaine__jour" data-goto-beat="1" aria-pressed="false"><span class="semaine__j">Jeu.</span><span class="semaine__quoi">Covoiturage</span><span class="semaine__barre" aria-hidden="true"></span></button></li>
+            <li><button type="button" class="semaine__jour" data-goto-beat="2" aria-pressed="false"><span class="semaine__j">Sam.</span><span class="semaine__quoi">Match</span><span class="semaine__barre" aria-hidden="true"></span></button></li>
+            <li><button type="button" class="semaine__jour" data-goto-beat="3" aria-pressed="false"><span class="semaine__j">Lun.</span><span class="semaine__quoi">MY CARD</span><span class="semaine__barre" aria-hidden="true"></span></button></li>
+          </ol>
+        </div>
+        <p class="hero__caption">Convocations et résultat&nbsp;: chiffres réels du F.C. Epagny Metz-Tessy. Covoiturage, bilan et carte&nbsp;: exemples.</p>
       </div>
     </div>
     <a class="hero__scroll" href="#manifeste"><span>Découvrir</span><span class="hero__scroll-line" aria-hidden="true"></span></a>
@@ -449,7 +492,7 @@
               <picture class="phone__shot is-active">
                 <source type="image/avif" srcset="assets/img/ecrans/covoiturage-360.avif 360w, assets/img/ecrans/covoiturage-720.avif 720w" sizes="(min-width: 900px) 290px, 64vw">
                 <source type="image/webp" srcset="assets/img/ecrans/covoiturage-360.webp 360w, assets/img/ecrans/covoiturage-720.webp 720w" sizes="(min-width: 900px) 290px, 64vw">
-                <img src="assets/img/ecrans/covoiturage-720.webp" width="1080" height="2004" alt="Écran Transport : organisation complète, 12 participants, 3 voitures proposées par les familles." loading="lazy" decoding="async">
+                <img src="assets/img/ecrans/covoiturage-720.webp" width="1080" height="2004" alt="Écran Transport : organisation complète, 12 participants, 3 voitures proposées par les familles." fetchpriority="low" decoding="async">
               </picture>
             </div></div>
           </figure>
