@@ -614,27 +614,42 @@
   .hero__scroll-line { width: 2px; height: 40px; background: linear-gradient(var(--lime), var(--lime)) 0 0 / 100% 40% no-repeat, rgb(255 255 255 / .14); border-radius: 2px; animation: scroll-cue 2.2s var(--ease-in-out) infinite; }
   @keyframes scroll-cue { 0% { background-position: 0 -40%; } 100% { background-position: 0 160%; } }
   @media (min-width: 1100px) {
-    .hero__grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); }
+    .hero__grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); row-gap: 14px; }
+    .hero__copy { grid-row: 1 / span 2; }
     .hero__visual { margin-top: clamp(-24px, -1vw, 0px); }
+    .hero__meta { grid-column: 2; justify-self: center; }
     .hero__scroll { display: flex; }
   }
+  /* Écrans étroits : la scène 3D passe en premier. On ouvre le site sur le produit,
+     le titre et le bouton suivent dans le même écran. */
   @media (max-width: 1099px) {
+    .hero { padding-top: calc(var(--header-h) + 4px) !important; }
+    .hero__grid { gap: 0; }
+    .hero__visual { order: -1; }
     .hero__copy { max-width: 760px; }
-    .hero__visual { margin-top: 8px; }
+    .hero__meta { margin-top: 28px; }
+  }
+  /* Téléphone : le bouton principal remonte juste sous le titre, le texte d'explication suit. */
+  @media (max-width: 760px) {
+    .hero__ctas { order: 1; }
+    .hero__lead { order: 2; }
+    .hero__proof { order: 3; }
   }
   @media (max-width: 560px) {
     .hero__ctas { width: 100%; }
     .hero__ctas .btn { flex: 1 1 100%; }
-    .scene { --phone-w: clamp(168px, 45vw, 224px); }
+    .scene { --phone-w: clamp(148px, min(45vw, 21vh), 224px); height: calc(var(--phone-w) * 2.2); }
     .hero__statuts .statut { height: 30px; padding: 0 9px 0 7px; font-size: .75rem; gap: 4px; }
     .hero__statuts .statut .icon { width: 14px; height: 14px; }
-    .frag--seances { width: 76%; left: -46%; }
-    .frag--match { width: 82%; left: 56%; }
-    .frag--tresorerie { width: 80%; left: -38%; }
-    .hero__statuts .statut--dispo { left: 70%; }
-    .hero__statuts .statut--convoque { left: 76%; }
-    .hero__statuts .statut--confirme { left: 66%; }
-    .hero__statuts .statut--present { left: 72%; }
+    /* Sur téléphone, la scène s'allège : la carte du fond (séances) disparaît,
+       les pastilles se décalent vers la droite pour laisser voir l'écran. */
+    .frag--seances { display: none; }
+    .frag--match { width: 84%; left: 50%; top: 12%; }
+    .frag--tresorerie { width: 78%; left: -32%; top: 58%; }
+    .hero__statuts .statut--dispo { left: 80%; top: 50%; }
+    .hero__statuts .statut--convoque { left: 86%; top: 57%; }
+    .hero__statuts .statut--confirme { left: 76%; top: 64%; }
+    .hero__statuts .statut--present { left: 82%; top: 71%; }
   }
 
   /* ---------- 03 · Manifeste ---------- */
@@ -1232,6 +1247,12 @@
     .hero [data-hero-title] .line:nth-child(2) > span { animation-delay: .14s; }
     .hero [data-hero-title] .line:nth-child(3) > span { animation-delay: .22s; }
     .hero [data-hero-title] .line:nth-child(4) > span { animation-delay: .3s; }
+    /* Écrans étroits : le titre est visible dès le premier affichage (il devient l'élément
+       principal mesuré par le LCP) ; il glisse à peine, la scène 3D porte l'effet. */
+    @media (max-width: 1099px) {
+      .hero [data-hero-title] .line { overflow: visible; }
+      .hero [data-hero-title] .line > span { animation-name: hero-nudge; animation-duration: .9s; }
+    }
     .hero [data-hero-step="0"] { animation: hero-fade .9s var(--ease-out) both; }
     .hero [data-hero-step="1"] { animation: hero-nudge 1s var(--ease-out) both .1s; }
     .hero [data-hero-step="2"] { animation: hero-fade .9s var(--ease-out) both .42s; }

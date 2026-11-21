@@ -116,7 +116,10 @@ function initSceneScroll(scene) {
   onScrollFrame((vh) => {
     const rect = scene.getBoundingClientRect();
     if (rect.bottom < -200 || rect.top > vh) return;
-    const s = Math.round(clamp((vh * 0.22 - rect.top) / (rect.height * 0.9)) * 1000) / 1000;
+    // L'ouverture commence quand la scène atteint le haut de l'écran, ou dès le premier
+    // défilement si elle y est déjà au chargement (mobile : la scène ouvre la page).
+    const start = Math.max(0, rect.top + window.scrollY - vh * 0.22);
+    const s = Math.round(clamp((window.scrollY - start) / (rect.height * 0.9)) * 1000) / 1000;
     if (s !== last) {
       last = s;
       scene.style.setProperty('--s', String(s));

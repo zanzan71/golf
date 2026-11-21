@@ -79,6 +79,7 @@ Sans variable configurée, le formulaire répond « envoi pas encore activé » 
 ## Animations et accessibilité
 
 - Une seule séquence d’ouverture (hero), en CSS pur : elle n’attend pas le JavaScript. Le terrain se trace, le téléphone se relève depuis la pelouse, les morceaux d’écran en sortent et se placent en profondeur (CSS 3D, aucune bibliothèque). Le script ne pose que l’inclinaison suivant le pointeur et l’ouverture au défilement.
+- Sur téléphone et tablette, la scène 3D passe avant le titre : on ouvre le site sur le produit, le titre et « Essayer gratuitement » restent dans le premier écran (vérifié de 360 à 430 px de large). Sur téléphone, le titre est visible dès le premier affichage : c’est lui que mesure le LCP.
 - Règle à garder : ne jamais animer l’opacité d’un élément en `preserve-3d` (Chrome l’aplatit et les plaques d’épaisseur du téléphone passeraient devant l’écran).
 - Rien n’est caché par défaut : seuls les blocs situés sous l’écran au chargement attendent d’arriver à l’écran pour apparaître. Si le script ne tourne pas, tout reste visible.
 - Un seul script classique (`site.js`) plutôt que des modules : il fonctionne aussi dans les cadres isolés (aperçus, intégrations), où les modules sont bloqués.
@@ -91,7 +92,7 @@ Sans variable configurée, le formulaire répond « envoi pas encore activé » 
 
 | Profil | LCP | CLS | Blocage |
 |---|---|---|---|
-| Mobile, 4G lente, processeur ÷4 | 1,7 s | 0,003 | ≈ 0 ms |
+| Mobile, 4G lente, processeur ÷4 | 2,0 à 2,4 s | 0,003 | ≈ 170 ms |
 | Ordinateur, fibre | 0,4 s | 0,015 | ≈ 40 ms |
 
 Mesures en laboratoire, polices servies localement. À confirmer en conditions réelles (PageSpeed Insights, rapport Core Web Vitals de la Search Console).
