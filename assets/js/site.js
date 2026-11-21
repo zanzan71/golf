@@ -205,7 +205,8 @@ function initReveal() {
 // trois variables (--tilt-x, --tilt-y, --s) : la mise en scène reste dans le CSS.
 
 // Durée de chaque étape de la semaine (mardi, jeudi, samedi, lundi), en millisecondes.
-const BEAT_MS = [2300, 2600, 2400, 3200];
+// Chaque étape s'arrête environ une demi-seconde après la fin de ses animations.
+const BEAT_MS = [1700, 2200, 2100, 2900];
 // La première étape attend que le téléphone soit levé (animation d'entrée du CSS).
 const FIRST_DELAY = 1400;
 
@@ -285,8 +286,8 @@ function initSemaine(hero, scene) {
       hero.classList.add('is-playing');
       if (beat === 0) countUp(150);
       if (beat === 3) {
-        later(() => scene.classList.add('is-xp'), 900);
-        later(() => scene.classList.add('is-argent'), 1500);
+        later(() => scene.classList.add('is-xp'), 800);
+        later(() => scene.classList.add('is-argent'), 1350);
       }
       if (canRun()) later(() => { show(beat + 1); play(); }, BEAT_MS[beat]);
     }, delay);
