@@ -1194,6 +1194,16 @@
 /* Mouvement : états de départ appliqués seulement si le JavaScript tourne
    (classe « js » posée dans le <head>) et si la personne n'a pas demandé
    à limiter les animations. Sans JS, tout est visible. */
+@layer sections {
+  .preuve { margin: 28px 0 8px; padding: 20px 22px; border-left: 3px solid var(--lime); background: rgb(255 255 255 / .04); border-radius: 0 12px 12px 0; }
+  .preuve__club { margin: 0; font-weight: 700; font-size: 1.05rem; line-height: 1.4; }
+  .preuve__chiffres { display: flex; flex-wrap: wrap; gap: 14px 32px; margin: 14px 0 10px; }
+  .preuve__chiffres div { display: flex; flex-direction: column-reverse; }
+  .preuve__chiffres dd { margin: 0; font-family: var(--font-display); font-style: italic; font-weight: 800; font-size: clamp(1.9rem, 1.5rem + 1.2vw, 2.6rem); line-height: 1; color: var(--lime); }
+  .preuve__chiffres dt { font-size: .9rem; opacity: .8; max-width: 16ch; }
+  .preuve figcaption { font-size: .8rem; opacity: .6; }
+}
+
 @layer motion {
   @media (prefers-reduced-motion: no-preference) {
     /* Révélations au défilement : seuls les éléments marqués .reveal-pending par le script
