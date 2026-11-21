@@ -849,76 +849,63 @@
     .mur__chevrons { top: -8%; }
   }
 
-  /* ---------- 05 · Quatre univers ---------- */
-  .monde { position: relative; display: grid; gap: clamp(36px, 5vw, 64px); align-items: center; }
-  .monde + .monde { margin-top: clamp(72px, 10vw, 144px); }
-  .monde__num {
-    position: absolute; z-index: 0; top: -.42em; left: -.04em;
-    font-family: var(--font-display); font-style: italic; font-weight: 800; line-height: 1;
-    font-size: clamp(6rem, 3rem + 12vw, 13.5rem); color: transparent;
-    -webkit-text-stroke: 1.5px #2A4158; pointer-events: none; user-select: none;
+  /* ---------- 05 · L'appli en action ----------
+     Un grand téléphone, six onglets, et des pastilles numérotées posées sur les vrais
+     éléments de chaque écran, reprises en légende à côté. */
+  .appli, .profils { overflow-x: clip; }
+  .appli__head { display: grid; gap: 18px; max-width: 760px; margin-bottom: clamp(28px, 4vw, 48px); }
+  .appli__head .lead { color: var(--fg-muted); }
+  .appli__tabs { display: grid; gap: clamp(28px, 4vw, 48px); }
+  .appli__list { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding: 2px var(--gutter) 6px; }
+  .appli__list::-webkit-scrollbar { display: none; }
+  .appli__tab {
+    flex: none; display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px 0 14px;
+    border-radius: 999px; border: 1.5px solid var(--line); font-size: .9375rem; font-weight: 800; color: var(--fg-muted);
+    transition: color .25s, border-color .25s, background-color .25s;
   }
-  .monde__text { position: relative; z-index: 1; display: grid; gap: 18px; max-width: 520px; padding-top: clamp(68px, 6vw, 88px); }
-  .monde__text > p:not(.label) { color: var(--fg-muted); font-size: 1.0625rem; }
-  .monde__media { position: relative; z-index: 1; display: grid; justify-items: center; }
-  .phone--monde { --w: clamp(230px, 22vw, 290px); }
-  .mini-card { position: relative; }
-  .mini-card .card { --card-w: clamp(230px, 24vw, 300px); }
+  .appli__tab .icon { width: 18px; height: 18px; }
+  .appli__tab:hover { color: var(--fg); border-color: var(--line-strong); }
+  .appli__tab[aria-selected="true"] { color: var(--night); background: var(--lime); border-color: var(--lime); }
+  .appli__panel { display: grid; gap: clamp(28px, 4vw, 40px); align-items: center; outline-offset: 6px; border-radius: var(--r-md); }
+  .appli__panel.is-entering .panel__text { animation: panel-in .6s var(--ease-out) both; }
+  .appli__panel.is-entering .panel__media { animation: panel-media-in .7s var(--ease-out) both; }
+  .appli__device { position: relative; justify-self: center; margin: 0; isolation: isolate; padding: 12px 0 20px; }
+  .appli__device::before {
+    content: ""; position: absolute; z-index: -1; inset: 4% -40%;
+    background: radial-gradient(closest-side, rgb(204 247 9 / .13), rgb(204 247 9 / 0) 70%), radial-gradient(closest-side, rgb(1 40 79 / .95), rgb(1 40 79 / 0));
+  }
+  .phone--appli { --w: clamp(250px, 23vw, 320px); }
+  .spots { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
+  .spot {
+    position: absolute; left: var(--x); top: var(--y); translate: -50% -50%;
+    width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%;
+    background: var(--lime); color: var(--night); font-size: .875rem; font-weight: 800; line-height: 1;
+    box-shadow: 0 0 0 2px var(--night), 0 0 0 6px rgb(204 247 9 / .32), 0 8px 18px -6px rgb(0 0 0 / .9);
+    transition: scale .25s var(--ease-spring), box-shadow .25s;
+  }
+  .appli__text { display: grid; gap: 14px; max-width: 540px; }
+  .appli__title { font-size: clamp(1.6rem, 1.15rem + 1.4vw, 2.5rem); font-weight: 800; line-height: 1.08; letter-spacing: -.015em; }
+  .appli__lead { color: var(--fg-muted); font-size: 1.0625rem; }
+  .callouts { list-style: none; display: grid; gap: 10px; margin-top: 10px; }
+  .callouts li {
+    display: grid; grid-template-columns: 30px 1fr; gap: 14px; align-items: center;
+    padding: 14px 16px; border-radius: var(--r-md); background: rgb(255 255 255 / .035); box-shadow: inset 0 0 0 1px var(--line);
+    font-weight: 600; line-height: 1.4; transition: background-color .25s, box-shadow .25s;
+  }
+  .callouts li:hover { background: rgb(204 247 9 / .07); box-shadow: inset 0 0 0 1px rgb(204 247 9 / .45); }
+  .callouts__n { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--lime); color: var(--night); font-size: .875rem; font-weight: 800; }
+  .appli__panel:has(.callouts li[data-spot="1"]:hover) .spot[data-spot="1"],
+  .appli__panel:has(.callouts li[data-spot="2"]:hover) .spot[data-spot="2"],
+  .appli__panel:has(.callouts li[data-spot="3"]:hover) .spot[data-spot="3"] { scale: 1.3; box-shadow: 0 0 0 2px var(--night), 0 0 0 11px rgb(204 247 9 / .32), 0 8px 18px -6px rgb(0 0 0 / .9); }
+  .appli__caption { margin-top: clamp(20px, 3vw, 32px); font-size: .8125rem; color: var(--fg-muted); }
+  .appli .cta-row { margin-top: clamp(28px, 4vw, 44px); }
   @media (min-width: 900px) {
-    .monde { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); }
-    .monde__text { grid-column: 1 / span 6; }
-    .monde__media { grid-column: 8 / span 5; }
-    .monde__num { left: -.04em; }
-    .monde--reverse .monde__text { grid-column: 7 / span 6; grid-row: 1; }
-    .monde--reverse .monde__media { grid-column: 1 / span 5; grid-row: 1; }
-    .monde--reverse .monde__num { left: auto; right: -.02em; }
+    .appli__list { flex-wrap: wrap; overflow: visible; margin: 0; padding: 0; }
+    .appli__panel { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); column-gap: var(--gap); min-height: 640px; }
+    .appli__text { padding-right: 4%; }
   }
 
-  /* ---------- 06 · L'application ---------- */
-  .showcase__grid { display: grid; gap: clamp(32px, 5vw, 72px); }
-  .showcase__device { display: grid; justify-items: center; }
-  .showcase__sticky { display: grid; justify-items: center; gap: 20px; }
-  .phone--showcase { --w: clamp(240px, 24vw, 320px); }
-  .showcase__dots { display: flex; gap: 8px; }
-  .showcase__dot { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; }
-  .showcase__dot::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--line-strong); transition: width .35s var(--ease-out), background-color .3s, border-radius .3s; }
-  .showcase__dot.is-active::before { width: 22px; border-radius: 4px; background: var(--bleu); }
-  .showcase__steps { list-style: none; display: grid; }
-  .step { display: grid; gap: 14px; align-content: center; padding: 32px 0; border-top: 1px solid var(--line); transition: opacity .5s; }
-  .step__kicker { display: flex; align-items: center; gap: 12px; font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); }
-  .step__index { display: grid; place-items: center; width: 30px; height: 30px; border-radius: var(--r-sm); background: var(--bleu); color: #fff; font-size: .875rem; letter-spacing: 0; transition: background-color .3s, color .3s, box-shadow .3s; }
-  .step__title { transition: color .4s; }
-  .step__title { font-family: var(--font-display); font-style: italic; font-weight: 800; text-transform: uppercase; font-size: clamp(1.6rem, 1.15rem + 1.5vw, 2.6rem); line-height: 1; }
-  .step > p { color: var(--fg-muted); max-width: 44ch; font-size: 1.0625rem; }
-  .step__statuts { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
-  .step__note { font-size: .9375rem !important; font-weight: 700; color: var(--fg) !important; }
-  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: clamp(48px, 6vw, 88px); }
-  .cta-row--left { justify-content: flex-start; align-items: center; gap: 16px 24px; }
-  .cta-row__note { font-size: .9375rem; color: var(--fg-muted); }
-
-  @media (min-width: 900px) {
-    .showcase__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: start; }
-    .showcase__device { grid-column: 2; grid-row: 1; align-self: stretch; }
-    .showcase__sticky { position: sticky; top: max(96px, calc(50svh - 340px)); align-self: start; }
-    .showcase__steps { grid-column: 1; grid-row: 1; }
-    .step { min-height: min(64vh, 600px); border-top: 0; padding: 0; }
-    .step:first-child { min-height: min(52vh, 480px); align-content: start; padding-top: min(6vh, 56px); }
-    .step:last-child { min-height: min(60vh, 560px); }
-    .step { position: relative; }
-    .step::before { content: ""; position: absolute; left: -28px; top: 50%; width: 4px; height: 0; border-radius: 2px; background: var(--bleu); translate: 0 -50%; transition: height .5s var(--ease-out); }
-    .step:first-child::before { top: calc(min(6vh, 56px) + 120px); }
-    .step.is-active::before { height: 120px; }
-    html.js .step:not(.is-active) .step__title { color: var(--fg-muted); }
-    html.js .step:not(.is-active) .step__index { background: transparent; color: var(--fg-muted); box-shadow: inset 0 0 0 1.5px var(--line-strong); }
-  }
-  @media (max-width: 899px) {
-    .showcase__steps { grid-auto-flow: column; grid-auto-columns: 86%; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); scrollbar-width: none; }
-    .showcase__steps::-webkit-scrollbar { display: none; }
-    .step { scroll-snap-align: start; align-content: start; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 24px; background: var(--raised); }
-    .step > p, .step__note { font-size: 1rem; }
-  }
-
-  /* ---------- 07 · Profils ---------- */
+  /* ---------- 06 · Profils ---------- */
   .tabs { display: grid; gap: clamp(28px, 4vw, 56px); }
   .tabs__list { position: relative; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding: 2px var(--gutter) 6px; }
   .tabs__list::-webkit-scrollbar { display: none; }
@@ -940,6 +927,14 @@
   .panel__media { justify-self: center; }
   .phone--panel { --w: clamp(200px, 19vw, 250px); }
   .panel__media--card .card { --card-w: clamp(200px, 19vw, 250px); }
+  /* Profils : une photo derrière le téléphone ou la carte (reprise des anciens « univers »). */
+  .panel__media--photo { position: relative; isolation: isolate; display: grid; place-items: center; width: 100%; padding-block: clamp(24px, 3vw, 40px); }
+  .panel__photo { position: absolute; z-index: -1; inset: 14% 0; overflow: hidden; border-radius: var(--r-lg); box-shadow: 0 0 0 1px rgb(255 255 255 / .1); }
+  .panel__photo picture, .panel__photo img { display: block; width: 100%; height: 100%; }
+  .panel__photo img { object-fit: cover; }
+  .panel__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 90% at 50% 50%, rgb(1 40 79 / .55), rgb(1 40 79 / .1) 75%); pointer-events: none; }
+  .panel__photo .photo-ia { right: auto; bottom: auto; left: 10px; top: 10px; }
+  @media (min-width: 900px) { .panel__media--photo { justify-self: stretch; } }
   @media (min-width: 900px) {
     .tabs { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: var(--gap); align-items: start; }
     .tabs__list { flex-direction: column; gap: 0; margin: 0; padding: 0 0 0 20px; overflow: visible; border-left: 2px solid var(--line); }
@@ -953,38 +948,19 @@
     .tabs__panel { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); min-height: 520px; }
   }
 
-  /* ---------- 08 · Expérience joueur ---------- */
-  .badge--soon { margin-bottom: 4px; }
-  .season { --p: 0; display: grid; gap: clamp(28px, 4vw, 48px); padding: clamp(24px, 4vw, 48px); border-radius: var(--r-lg); background: var(--surface); }
-  .season__track { display: grid; gap: 14px; }
-  .season__months { list-style: none; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); font-size: .75rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--fg-muted); }
-  .season__months li { text-align: left; }
-  .season__line { position: relative; height: 6px; border-radius: 3px; background: #D5DDE6; }
-  .season__fill { position: absolute; inset: 0; border-radius: inherit; background: var(--bleu); transform-origin: left; transform: scaleX(var(--p)); }
-  .season__marker {
-    position: absolute; top: 50%; left: calc(var(--p) * 100%); width: 22px; height: 22px; translate: -50% -50%;
-    border-radius: 50%; background: var(--lime); border: 4px solid var(--night);
-  }
-  .season__aspects { list-style: none; display: grid; gap: 14px; }
-  .aspect { display: grid; grid-template-columns: minmax(110px, 160px) 1fr; gap: 16px; align-items: center; }
-  .aspect__name { font-weight: 800; font-size: .9375rem; }
-  .aspect__bar { position: relative; height: 12px; border-radius: 6px; background: #E2E8EF; overflow: hidden; }
-  .aspect__bar > span { position: absolute; inset: 0; border-radius: inherit; background: var(--bleu); transform-origin: left; transform: scaleX(calc(var(--p) * var(--target, .7))); }
-  .aspect:nth-child(1) { --target: .78; }
-  .aspect:nth-child(2) { --target: .64; }
-  .aspect:nth-child(3) { --target: .72; }
-  .aspect:nth-child(4) { --target: .86; }
-  .aspect:nth-child(5) { --target: .94; }
-  .aspect:nth-child(5) .aspect__bar > span { background: var(--lime); box-shadow: inset 0 0 0 1.5px var(--night); }
-  .season__caption { font-size: .875rem; color: var(--fg-muted); max-width: 80ch; }
-  .principes { list-style: none; display: grid; gap: 28px; margin-top: clamp(48px, 6vw, 88px); }
-  .principe { display: grid; gap: 10px; padding-top: 20px; border-top: 2px solid var(--night); }
-  .principe__title { font-size: 1.25rem; line-height: 1.25; font-weight: 800; }
-  .principe p { color: var(--fg-muted); }
-  @media (min-width: 900px) { .principes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); } }
-  @media (max-width: 560px) { .season__months li:nth-child(even) { visibility: hidden; } .aspect { grid-template-columns: 1fr; gap: 6px; } }
-
-  /* ---------- 09 · MY CARD ---------- */
+  /* ---------- 07 · Le joueur : MY CARD ---------- */
+  .card__art { position: absolute; inset: 0; z-index: 1; }
+  .card__art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; }
+  .mycard__how { display: grid; gap: 22px; margin-top: clamp(56px, 7vw, 104px); }
+  .mycard__how-title { font-size: 1.25rem; font-weight: 800; }
+  .how { list-style: none; display: grid; gap: 28px; }
+  .how__item { display: grid; gap: 10px; align-content: start; padding-top: 18px; border-top: 2px solid var(--lime); }
+  .how__title { font-size: 1.125rem; font-weight: 800; line-height: 1.25; }
+  .how__item > p { color: var(--fg-muted); }
+  .how__axes { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .how__axes li { padding: 5px 11px; border-radius: 999px; font-size: .8125rem; font-weight: 700; box-shadow: inset 0 0 0 1px var(--line-strong); }
+  .how__axes li.is-engagement { background: var(--lime); color: var(--night); box-shadow: none; }
+  @media (min-width: 900px) { .how { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--gap); } }
   .mycard { overflow: hidden; }
   .mycard__grid { display: grid; gap: clamp(48px, 6vw, 80px); align-items: center; }
   .mycard__copy { display: grid; gap: 24px; justify-items: start; }
@@ -1207,20 +1183,8 @@
   .manifeste--photo .manifeste__grid { position: relative; z-index: 1; }
 
   /* Univers : un panneau photo derrière chaque téléphone, comme les bandeaux de l'appli. */
-  .univers { overflow-x: clip; }
-  .monde__media { isolation: isolate; padding-block: clamp(20px, 3vw, 40px); }
-  .monde__photo { position: absolute; z-index: -1; top: 12%; bottom: 12%; left: 0; right: 0; overflow: hidden; border-radius: var(--r-lg); box-shadow: 0 0 0 1px rgb(255 255 255 / .08); }
-  .monde__photo picture, .monde__photo img { display: block; width: 100%; height: 100%; }
-  .monde__photo img { object-fit: cover; }
-  .monde__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(70% 80% at 30% 50%, rgb(9 19 29 / .55), rgb(9 19 29 / 0) 70%); pointer-events: none; }
-  .monde--reverse .monde__photo::after { background: radial-gradient(70% 80% at 70% 50%, rgb(9 19 29 / .55), rgb(9 19 29 / 0) 70%); }
-  .monde--reverse .monde__photo .photo-ia { right: auto; left: 10px; }
 
   /* Expérience joueur : le portrait au maillot ELAZYO répond au titre. */
-  .saison__head { display: grid; gap: clamp(28px, 4vw, 56px); margin-bottom: clamp(40px, 6vw, 88px); }
-  .saison__head .section-head { margin-bottom: 0; }
-  .saison__photo { aspect-ratio: 4 / 3; }
-  .saison__photo img { object-position: 50% 28%; }
 
   /* Bandeau photo en tête de section : le titre se pose sur le fondu sombre. */
   main > section.section--bande { padding-top: 0; }
@@ -1249,7 +1213,6 @@
 
   @media (max-width: 999px) {
     .contact__photo, .fondateurs__photo { display: none; }
-    .monde__media { justify-items: center; }
   }
   @media (min-width: 700px) {
     .manifeste__media { aspect-ratio: 16 / 8; }
@@ -1269,13 +1232,7 @@
     .manifeste--photo .manifeste__text { grid-column: 1 / span 6; margin-top: 0; }
     .manifeste--photo .manifeste__close { grid-column: 1 / span 5; }
 
-    .monde__media { justify-items: start; }
-    .monde__photo { left: 20%; right: -12%; }
-    .monde--reverse .monde__media { justify-items: end; }
-    .monde--reverse .monde__photo { left: -12%; right: 20%; }
 
-    .saison__head { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: center; }
-    .saison__photo { aspect-ratio: 1199 / 1312; max-height: 560px; width: 100%; justify-self: end; }
 
     .fondateurs__aside { position: sticky; top: 112px; }
     .ticket { position: relative; top: auto; }

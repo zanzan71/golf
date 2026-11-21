@@ -4,7 +4,6 @@ import { initHeader } from './modules/header.js';
 import { initReveal } from './modules/reveal.js';
 import { initHero } from './modules/hero.js';
 import { initScrollEffects } from './modules/scroll-effects.js';
-import { initShowcase } from './modules/showcase.js';
 import { initTabs } from './modules/tabs.js';
 import { initCards } from './modules/cards.js';
 import { initCounters, initMarquee, initPrefill } from './modules/extras.js';
@@ -17,7 +16,6 @@ const modules = [
   initHero,
   initReveal,
   initScrollEffects,
-  initShowcase,
   initTabs,
   initCards,
   initCounters,
