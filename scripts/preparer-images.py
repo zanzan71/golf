@@ -6,13 +6,15 @@ Usage :
 <dossier_sources> doit contenir :
     ecrans/*.png                   anciennes captures (match, transport), branche elazyo-video-assets
     ecrans-v2/*.jpg                captures récentes de l'appli (téléphone 1080 × 2412, nov. 2026)
+    photos/*.png                   photos d'illustration du film de marque (générées par IA)
     mycard/corps.webp, tete.webp   joueur MY CARD (corps détouré 720 × 1660, tête 520 × 650)
     instagram/n2-01.jpg            visuel Instagram validé (sert à l'image de partage)
     logo_paths.json                tracés du logo (design system ELAZYO)
     video/covoiturage-je-conduis.mp4|webm
 
 Le script écrit dans <dossier_site>/assets : écrans en AVIF + WebP (360 et 720 px),
-morceaux d'écran pour la scène 3D du hero (400 et 800 px), joueur détouré, logos SVG,
+morceaux d'écran pour la scène 3D du hero (400 et 800 px), photos d'illustration,
+joueur détouré, logos SVG,
 icônes, image de partage 1200 × 630.
 Dépendance : Pillow (avec AVIF), ffmpeg pour l'affiche de la vidéo.
 """
@@ -101,6 +103,34 @@ def prepare_screens_v2():
         save_variants(cropped[screen].crop(box), OUT / "img" / "fragments" / name, (400, 800),
                       quality_webp=82, quality_avif=60)
         print("morceau d'écran", name)
+
+
+# Photos d'illustration (film de marque, générées par IA). Pour chacune : recadrage
+# (None = image entière), miroir horizontal, largeurs exportées.
+# Les recadrages placent le sujet du côté où le téléphone ne le cache pas.
+PHOTOS = {
+    "collectif": (None, False, (960, 1672)),                     # manifeste, plein cadre
+    "tablette": ((520, 0, 1672, 941), False, (600, 1100)),       # univers 01, le club
+    "entrainement": ((0, 0, 1040, 941), False, (600, 1040)),     # univers 02, l'éducateur
+    "famille": ((1130, 0, 1990, 724), True, (600, 860)),         # univers 03, les familles (miroir)
+    "joueur": ((60, 0, 940, 724), False, (600, 880)),            # univers 04, les joueurs
+    "maillot-elazyo": (None, False, (600, 1199)),                # expérience joueur
+    "megaphone": (None, False, (960, 1672)),                     # communauté, bandeau
+    "action": (None, False, (960, 1672)),                        # vision, bandeau
+    "entree-terrain": (None, False, (640, 1100)),                # clubs fondateurs
+    "messages": ((560, 0, 1672, 941), False, (600, 1100)),       # contact
+}
+
+
+def prepare_photos():
+    for name, (box, mirror, widths) in PHOTOS.items():
+        im = Image.open(SRC / "photos" / f"{name}.png").convert("RGB")
+        if mirror:
+            im = im.transpose(Image.FLIP_LEFT_RIGHT)
+        if box:
+            im = im.crop(box)
+        save_variants(im, OUT / "img" / "photos" / name, widths, quality_webp=78, quality_avif=52)
+        print("photo", name, im.size)
 
 
 def prepare_player():
@@ -218,6 +248,7 @@ def prepare_video():
 if __name__ == "__main__":
     prepare_screens()
     prepare_screens_v2()
+    prepare_photos()
     prepare_player()
     prepare_logos()
     prepare_og()

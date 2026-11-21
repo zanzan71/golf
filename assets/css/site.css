@@ -461,7 +461,7 @@
   .site-nav a {
     position: relative; display: block; padding: 10px 12px; border-radius: 8px;
     font-size: .9375rem; font-weight: 700; text-decoration: none; color: rgb(242 245 248 / .82);
-    transition: color .2s;
+    white-space: nowrap; transition: color .2s;
   }
   .site-nav a::after {
     content: ""; position: absolute; left: 12px; right: 12px; bottom: 4px; height: 2px; border-radius: 2px;
@@ -494,8 +494,10 @@
   .mobile-menu__actions .btn { width: 100%; }
   .mobile-menu__signature { font-weight: 700; color: var(--lime); }
 
-  @media (max-width: 1080px) {
+  /* Sous 1180 px, la barre manque de place : le menu prend le relais (tablettes comprises). */
+  @media (max-width: 1180px) {
     .site-nav, .site-header__login { display: none; }
+    .menu-toggle { display: grid; }
   }
   @media (max-width: 760px) {
     :root { --announce-h: 44px; --bar-h: 64px; }
@@ -1056,6 +1058,107 @@
   .site-footer__legal ul { list-style: none; display: flex; flex-wrap: wrap; gap: 12px 24px; }
   .site-footer__legal .link { color: var(--fg-muted); font-weight: 600; }
   @media (min-width: 900px) { .site-footer__grid { grid-template-columns: 1.2fr 1.4fr auto; align-items: start; } }
+
+  /* ---------- Photos d'illustration (film de marque, générées par IA) ----------
+     Trois traitements seulement : le bandeau plein cadre (manifeste, communauté,
+     vision), le panneau derrière un téléphone (univers) et la photo encadrée
+     (expérience joueur, clubs fondateurs, contact). Chaque photo porte sa mention IA. */
+  .photo-ia {
+    position: absolute; z-index: 3; right: 10px; bottom: 10px;
+    padding: 3px 9px; border-radius: 999px;
+    background: rgb(9 19 29 / .74); color: rgb(255 255 255 / .92);
+    font-size: .6875rem; font-weight: 600; line-height: 1.5; letter-spacing: .01em;
+    pointer-events: none;
+  }
+  .photo-cadre { position: relative; overflow: hidden; border-radius: var(--r-lg); background: var(--night); box-shadow: 0 0 0 1px rgb(255 255 255 / .06); }
+  .photo-cadre picture, .photo-cadre img { display: block; width: 100%; height: 100%; }
+  .photo-cadre img { object-fit: cover; }
+
+  /* Manifeste : l'équipe soudée, texte posé sur le fondu sombre de la photo. */
+  .manifeste--photo { overflow: hidden; isolation: isolate; }
+  .manifeste__media { position: relative; margin: calc(var(--pad-y) * -1) 0 clamp(8px, 3vw, 24px); aspect-ratio: 16 / 10; }
+  .manifeste__photo, .manifeste__photo img { display: block; width: 100%; height: 100%; }
+  .manifeste__photo img { object-fit: cover; object-position: 72% 45%; }
+  .manifeste__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, var(--night) 0%, rgb(9 19 29 / 0) 46%); }
+  .manifeste--photo .manifeste__grid { position: relative; z-index: 1; }
+
+  /* Univers : un panneau photo derrière chaque téléphone, comme les bandeaux de l'appli. */
+  .univers { overflow-x: clip; }
+  .monde__media { isolation: isolate; padding-block: clamp(20px, 3vw, 40px); }
+  .monde__photo { position: absolute; z-index: -1; top: 12%; bottom: 12%; left: 0; right: 0; overflow: hidden; border-radius: var(--r-lg); box-shadow: 0 0 0 1px rgb(255 255 255 / .08); }
+  .monde__photo picture, .monde__photo img { display: block; width: 100%; height: 100%; }
+  .monde__photo img { object-fit: cover; }
+  .monde__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(70% 80% at 30% 50%, rgb(9 19 29 / .55), rgb(9 19 29 / 0) 70%); pointer-events: none; }
+  .monde--reverse .monde__photo::after { background: radial-gradient(70% 80% at 70% 50%, rgb(9 19 29 / .55), rgb(9 19 29 / 0) 70%); }
+  .monde--reverse .monde__photo .photo-ia { right: auto; left: 10px; }
+
+  /* Expérience joueur : le portrait au maillot ELAZYO répond au titre. */
+  .saison__head { display: grid; gap: clamp(28px, 4vw, 56px); margin-bottom: clamp(40px, 6vw, 88px); }
+  .saison__head .section-head { margin-bottom: 0; }
+  .saison__photo { aspect-ratio: 4 / 3; }
+  .saison__photo img { object-position: 50% 28%; }
+
+  /* Bandeau photo en tête de section : le titre se pose sur le fondu sombre. */
+  main > section.section--bande { padding-top: 0; }
+  .bande { --bande-rgb: 9 19 29; position: relative; isolation: isolate; display: grid; align-items: end; min-height: clamp(460px, 66vh, 700px); padding-block: clamp(140px, 16vw, 220px) clamp(44px, 5vw, 76px); margin-bottom: clamp(48px, 6vw, 88px); }
+  .bande--bleu { --bande-rgb: 1 40 79; }
+  .bande__media { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+  .bande__photo, .bande__photo img { display: block; width: 100%; height: 100%; }
+  .bande__photo img { object-fit: cover; object-position: 72% 50%; }
+  .bande__media::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(90deg, rgb(var(--bande-rgb) / .9) 0%, rgb(var(--bande-rgb) / .55) 34%, rgb(var(--bande-rgb) / 0) 62%),
+      linear-gradient(0deg, rgb(var(--bande-rgb) / 1) 0%, rgb(var(--bande-rgb) / 0) 44%);
+  }
+  .bande__head { margin-bottom: 0; max-width: 40rem; }
+  .bande .section-head__lead { color: rgb(255 255 255 / .84); }
+  .vision .bande { margin-bottom: clamp(56px, 7vw, 104px); }
+
+  /* Clubs fondateurs et contact : la photo comble la colonne courte. */
+  .fondateurs__aside { display: grid; gap: 20px; align-content: start; }
+  .fondateurs__photo { aspect-ratio: 16 / 10; }
+  .fondateurs__photo img { object-position: 58% 50%; }
+  .contact__photo { aspect-ratio: 16 / 12; margin-top: 4px; }
+  .contact__photo img { object-position: 60% 50%; }
+  .site-footer__credits { flex-basis: 100%; order: 3; font-size: .8125rem; }
+
+  @media (max-width: 999px) {
+    .contact__photo, .fondateurs__photo { display: none; }
+    .monde__media { justify-items: center; }
+  }
+  @media (min-width: 700px) {
+    .manifeste__media { aspect-ratio: 16 / 8; }
+  }
+  @media (min-width: 1000px) {
+    /* La photo occupe toute la section, le texte reste dans la moitié gauche. */
+    .manifeste--photo { min-height: min(100svh, 920px); display: grid; align-items: center; }
+    .manifeste__media { position: absolute; inset: 0; margin: 0; aspect-ratio: auto; z-index: -1; }
+    .manifeste__media::after {
+      background:
+        linear-gradient(90deg, rgb(9 19 29 / .96) 0%, rgb(9 19 29 / .82) 36%, rgb(9 19 29 / .2) 64%, rgb(9 19 29 / 0) 80%),
+        linear-gradient(0deg, rgb(9 19 29 / .7) 0%, rgb(9 19 29 / 0) 30%);
+    }
+    /* Le fondu sombre de la photo passe sous le texte, les visages restent à droite. */
+    .manifeste__photo img { object-position: 30% 42%; }
+    .manifeste--photo .manifeste__title { grid-column: 1 / span 7; }
+    .manifeste--photo .manifeste__text { grid-column: 1 / span 6; margin-top: 0; }
+    .manifeste--photo .manifeste__close { grid-column: 1 / span 5; }
+
+    .monde__media { justify-items: start; }
+    .monde__photo { left: 20%; right: -12%; }
+    .monde--reverse .monde__media { justify-items: end; }
+    .monde--reverse .monde__photo { left: -12%; right: 20%; }
+
+    .saison__head { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: center; }
+    .saison__photo { aspect-ratio: 1199 / 1312; max-height: 560px; width: 100%; justify-self: end; }
+
+    .fondateurs__aside { position: sticky; top: 112px; }
+    .ticket { position: relative; top: auto; }
+  }
+  @media (min-width: 1400px) {
+    .manifeste__photo img { object-position: 0% 42%; }
+  }
 
   /* ---------- Pages légales ---------- */
   .legal { padding-top: calc(var(--bar-h) + clamp(48px, 7vw, 96px)) !important; }

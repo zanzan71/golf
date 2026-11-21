@@ -25,6 +25,8 @@ Le logo SVG (`assets/img/logo/`) reprend les tracés du design system. Les écra
 
 Pour mettre un écran à jour : déposer la nouvelle capture du téléphone (1080 × 2412) dans les sources, puis relancer `scripts/preparer-images.py`.
 
+Les **photos d’ambiance** (terrains, joueurs, familles, matériel) sont les images du film de marque, générées par IA (branche `elazyo-video-assets`, dossier `photos/`). Chacune porte la mention « Image générée par IA », reprise dans le pied de page et les mentions légales : depuis le 2 août 2026, l’article 50 du règlement européen sur l’IA impose de signaler certains contenus générés. Ne pas retirer ces mentions sans avis juridique.
+
 ## Arborescence
 
 ```
@@ -37,7 +39,8 @@ assets/css/site.css        styles, organisés en couches (@layer) : tokens, comp
 assets/js/site.js          script chargé par les pages, assemblé depuis main.js + assets/js/modules/
                            (npm run build:js après chaque modification d’un module)
 assets/img, video, icons   images AVIF + WebP en deux tailles, morceaux d’écran du hero
-                           (assets/img/fragments), vidéo réelle du covoiturage
+                           (assets/img/fragments), photos d’ambiance (assets/img/photos),
+                           vidéo réelle du covoiturage
 scripts/preparer-images.py régénère les images à partir des sources
 tests/api-contact.test.mjs tests de la fonction du formulaire (npm test)
 vercel.json                en-têtes de sécurité (CSP stricte, HSTS…), cache, URLs propres
@@ -68,6 +71,7 @@ Sans variable configurée, le formulaire répond « envoi pas encore activé » 
 - [ ] **Adresse e-mail de contact** à afficher, si vous en voulez une en plus du formulaire.
 - [ ] **Liens App Store et Google Play** : le site renvoie pour l’instant vers app.elazyo.fr.
 - [ ] **Espace Séances** : l’étape « Séances » de « L’appli en action » indique qu’une partie de l’espace est en cours d’ouverture (cadenas sur la capture). À mettre à jour quand tout est ouvert.
+- [ ] **Photos de vrais clubs** (quand vous en aurez, avec les accords) : elles remplaceront les photos générées par IA, à commencer par le manifeste et les Clubs Fondateurs.
 - [ ] **Captures plus nettes** (facultatif) : les écrans exportés directement depuis l’appli (sans barre du téléphone ni du navigateur), en 1290 px de large, rendraient le hero et le mur d’écrans encore plus nets.
 - [ ] **Offre Club Fondateur** : le texte reprend le kit de recrutement (10 places, gratuit jusqu’au 30 juin 2027). À confirmer avant publication.
 - [ ] **Polices hébergées sur le site** (recommandé, RGPD et vitesse) : déposer Manrope et Saira (licence OFL) en WOFF2 dans `assets/fonts/`, remplacer le lien Google Fonts par un `@font-face` local, retirer `fonts.googleapis.com` et `fonts.gstatic.com` de la CSP et le paragraphe « Polices » de la page confidentialité.

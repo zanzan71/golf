@@ -240,7 +240,15 @@
   </section>
 
   <!-- 03 · MANIFESTE -->
-  <section class="manifeste theme-light" id="manifeste" aria-labelledby="manifeste-titre">
+  <section class="manifeste manifeste--photo theme-night" id="manifeste" aria-labelledby="manifeste-titre">
+    <div class="manifeste__media">
+      <picture class="manifeste__photo">
+        <source type="image/avif" srcset="assets/img/photos/collectif-960.avif 960w, assets/img/photos/collectif-1672.avif 1672w" sizes="100vw">
+        <source type="image/webp" srcset="assets/img/photos/collectif-960.webp 960w, assets/img/photos/collectif-1672.webp 1672w" sizes="100vw">
+        <img src="assets/img/photos/collectif-1672.webp" width="1672" height="941" alt="" loading="lazy" decoding="async">
+      </picture>
+      <span class="photo-ia" aria-hidden="true">Image générée par IA</span>
+    </div>
     <div class="container manifeste__grid">
       <p class="label manifeste__label"><span class="chev" aria-hidden="true"></span>Pourquoi ELAZYO existe</p>
       <h2 class="display display--1 manifeste__title" id="manifeste-titre" data-reveal="lines">
@@ -365,6 +373,14 @@
           </ul>
         </div>
         <div class="monde__media" data-reveal="mask">
+          <div class="monde__photo" aria-hidden="true">
+            <picture>
+              <source type="image/avif" srcset="assets/img/photos/tablette-600.avif 600w, assets/img/photos/tablette-1100.avif 1100w" sizes="(min-width: 1000px) 560px, 92vw">
+              <source type="image/webp" srcset="assets/img/photos/tablette-600.webp 600w, assets/img/photos/tablette-1100.webp 1100w" sizes="(min-width: 1000px) 560px, 92vw">
+              <img src="assets/img/photos/tablette-1100.webp" width="1152" height="941" alt="" loading="lazy" decoding="async">
+            </picture>
+            <span class="photo-ia" aria-hidden="true">Image générée par IA</span>
+          </div>
           <figure class="phone phone--monde" data-parallax="-0.06">
             <div class="phone__frame"><div class="phone__screen">
               <picture class="phone__shot is-active">
@@ -390,6 +406,14 @@
           </ul>
         </div>
         <div class="monde__media" data-reveal="mask">
+          <div class="monde__photo" aria-hidden="true">
+            <picture>
+              <source type="image/avif" srcset="assets/img/photos/entrainement-600.avif 600w, assets/img/photos/entrainement-1040.avif 1040w" sizes="(min-width: 1000px) 560px, 92vw">
+              <source type="image/webp" srcset="assets/img/photos/entrainement-600.webp 600w, assets/img/photos/entrainement-1040.webp 1040w" sizes="(min-width: 1000px) 560px, 92vw">
+              <img src="assets/img/photos/entrainement-1040.webp" width="1040" height="941" alt="" loading="lazy" decoding="async">
+            </picture>
+            <span class="photo-ia" aria-hidden="true">Image générée par IA</span>
+          </div>
           <figure class="phone phone--monde phone--scroll" data-parallax="-0.06">
             <div class="phone__frame"><div class="phone__screen">
               <picture class="phone__shot is-active">
@@ -415,6 +439,14 @@
           </ul>
         </div>
         <div class="monde__media" data-reveal="mask">
+          <div class="monde__photo" aria-hidden="true">
+            <picture>
+              <source type="image/avif" srcset="assets/img/photos/famille-600.avif 600w, assets/img/photos/famille-860.avif 860w" sizes="(min-width: 1000px) 560px, 92vw">
+              <source type="image/webp" srcset="assets/img/photos/famille-600.webp 600w, assets/img/photos/famille-860.webp 860w" sizes="(min-width: 1000px) 560px, 92vw">
+              <img src="assets/img/photos/famille-860.webp" width="860" height="724" alt="" loading="lazy" decoding="async">
+            </picture>
+            <span class="photo-ia" aria-hidden="true">Image générée par IA</span>
+          </div>
           <figure class="phone phone--monde" data-parallax="-0.06">
             <div class="phone__frame"><div class="phone__screen">
               <picture class="phone__shot is-active">
@@ -440,6 +472,14 @@
           </ul>
         </div>
         <div class="monde__media monde__media--card" data-reveal="mask">
+          <div class="monde__photo" aria-hidden="true">
+            <picture>
+              <source type="image/avif" srcset="assets/img/photos/joueur-600.avif 600w, assets/img/photos/joueur-880.avif 880w" sizes="(min-width: 1000px) 560px, 92vw">
+              <source type="image/webp" srcset="assets/img/photos/joueur-600.webp 600w, assets/img/photos/joueur-880.webp 880w" sizes="(min-width: 1000px) 560px, 92vw">
+              <img src="assets/img/photos/joueur-880.webp" width="880" height="724" alt="" loading="lazy" decoding="async">
+            </picture>
+            <span class="photo-ia" aria-hidden="true">Image générée par IA</span>
+          </div>
           <div class="mini-card" data-parallax="-0.06">
             <div class="card card--bronze card--static" aria-label="Aperçu de la carte MY CARD, palier Bronze">
               <div class="card__inner">
@@ -731,6 +771,7 @@
   <!-- 08 · EXPÉRIENCE JOUEUR -->
   <section class="saison theme-light" id="experience-joueur" aria-labelledby="saison-titre">
     <div class="container">
+      <div class="saison__head">
       <div class="section-head">
         <p class="badge badge--soon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Prochaine étape</p>
         <h2 class="display display--1" id="saison-titre" data-reveal="lines">
@@ -738,6 +779,15 @@
           <span class="line"><span>une histoire.</span></span>
         </h2>
         <p class="lead section-head__lead" data-reveal>Après chaque entraînement et chaque match, le coach évaluera chaque joueur sur cinq aspects. Ces évaluations rempliront sa carte, au fil de la saison.</p>
+      </div>
+      <figure class="photo-cadre saison__photo" data-reveal="mask">
+        <picture>
+          <source type="image/avif" srcset="assets/img/photos/maillot-elazyo-600.avif 600w, assets/img/photos/maillot-elazyo-1199.avif 1199w" sizes="(min-width: 1000px) 440px, 92vw">
+          <source type="image/webp" srcset="assets/img/photos/maillot-elazyo-600.webp 600w, assets/img/photos/maillot-elazyo-1199.webp 1199w" sizes="(min-width: 1000px) 440px, 92vw">
+          <img src="assets/img/photos/maillot-elazyo-1199.webp" width="1199" height="1312" alt="Image générée par IA : un jeune joueur de dos, maillot ELAZYO, face à un stade illuminé." loading="lazy" decoding="async">
+        </picture>
+        <span class="photo-ia" aria-hidden="true">Image générée par IA</span>
+      </figure>
       </div>
 
       <figure class="season" data-season>
@@ -868,14 +918,24 @@
   </section>
 
   <!-- 10 · COMMUNAUTÉ -->
-  <section class="communaute theme-bleu" id="communaute" aria-labelledby="communaute-titre">
-    <div class="container">
-      <div class="section-head section-head--split">
-        <h2 class="display display--1" id="communaute-titre" data-reveal="lines">
-          <span class="line"><span>Le club, c’est</span></span>
-          <span class="line"><span>tout le monde.</span></span>
-        </h2>
-        <p class="lead section-head__lead" data-reveal>Un club ne fonctionne que grâce à l’engagement de tous, bénévoles compris. ELAZYO donne à chacun une façon simple de participer.</p>
+  <section class="communaute theme-bleu section--bande" id="communaute" aria-labelledby="communaute-titre">
+    <div class="bande bande--bleu">
+      <div class="bande__media">
+        <picture class="bande__photo">
+          <source type="image/avif" srcset="assets/img/photos/megaphone-960.avif 960w, assets/img/photos/megaphone-1672.avif 1672w" sizes="100vw">
+          <source type="image/webp" srcset="assets/img/photos/megaphone-960.webp 960w, assets/img/photos/megaphone-1672.webp 1672w" sizes="100vw">
+          <img src="assets/img/photos/megaphone-1672.webp" width="1672" height="941" alt="" loading="lazy" decoding="async">
+        </picture>
+        <span class="photo-ia" aria-hidden="true">Image générée par IA</span>
+      </div>
+      <div class="container">
+        <div class="section-head bande__head">
+          <h2 class="display display--1" id="communaute-titre" data-reveal="lines">
+            <span class="line"><span>Le club, c’est</span></span>
+            <span class="line"><span>tout le monde.</span></span>
+          </h2>
+          <p class="lead section-head__lead" data-reveal>Un club ne fonctionne que grâce à l’engagement de tous, bénévoles compris. ELAZYO donne à chacun une façon simple de participer.</p>
+        </div>
       </div>
     </div>
 
@@ -923,16 +983,28 @@
   </section>
 
   <!-- 11 · NOTRE VISION -->
-  <section class="vision theme-light" id="vision" aria-labelledby="vision-titre">
-    <div class="container">
-      <div class="section-head">
-        <p class="label"><span class="chev" aria-hidden="true"></span>Notre vision</p>
-        <h2 class="display display--1 vision__title" id="vision-titre" data-reveal="lines">
-          <span class="line"><span>Le sport amateur</span></span>
-          <span class="line"><span>mérite de voir grand.</span></span>
-        </h2>
-        <p class="lead section-head__lead" data-reveal>Nous voulons qu’ELAZYO devienne l’outil de référence du sport amateur, d’abord dans le football puis dans d’autres sports, sans jamais perdre le lien de proximité avec les clubs.</p>
+  <section class="vision theme-light section--bande" id="vision" aria-labelledby="vision-titre">
+    <div class="bande bande--night theme-night">
+      <div class="bande__media">
+        <picture class="bande__photo">
+          <source type="image/avif" srcset="assets/img/photos/action-960.avif 960w, assets/img/photos/action-1672.avif 1672w" sizes="100vw">
+          <source type="image/webp" srcset="assets/img/photos/action-960.webp 960w, assets/img/photos/action-1672.webp 1672w" sizes="100vw">
+          <img src="assets/img/photos/action-1672.webp" width="1672" height="941" alt="" loading="lazy" decoding="async">
+        </picture>
+        <span class="photo-ia" aria-hidden="true">Image générée par IA</span>
       </div>
+      <div class="container">
+        <div class="section-head bande__head">
+          <p class="label"><span class="chev" aria-hidden="true"></span>Notre vision</p>
+          <h2 class="display display--1 vision__title" id="vision-titre" data-reveal="lines">
+            <span class="line"><span>Le sport amateur</span></span>
+            <span class="line"><span>mérite de voir grand.</span></span>
+          </h2>
+          <p class="lead section-head__lead" data-reveal>Nous voulons qu’ELAZYO devienne l’outil de référence du sport amateur, d’abord dans le football puis dans d’autres sports, sans jamais perdre le lien de proximité avec les clubs.</p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
 
       <ul class="missions" data-reveal="stagger">
         <li class="mission"><span class="mission__verb">Simplifier</span><span class="mission__text">la vie de ceux qui organisent le club.</span></li>
@@ -969,11 +1041,21 @@
   <!-- CLUBS FONDATEURS -->
   <section class="fondateurs theme-night" id="clubs-fondateurs" aria-labelledby="fondateurs-titre">
     <div class="container fondateurs__grid">
-      <div class="ticket" data-reveal>
-        <p class="ticket__count"><span class="ticket__num" data-count-to="10">10</span><span class="ticket__unit">places</span></p>
-        <p class="ticket__label">de Club Fondateur cette saison</p>
-        <p class="ticket__offer">ELAZYO gratuit pour tout le club jusqu’au <strong>30 juin 2027</strong></p>
-        <svg class="ticket__chevron" aria-hidden="true"><use href="#i-big-chevron"/></svg>
+      <div class="fondateurs__aside">
+        <div class="ticket" data-reveal>
+          <p class="ticket__count"><span class="ticket__num" data-count-to="10">10</span><span class="ticket__unit">places</span></p>
+          <p class="ticket__label">de Club Fondateur cette saison</p>
+          <p class="ticket__offer">ELAZYO gratuit pour tout le club jusqu’au <strong>30 juin 2027</strong></p>
+          <svg class="ticket__chevron" aria-hidden="true"><use href="#i-big-chevron"/></svg>
+        </div>
+        <figure class="photo-cadre fondateurs__photo" data-reveal="mask">
+          <picture>
+            <source type="image/avif" srcset="assets/img/photos/entree-terrain-640.avif 640w, assets/img/photos/entree-terrain-1100.avif 1100w" sizes="(min-width: 1000px) 480px, 92vw">
+            <source type="image/webp" srcset="assets/img/photos/entree-terrain-640.webp 640w, assets/img/photos/entree-terrain-1100.webp 1100w" sizes="(min-width: 1000px) 480px, 92vw">
+            <img src="assets/img/photos/entree-terrain-1100.webp" width="1672" height="941" alt="" loading="lazy" decoding="async">
+          </picture>
+          <span class="photo-ia" aria-hidden="true">Image générée par IA</span>
+        </figure>
       </div>
 
       <div class="fondateurs__copy">
@@ -1078,6 +1160,14 @@
           <p>L’appli est en ligne, gratuite pour les joueurs, sur iPhone, Android et le web.</p>
           <a class="btn btn--ghost btn--md" href="https://app.elazyo.fr/" rel="noopener">Ouvrir app.elazyo.fr<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
         </div>
+        <figure class="photo-cadre contact__photo" data-reveal="mask">
+          <picture>
+            <source type="image/avif" srcset="assets/img/photos/messages-600.avif 600w, assets/img/photos/messages-1100.avif 1100w" sizes="(min-width: 1000px) 460px, 92vw">
+            <source type="image/webp" srcset="assets/img/photos/messages-600.webp 600w, assets/img/photos/messages-1100.webp 1100w" sizes="(min-width: 1000px) 460px, 92vw">
+            <img src="assets/img/photos/messages-1100.webp" width="1112" height="941" alt="" loading="lazy" decoding="async">
+          </picture>
+          <span class="photo-ia" aria-hidden="true">Image générée par IA</span>
+        </figure>
       </div>
 
       <form class="form" action="/api/contact" method="post" novalidate data-contact-form>
@@ -1178,6 +1268,7 @@
     </div>
     <div class="site-footer__legal">
       <p>© 2026 ELAZYO</p>
+      <p class="site-footer__credits">Photos d’illustration générées par intelligence artificielle. Écrans de l’appli&nbsp;: données d’un club de démonstration.</p>
       <ul>
         <li><a class="link" href="mentions-legales.html">Mentions légales</a></li>
         <li><a class="link" href="confidentialite.html">Confidentialité et cookies</a></li>

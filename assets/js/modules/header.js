@@ -85,6 +85,6 @@ export function initHeader() {
     }
   });
   window.addEventListener('resize', () => {
-    if (!menu.hidden && window.innerWidth > 760) close(false);
+    if (!menu.hidden && window.innerWidth > 1180) close(false);
   });
 }
