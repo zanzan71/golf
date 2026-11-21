@@ -133,7 +133,7 @@
   .section-head { display: grid; gap: clamp(20px, 2.4vw, 32px); margin-bottom: clamp(40px, 6vw, 88px); }
   .section-head__lead { max-width: 46ch; }
   @media (min-width: 960px) {
-    .section-head--split { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: end; column-gap: var(--gap); }
+    .section-head--split { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); align-items: end; column-gap: var(--gap); }
     .section-head--split .section-head__lead { padding-bottom: .4em; }
   }
 }
@@ -155,8 +155,11 @@
     letter-spacing: -.01em;
     text-wrap: balance;
   }
-  .display--hero { font-size: clamp(2.6rem, 1.15rem + 5.6vw, 5.4rem); line-height: .92; }
-  .display--1 { font-size: clamp(2.3rem, 1.25rem + 3.7vw, 4.9rem); }
+  .display--hero { font-size: clamp(2.4rem, .5rem + 4.4vw, 5rem); line-height: .92; }
+  /* Quand une ligne de titre doit se couper (petits écrans, colonnes étroites), on équilibre
+     les deux morceaux plutôt que de laisser un mot seul. */
+  .display .line > span { text-wrap: balance; }
+  .display--1 { font-size: clamp(2.3rem, 1.25rem + 3.2vw, 4.6rem); line-height: 1.04; }
   .display--2 { font-size: clamp(1.55rem, 1.1rem + 1.45vw, 2.45rem); line-height: 1; }
   .display .line { display: block; overflow: hidden; padding: .02em .14em .07em 0; margin-bottom: -.07em; }
   .display .line > span { display: inline-block; }
@@ -792,12 +795,12 @@
   .chain__item.is-on .chain__node .chev { background: var(--night); }
   .chain__track { position: absolute; left: 21px; top: 16px; bottom: 40px; width: 2px; background: rgb(255 255 255 / .18); border-radius: 2px; overflow: hidden; }
   .chain__fill { position: absolute; inset: 0; background: var(--lime); transform-origin: top; transform: scaleY(var(--p)); }
+  /* Ordinateur : six rôles en 3 × 2, chacun avec son maillon à gauche du titre.
+     Pas de ligne qui les relie : ce ne sont pas des étapes, ce sont des personnes. */
   @media (min-width: 900px) {
-    .chain__list { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--gap); }
-    .chain__item { padding-left: 0; padding-top: 72px; }
-    .chain__node { top: 0; }
-    .chain__track { left: 22px; right: calc(100% / 6 - 22px); top: 21px; bottom: auto; width: auto; height: 2px; }
-    .chain__fill { transform-origin: left; transform: scaleX(var(--p)); }
+    .chain__list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(36px, 4vw, 56px) var(--gap); }
+    .chain__item { align-content: start; }
+    .chain__track { display: none; }
   }
 
   /* Mur d'écrans : toutes les facettes de l'appli, posées à plat et vues en biais,
@@ -934,7 +937,8 @@
   .panel__photo picture, .panel__photo img { display: block; width: 100%; height: 100%; }
   .panel__photo img { object-fit: cover; }
   .panel__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 90% at 50% 50%, rgb(1 40 79 / .55), rgb(1 40 79 / .1) 75%); pointer-events: none; }
-  .panel__photo .photo-ia { right: auto; top: auto; left: 10px; bottom: 10px; }
+  /* Mention IA à la verticale, le long du bord gauche : elle reste lisible même quand le téléphone couvre la photo. */
+  .panel__photo .photo-ia { right: auto; top: auto; left: 8px; bottom: 10px; writing-mode: vertical-rl; rotate: 180deg; padding: 9px 3px; }
   @media (min-width: 900px) { .panel__media--photo { justify-self: stretch; } }
   @media (min-width: 900px) {
     .tabs { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: var(--gap); align-items: start; }
@@ -1004,7 +1008,8 @@
   }
   @media (max-width: 640px) {
     .deck { --card-w: min(62vw, 250px); }
-    .deck .card { transform: translateX(calc(var(--o, 0) * 26%)) translateZ(calc(var(--a, 0) * -120px)) rotateY(calc(var(--o, 0) * -14deg)); }
+    /* Téléphone : la carte active un peu à gauche, et seulement les deux suivantes derrière, pour que rien ne soit coupé par le bord de l'écran. */
+    .deck .card { left: 44%; transform: translateX(calc(var(--o, 0) * 16%)) translateZ(calc(var(--a, 0) * -110px)) rotateY(calc(var(--o, 0) * -12deg)); opacity: calc(1 - max(0, var(--a, 0) - 2)); }
   }
 
   /* ---------- 10 · Communauté ---------- */
@@ -1078,9 +1083,11 @@
     padding: clamp(28px, 4vw, 48px); border-radius: var(--r-lg);
     background: var(--lime); color: var(--night);
   }
-  .ticket__count { display: flex; align-items: baseline; gap: 12px; font-family: var(--font-display); font-style: italic; font-weight: 800; text-transform: uppercase; line-height: .85; }
-  .ticket__num { font-size: clamp(6rem, 3rem + 10vw, 11rem); font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
-  .ticket__unit { font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem); }
+  .ticket__count { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: 10px; font-family: var(--font-display); font-style: italic; font-weight: 800; text-transform: uppercase; line-height: .85; }
+  /* Tailles calées sur la largeur du billet (et non de la fenêtre) : « 10 PLACES » tient toujours dedans. */
+  .ticket { container-type: inline-size; }
+  .ticket__num { font-size: min(clamp(6rem, 3rem + 10vw, 11rem), 38cqi); font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
+  .ticket__unit { font-size: min(clamp(1.8rem, 1.2rem + 2vw, 3rem), 11cqi); }
   .ticket__label { font-weight: 800; font-size: 1.125rem; }
   .ticket__offer { margin-top: 14px; padding-top: 18px; border-top: 2px dashed rgb(9 19 29 / .3); font-size: clamp(1.125rem, 1rem + .5vw, 1.4rem); font-weight: 700; line-height: 1.35; max-width: 22ch; }
   .ticket__chevron { position: absolute; z-index: -1; right: -18%; bottom: -14%; width: 70%; height: auto; aspect-ratio: 400 / 220; color: rgb(9 19 29 / .1); fill: none; stroke: currentColor; stroke-width: 46; stroke-linejoin: round; }
@@ -1099,7 +1106,8 @@
 
   /* ---------- FAQ ---------- */
   .faq__grid { display: grid; gap: clamp(32px, 5vw, 64px); }
-  .faq__head { display: grid; gap: 20px; align-content: start; }
+  .faq__head { display: grid; gap: 20px; align-content: start; min-width: 0; }
+  .faq__head .display--1 { font-size: clamp(2.3rem, 4.2vw, 4.2rem); }
   .faq__more { color: var(--fg-muted); }
   .faq__list { border-top: 2px solid var(--night); }
   .qa { border-bottom: 1px solid var(--line); }
@@ -1264,7 +1272,8 @@
   .preuve { margin: 28px 0 8px; padding: 20px 22px; border-left: 3px solid var(--lime); background: rgb(255 255 255 / .04); border-radius: 0 12px 12px 0; }
   .preuve__club { margin: 0; font-weight: 700; font-size: 1.05rem; line-height: 1.4; }
   .preuve__chiffres { display: flex; flex-wrap: wrap; gap: 14px 32px; margin: 14px 0 10px; }
-  .preuve__chiffres div { display: flex; flex-direction: column-reverse; }
+  .preuve__chiffres div { display: flex; flex-direction: column; }
+  .preuve__chiffres dd { order: -1; }
   .preuve__chiffres dd { margin: 0; font-family: var(--font-display); font-style: italic; font-weight: 800; font-size: clamp(1.9rem, 1.5rem + 1.2vw, 2.6rem); line-height: 1; color: var(--lime); }
   .preuve__chiffres dt { font-size: .9rem; opacity: .8; max-width: 16ch; }
   .preuve__citation { margin: 4px 0 14px; font-size: 1.05rem; font-style: italic; }
