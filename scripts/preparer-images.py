@@ -73,6 +73,20 @@ def save_variants(img: Image.Image, base: Path, widths, quality_webp=80, quality
         r.save(f"{base}-{w}.avif", "AVIF", quality=quality_avif, speed=4)
 
 
+# Morceau d'écran tiré d'une ancienne capture non retouchée : le formulaire
+# « Je propose des places » du covoiturage (aller-retour, 3 places, attribution automatique).
+FRAGMENTS_ANCIENS = {
+    "covoiturage": ("covoiturage-formulaire", (40, 660, 1050, 1440)),
+}
+
+
+def prepare_fragments_anciens():
+    for name, (screen, box) in FRAGMENTS_ANCIENS.items():
+        im = Image.open(SRC / "ecrans" / f"{screen}.png").convert("RGB").crop(box)
+        save_variants(im, OUT / "img" / "fragments" / name, (400, 800), quality_webp=82, quality_avif=60)
+        print("morceau d'écran", name, im.size)
+
+
 def prepare_screens():
     for name in SCREENS:
         im = Image.open(SRC / "ecrans" / f"{name}.png").convert("RGB")
@@ -248,6 +262,7 @@ def prepare_video():
 if __name__ == "__main__":
     prepare_screens()
     prepare_screens_v2()
+    prepare_fragments_anciens()
     prepare_photos()
     prepare_player()
     prepare_logos()

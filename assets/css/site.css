@@ -595,14 +595,21 @@
   .frag--seances    { width: 88%; left: -84%; top: 3%;  transform: translateZ(calc(var(--phone-w) * -.46)) translateZ(calc(var(--s) * var(--phone-w) * -.25)); }
   .frag--match      { width: 90%; left: 70%;  top: 17%; transform: translateZ(calc(var(--phone-w) * .38)) translateZ(calc(var(--s) * var(--phone-w) * .3)); }
   .frag--tresorerie { width: 92%; left: -60%; top: 55%; transform: translateZ(calc(var(--phone-w) * .56)) translateZ(calc(var(--s) * var(--phone-w) * .45)); }
+  /* Le covoiturage, fonction phare, est la carte la plus proche du visiteur. */
+  .frag--covoit     { width: 92%; left: 62%;  top: 47%; transform: translateZ(calc(var(--phone-w) * .66)) translateZ(calc(var(--s) * var(--phone-w) * .55)); }
+  /* Étiquette de chaque carte : on lit la fonction avant de lire l'écran. */
+  .frag__float { position: relative; transform-style: preserve-3d; }
+  .frag__tag {
+    position: absolute; z-index: 1; left: calc(var(--phone-w) * .05); top: 0; translate: 0 -58%;
+    display: inline-flex; align-items: center; gap: .4em;
+    padding: .38em .8em .38em .62em; border-radius: 999px;
+    background: var(--lime); color: var(--night);
+    font-size: clamp(.6875rem, calc(var(--phone-w) * .05), .9375rem); font-weight: 800; line-height: 1.1; white-space: nowrap;
+    box-shadow: 0 10px 24px -10px rgb(0 0 0 / .8);
+    transform: translateZ(2px);
+  }
+  .frag__tag .icon { width: 1.15em; height: 1.15em; }
 
-  .hero__statuts { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; transform-style: preserve-3d; pointer-events: none; }
-  .hero__statuts .statut { position: absolute; height: 36px; padding: 0 13px 0 10px; font-size: .9rem; box-shadow: 0 16px 34px -12px rgb(0 0 0 / .8), inset 0 0 0 1px rgb(255 255 255 / .06); }
-  .hero__statuts .statut .icon { width: 17px; height: 17px; }
-  .hero__statuts .statut--dispo    { left: 84%; top: 47%; transform: translateZ(calc(var(--phone-w) * .22)); }
-  .hero__statuts .statut--convoque { left: 92%; top: 54%; transform: translateZ(calc(var(--phone-w) * .3)); }
-  .hero__statuts .statut--confirme { left: 80%; top: 61%; transform: translateZ(calc(var(--phone-w) * .38)); }
-  .hero__statuts .statut--present  { left: 88%; top: 68%; transform: translateZ(calc(var(--phone-w) * .46)); }
 
   .hero__meta { display: flex; align-items: center; gap: 12px; }
   .hero__caption { font-size: .8125rem; color: var(--fg-muted); }
@@ -639,17 +646,11 @@
     .hero__ctas { width: 100%; }
     .hero__ctas .btn { flex: 1 1 100%; }
     .scene { --phone-w: clamp(148px, min(45vw, 21vh), 224px); height: calc(var(--phone-w) * 2.2); }
-    .hero__statuts .statut { height: 30px; padding: 0 9px 0 7px; font-size: .75rem; gap: 4px; }
-    .hero__statuts .statut .icon { width: 14px; height: 14px; }
-    /* Sur téléphone, la scène s'allège : la carte du fond (séances) disparaît,
-       les pastilles se décalent vers la droite pour laisser voir l'écran. */
+    /* Sur téléphone, la scène s'allège : la carte du fond (séances) disparaît. */
     .frag--seances { display: none; }
-    .frag--match { width: 84%; left: 50%; top: 12%; }
-    .frag--tresorerie { width: 78%; left: -32%; top: 58%; }
-    .hero__statuts .statut--dispo { left: 80%; top: 50%; }
-    .hero__statuts .statut--convoque { left: 86%; top: 57%; }
-    .hero__statuts .statut--confirme { left: 76%; top: 64%; }
-    .hero__statuts .statut--present { left: 82%; top: 71%; }
+    .frag--match { width: 84%; left: 50%; top: 10%; }
+    .frag--tresorerie { width: 78%; left: -36%; top: 40%; }
+    .frag--covoit { width: 86%; left: 46%; top: 55%; }
   }
 
   /* ---------- 03 · Manifeste ---------- */
@@ -1225,7 +1226,10 @@
     @keyframes pitch-draw { from { stroke-dashoffset: 1; } }
     @keyframes pitch-in { from { opacity: 0; } }
     @keyframes phone-rise { from { transform: translateY(4%) rotateX(84deg); } }
-    @keyframes frag-fly { from { opacity: 0; transform: translate3d(var(--fx), var(--fy), var(--fz)) scale(.82); } 30% { opacity: 1; } }
+    /* Les cartes naissent au centre du téléphone, minuscules, puis grandissent jusqu'à leur place.
+       Pas d'opacité : une carte cachée puis révélée deviendrait l'élément mesuré par le LCP
+       au moment de son apparition (vers 1,5 s) et retarderait la mesure. */
+    @keyframes frag-fly { from { transform: translate3d(var(--fx), var(--fy), var(--fz)) scale(.02); } }
     @keyframes frag-float { from { translate: 0 calc(var(--phone-w) * -.022); } to { translate: 0 calc(var(--phone-w) * .022); } }
     @keyframes glow-in { from { opacity: 0; scale: .7; } }
     .hero .scene__glow { animation: glow-in 1.8s var(--ease-out) both .1s; }
@@ -1234,10 +1238,14 @@
     .hero .pitch .pitch__spot { animation: pitch-in .4s var(--ease-out) both 1.5s; }
     .hero .scene__phone { animation: phone-rise 1.5s var(--ease-out) backwards .35s; }
     .hero .scene__shadow { animation: pitch-in 1s var(--ease-out) both .9s; }
-    .hero .frag__fly { animation: frag-fly 1.2s var(--ease-out) both; }
+    /* « backwards » : une fois arrivée, la carte n'a plus d'animation d'opacité active,
+       Chrome ne l'aplatit plus et l'étiquette garde sa place devant le téléphone. */
+    .hero .frag__fly { animation: frag-fly 1.2s var(--ease-out) backwards; }
     .hero .frag--seances .frag__fly    { --fx: calc(var(--phone-w) * .6);  --fy: calc(var(--phone-w) * .5);  --fz: calc(var(--phone-w) * .44);  animation-delay: 1.05s; }
     .hero .frag--match .frag__fly      { --fx: calc(var(--phone-w) * -.62); --fy: calc(var(--phone-w) * .35); --fz: calc(var(--phone-w) * -.38); animation-delay: 1.2s; }
     .hero .frag--tresorerie .frag__fly { --fx: calc(var(--phone-w) * .56); --fy: calc(var(--phone-w) * -.25); --fz: calc(var(--phone-w) * -.56); animation-delay: 1.38s; }
+    .hero .frag--covoit .frag__fly     { --fx: calc(var(--phone-w) * -.58); --fy: calc(var(--phone-w) * -.3); --fz: calc(var(--phone-w) * -.66); animation-delay: 1.56s; }
+    .hero .frag--covoit .frag__float { animation-duration: 5.8s; animation-delay: 3s; }
     .hero .frag__float { animation: frag-float 5.2s var(--ease-in-out) infinite alternate 2.6s; }
     .hero .frag--match .frag__float { animation-duration: 6.4s; animation-delay: 2.9s; }
     .hero .frag--seances .frag__float { animation-duration: 7.2s; animation-delay: 3.2s; }
@@ -1257,11 +1265,10 @@
     .hero [data-hero-step="1"] { animation: hero-nudge 1s var(--ease-out) both .1s; }
     .hero [data-hero-step="2"] { animation: hero-fade .9s var(--ease-out) both .42s; }
     .hero [data-hero-step="3"] { animation: hero-fade .9s var(--ease-out) both .54s; }
-    .hero .hero__statuts .statut { animation: hero-chip .7s var(--ease-spring) both; }
-    .hero .hero__statuts .statut:nth-child(1) { animation-delay: 1.7s; }
-    .hero .hero__statuts .statut:nth-child(2) { animation-delay: 1.86s; }
-    .hero .hero__statuts .statut:nth-child(3) { animation-delay: 2.02s; }
-    .hero .hero__statuts .statut:nth-child(4) { animation-delay: 2.18s; }
+    .hero .frag__tag { animation: hero-chip .6s var(--ease-spring) both 2s; }
+    .hero .frag--match .frag__tag { animation-delay: 2.12s; }
+    .hero .frag--tresorerie .frag__tag { animation-delay: 2.24s; }
+    .hero .frag--covoit .frag__tag { animation-delay: 2.4s; }
     .hero .hero__meta { animation: hero-meta 1s var(--ease-out) both 2.2s; }
 
     /* Valeurs qui défilent */

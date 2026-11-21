@@ -80,6 +80,8 @@ Sans variable configurée, le formulaire répond « envoi pas encore activé » 
 
 - Une seule séquence d’ouverture (hero), en CSS pur : elle n’attend pas le JavaScript. Le terrain se trace, le téléphone se relève depuis la pelouse, les morceaux d’écran en sortent et se placent en profondeur (CSS 3D, aucune bibliothèque). Le script ne pose que l’inclinaison suivant le pointeur et l’ouverture au défilement.
 - Sur téléphone et tablette, la scène 3D passe avant le titre : on ouvre le site sur le produit, le titre et « Essayer gratuitement » restent dans le premier écran (vérifié de 360 à 430 px de large). Sur téléphone, le titre est visible dès le premier affichage : c’est lui que mesure le LCP.
+- Autour du téléphone, quatre morceaux d’écran réels portent chacun l’étiquette de leur fonction : Covoiturage (au premier plan), Convocations, Trésorerie, Séances. Le covoiturage vient du formulaire « Je propose des places » (ancienne capture non retouchée).
+- Les cartes naissent au centre du téléphone et grandissent jusqu’à leur place, sans fondu : une carte cachée puis révélée deviendrait l’élément mesuré par le LCP au moment de son apparition (mesuré : 4,5 s au lieu de 2 s sur mobile).
 - Règle à garder : ne jamais animer l’opacité d’un élément en `preserve-3d` (Chrome l’aplatit et les plaques d’épaisseur du téléphone passeraient devant l’écran).
 - Rien n’est caché par défaut : seuls les blocs situés sous l’écran au chargement attendent d’arriver à l’écran pour apparaître. Si le script ne tourne pas, tout reste visible.
 - Un seul script classique (`site.js`) plutôt que des modules : il fonctionne aussi dans les cadres isolés (aperçus, intégrations), où les modules sont bloqués.
