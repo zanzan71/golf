@@ -1,0 +1,6 @@
+/* Aperçu dans l’éditeur de blocs : même police et mêmes couleurs que le site. */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap");
+body { font-family: "Manrope", system-ui, sans-serif; color: #09131D; font-size: 17px; line-height: 1.7; }
+h1, h2, h3 { font-weight: 800; line-height: 1.2; }
+a { color: #01284F; }
+blockquote { border-left: 3px solid #CCF709; padding-left: 20px; }
