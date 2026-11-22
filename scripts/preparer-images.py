@@ -70,7 +70,7 @@ def save_variants(img: Image.Image, base: Path, widths, quality_webp=80, quality
         h = round(img.height * w / img.width)
         r = img.resize((w, h), Image.LANCZOS)
         r.save(f"{base}-{w}.webp", "WEBP", quality=quality_webp, method=6)
-        r.save(f"{base}-{w}.avif", "AVIF", quality=quality_avif, speed=4)
+        # (AVIF retiré : refusé par le partage public) r.save(f"{base}-{w}.avif", "AVIF", quality=quality_avif, speed=4)
 
 
 # Morceau d'écran tiré d'une ancienne capture non retouchée : le formulaire
