@@ -108,7 +108,7 @@ $a = elazyo_asset_base();
       <p class="appli__caption">Écrans réels de l’appli, avec les données d’un club de démonstration.</p>
 
       <div class="cta-row" data-reveal>
-        <a class="btn btn--elan btn--lg" href="<?php echo esc_url( elazyo_mod( 'app_url' ) ); ?>" rel="noopener">Essayer gratuitement<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--elan btn--lg" <?php elazyo_store_attrs(); ?>>Essayer gratuitement<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="btn btn--ghost btn--lg" href="#contact" data-prefill-objet="demo">Demander une démo</a>
       </div>
     </div>

@@ -28,7 +28,7 @@ $a = elazyo_asset_base();
         </ul>
       </nav>
       <div class="site-footer__app">
-        <a class="btn btn--elan btn--md" href="<?php echo esc_url( elazyo_mod( 'app_url' ) ); ?>" rel="noopener">Ouvrir l’appli<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--elan btn--md" <?php elazyo_store_attrs(); ?>>Télécharger l’appli<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
     <div class="site-footer__legal">

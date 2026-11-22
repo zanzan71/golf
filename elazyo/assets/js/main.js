@@ -6,7 +6,7 @@ import { initHero } from './modules/hero.js';
 import { initScrollEffects } from './modules/scroll-effects.js';
 import { initTabs } from './modules/tabs.js';
 import { initCards } from './modules/cards.js';
-import { initCounters, initMarquee, initPrefill } from './modules/extras.js';
+import { initCounters, initMarquee, initPrefill, initStores } from './modules/extras.js';
 import { initContact } from './modules/contact.js';
 
 window.__elazyo = true;
@@ -22,6 +22,7 @@ const modules = [
   initMarquee,
   initPrefill,
   initContact,
+  initStores,
 ];
 
 for (const init of modules) {

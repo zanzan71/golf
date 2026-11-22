@@ -32,8 +32,7 @@ $a = elazyo_asset_base();
       </ul>
     </nav>
     <div class="site-header__actions">
-      <a class="site-header__login" href="<?php echo esc_url( elazyo_mod( 'app_url' ) ); ?>" rel="noopener">Se connecter</a>
-      <a class="btn btn--elan btn--md" href="<?php echo esc_url( elazyo_mod( 'app_url' ) ); ?>" rel="noopener">Essayer gratuitement</a>
+      <a class="btn btn--elan btn--md" <?php elazyo_store_attrs(); ?>>Essayer gratuitement</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-mobile" data-menu-toggle>
         <span class="sr-only" data-menu-label>Ouvrir le menu</span>
         <svg class="icon icon--menu" aria-hidden="true"><use href="#i-menu"/></svg>
@@ -54,8 +53,7 @@ $a = elazyo_asset_base();
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="mobile-menu__actions">
-        <a class="btn btn--elan btn--lg" href="<?php echo esc_url( elazyo_mod( 'app_url' ) ); ?>" rel="noopener">Essayer gratuitement<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a class="btn btn--ghost btn--lg" href="<?php echo esc_url( elazyo_mod( 'app_url' ) ); ?>" rel="noopener">Se connecter</a>
+        <a class="btn btn--elan btn--lg" <?php elazyo_store_attrs(); ?>>Essayer gratuitement<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
       <p class="mobile-menu__signature">L’élan du collectif.</p>
     </nav>

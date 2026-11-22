@@ -18,10 +18,21 @@ $a = elazyo_asset_base();
           <span class="line"><span>votre club.</span></span>
         </h2>
         <p class="lead" data-reveal>Une démo, une candidature Club Fondateur, une question ou un partenariat&nbsp;: écrivez-nous, nous vous répondons par e-mail.</p>
-        <div class="contact__app" data-reveal>
+        <div class="contact__app" id="telecharger" data-reveal>
           <p class="contact__app-title">Envie d’essayer tout de suite&#8239;?</p>
-          <p>L’appli est en ligne, gratuite pour les joueurs, sur iPhone, Android et le web.</p>
-          <a class="btn btn--ghost btn--md" href="<?php echo esc_url( elazyo_mod( 'app_url' ) ); ?>" rel="noopener">Ouvrir app.elazyo.fr<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
+          <p>Téléchargez l’appli, gratuite pour les joueurs, sur iPhone et Android.</p>
+          <?php
+          $elazyo_ios     = (string) elazyo_mod( 'appstore_url' );
+          $elazyo_android = (string) elazyo_mod( 'playstore_url' );
+          if ( $elazyo_ios || $elazyo_android ) :
+          ?>
+          <div class="contact__stores">
+            <?php if ( $elazyo_ios ) : ?><a class="btn btn--ghost btn--md" href="<?php echo esc_url( $elazyo_ios ); ?>" rel="noopener">App Store (iPhone)<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a><?php endif; ?>
+            <?php if ( $elazyo_android ) : ?><a class="btn btn--ghost btn--md" href="<?php echo esc_url( $elazyo_android ); ?>" rel="noopener">Google Play (Android)<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a><?php endif; ?>
+          </div>
+          <?php else : ?>
+          <p>Cherchez «&nbsp;ELAZYO&nbsp;» dans l’App Store ou sur Google Play.</p>
+          <?php endif; ?>
         </div>
         <figure class="photo-cadre contact__photo" data-reveal="mask">
           <picture>

@@ -28,9 +28,9 @@ while ( have_posts() ) :
 
       <aside class="article__cta theme-night" aria-label="Essayer ELAZYO">
         <p class="article__cta-title">Votre club veut essayer ELAZYO&#8239;?</p>
-        <p>Gratuit pour les joueurs et les familles, sur iPhone, Android et le web.</p>
+        <p>Gratuit pour les joueurs et les familles, sur iPhone et Android.</p>
         <div class="article__cta-actions">
-          <a class="btn btn--elan btn--md" href="<?php echo esc_url( elazyo_mod( 'app_url' ) ); ?>" rel="noopener">Essayer gratuitement</a>
+          <a class="btn btn--elan btn--md" <?php elazyo_store_attrs(); ?>>Essayer gratuitement</a>
           <a class="btn btn--ghost btn--md" href="<?php echo esc_url( home_url( '/#contact' ) ); ?>">Demander une démo</a>
         </div>
       </aside>

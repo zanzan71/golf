@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
       <a class="link" href="<?php echo esc_url( elazyo_news_url() ); ?>"<?php echo is_home() || is_singular( 'post' ) || is_archive() ? ' aria-current="page"' : ''; ?>>Actualités</a>
       <?php endif; ?>
       <a class="link" href="<?php echo esc_url( home_url( '/#contact' ) ); ?>">Contact</a>
-      <a class="btn btn--elan btn--md simple-header__cta" href="<?php echo esc_url( elazyo_mod( 'app_url' ) ); ?>" rel="noopener">Essayer gratuitement</a>
+      <a class="btn btn--elan btn--md simple-header__cta" <?php elazyo_store_attrs(); ?>>Essayer gratuitement</a>
     </nav>
   </div>
 </header>

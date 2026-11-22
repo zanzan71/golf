@@ -778,6 +778,19 @@ function initPrefill() {
   });
 }
 
+// Boutons « Essayer » : sur iPhone ou Android, ils ouvrent la fiche de l'appli dans la bonne
+// boutique ; ailleurs, ils mènent au bloc de téléchargement de la page d'accueil.
+function initStores() {
+  const ua = navigator.userAgent || '';
+  const ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  const android = /Android/.test(ua);
+  if (!ios && !android) return;
+  document.querySelectorAll('a[data-store]').forEach((link) => {
+    const url = ios ? link.dataset.ios : link.dataset.android;
+    if (url) link.href = url;
+  });
+}
+
 // ---- contact.js ----
 // Formulaire de contact : validation côté navigateur (la vraie validation est
 // refaite côté serveur), envoi à /api/contact, ou, dans l'aperçu publié sur
@@ -999,6 +1012,7 @@ const modules = [
   initMarquee,
   initPrefill,
   initContact,
+  initStores,
 ];
 
 for (const init of modules) {

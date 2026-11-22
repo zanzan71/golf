@@ -21,7 +21,7 @@ $a = elazyo_asset_base();
         </h1>
         <p class="lead hero__lead" data-hero-step="1"><?php echo elazyo_nbsp( esc_html( elazyo_mod( 'hero_lead' ) ) ); ?></p>
         <div class="hero__ctas" data-hero-step="2">
-          <a class="btn btn--elan btn--lg" href="<?php echo esc_url( elazyo_mod( 'app_url' ) ); ?>" rel="noopener"><?php echo esc_html( elazyo_mod( 'hero_cta' ) ); ?><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--elan btn--lg" <?php elazyo_store_attrs(); ?>><?php echo esc_html( elazyo_mod( 'hero_cta' ) ); ?><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="btn btn--ghost btn--lg" href="#application"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-play"/></svg><?php echo esc_html( elazyo_mod( 'hero_cta2' ) ); ?></a>
         </div>
         <ul class="hero__proof" data-hero-step="3">

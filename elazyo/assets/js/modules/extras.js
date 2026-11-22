@@ -57,3 +57,16 @@ export function initPrefill() {
     });
   });
 }
+
+// Boutons « Essayer » : sur iPhone ou Android, ils ouvrent la fiche de l'appli dans la bonne
+// boutique ; ailleurs, ils mènent au bloc de téléchargement de la page d'accueil.
+export function initStores() {
+  const ua = navigator.userAgent || '';
+  const ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  const android = /Android/.test(ua);
+  if (!ios && !android) return;
+  document.querySelectorAll('a[data-store]').forEach((link) => {
+    const url = ios ? link.dataset.ios : link.dataset.android;
+    if (url) link.href = url;
+  });
+}

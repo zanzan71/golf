@@ -79,7 +79,8 @@ function elazyo_customize_register( $wp_customize ) {
 		array( 'temoignage_texte', 'elazyo_preuve', 'textarea', 'Témoignage (sans guillemets)' ),
 		array( 'temoignage_auteur', 'elazyo_preuve', 'text', 'Auteur du témoignage', 'Prénom Nom, fonction, club' ),
 		// Liens et contact.
-		array( 'app_url', 'elazyo_liens', 'url', 'Adresse de l’appli' ),
+		array( 'appstore_url', 'elazyo_liens', 'url', 'Lien App Store (iPhone)', 'Adresse complète de la fiche ELAZYO sur l’App Store.' ),
+		array( 'playstore_url', 'elazyo_liens', 'url', 'Lien Google Play (Android)', 'Adresse complète de la fiche ELAZYO sur Google Play.' ),
 		array( 'contact_email', 'elazyo_liens', 'email', 'E-mail qui reçoit les demandes' ),
 		array( 'instagram_url', 'elazyo_liens', 'url', 'Compte Instagram d’ELAZYO', 'Adresse complète. Sert à Google pour relier le site au compte.' ),
 		// Référencement.

@@ -57,7 +57,7 @@ function elazyo_faq_defaults() {
 		),
 		array(
 			'question' => 'Sur quels appareils fonctionne ELAZYO ?',
-			'answer'   => 'Sur iPhone, sur Android et sur le web, à l’adresse <a class="link" href="{app}" rel="noopener">app.elazyo.fr</a>.',
+			'answer'   => 'Sur iPhone et sur Android&nbsp;: téléchargez ELAZYO dans l’App Store ou sur Google Play.',
 		),
 		array(
 			'question' => 'Comment passer de SportEasy à ELAZYO ?',
@@ -247,4 +247,42 @@ function elazyo_robots( $robots ) {
 		$robots['follow']  = true;
 	}
 	return $robots;
+}
+
+add_action( 'admin_init', 'elazyo_upgrade' );
+/**
+ * Mises à jour des contenus créés par une version précédente du thème, une seule fois.
+ * 1.0.3 : l’appli n’existe que sur iPhone et Android (plus de version web).
+ */
+function elazyo_upgrade() {
+	// Faite dans l’administration par un compte autorisé à enregistrer du HTML, pour que
+	// WordPress n’enlève rien des pages (blocs, surlignages « à compléter »).
+	if ( ! current_user_can( 'unfiltered_html' ) || version_compare( (string) get_option( 'elazyo_content_version', '1.0.0' ), '1.0.3', '>=' ) ) {
+		return;
+	}
+	$replacements = array(
+		'Sur iPhone, sur Android et sur le web, à l’adresse <a class="link" href="https://app.elazyo.fr/" rel="noopener">app.elazyo.fr</a>.' => 'Sur iPhone et sur Android&nbsp;: téléchargez ELAZYO dans l’App Store ou sur Google Play.',
+		'L’application ELAZYO, accessible à l’adresse <a class="link" href="https://app.elazyo.fr/" rel="noopener">app.elazyo.fr</a>, dispose de ses propres conditions d’utilisation.' => 'L’application ELAZYO, disponible sur l’App Store et sur Google Play, dispose de ses propres conditions d’utilisation.',
+		'accessible depuis <a class="link" href="https://app.elazyo.fr/" rel="noopener">app.elazyo.fr</a>' => 'accessible depuis l’application et sa fiche sur l’App Store et Google Play',
+	);
+	$posts = get_posts(
+		array(
+			'post_type'      => array( 'elazyo_faq', 'page' ),
+			'post_status'    => 'any',
+			'posts_per_page' => 50,
+			's'              => 'app.elazyo.fr',
+		)
+	);
+	foreach ( $posts as $post ) {
+		$content = str_replace( array_keys( $replacements ), array_values( $replacements ), $post->post_content );
+		if ( $content !== $post->post_content ) {
+			wp_update_post(
+				array(
+					'ID'           => $post->ID,
+					'post_content' => $content,
+				)
+			);
+		}
+	}
+	update_option( 'elazyo_content_version', '1.0.3' );
 }

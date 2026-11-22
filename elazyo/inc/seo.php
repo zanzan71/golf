@@ -136,9 +136,9 @@ function elazyo_schema() {
 	$graph[] = array(
 		'@type'               => 'SoftwareApplication',
 		'name'                => 'ELAZYO',
-		'url'                 => elazyo_mod( 'app_url' ),
+		'url'                 => $home,
 		'applicationCategory' => 'SportsApplication',
-		'operatingSystem'     => 'Web, Android, iOS',
+		'operatingSystem'     => 'Android, iOS',
 		'description'         => 'L’appli des clubs de foot amateur : planning, convocations, présences, covoiturage, bénévoles, communication et finances du club.',
 		'offers'              => array(
 			'@type'         => 'Offer',
@@ -157,6 +157,14 @@ function elazyo_schema() {
 				'text'  => trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( $item['answer'] ) ) ),
 			),
 		);
+	}
+	$stores = array_values( array_filter( array( (string) elazyo_mod( 'appstore_url' ), (string) elazyo_mod( 'playstore_url' ) ) ) );
+	if ( $stores ) {
+		foreach ( $graph as $i => $node ) {
+			if ( 'SoftwareApplication' === $node['@type'] ) {
+				$graph[ $i ]['downloadUrl'] = 1 === count( $stores ) ? $stores[0] : $stores;
+			}
+		}
 	}
 	if ( $questions ) {
 		$graph[] = array(

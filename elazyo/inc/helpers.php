@@ -18,6 +18,8 @@ function elazyo_defaults() {
 		// Liens et contact.
 		'app_url'            => 'https://app.elazyo.fr/',
 		'contact_email'      => '',
+		'appstore_url'       => '',
+		'playstore_url'      => '',
 		// Bandeau et offre Clubs Fondateurs.
 		'annonce_afficher'   => true,
 		'fondateurs_places'  => 10,
@@ -33,7 +35,7 @@ function elazyo_defaults() {
 		'hero_cta'           => 'Essayer gratuitement',
 		'hero_cta2'          => 'Voir l’appli en action',
 		'hero_proof1'        => 'Gratuit pour les joueurs',
-		'hero_proof2'        => 'Web, Android et iPhone',
+		'hero_proof2'        => 'Sur iPhone et Android',
 		'hero_proof3'        => 'Conçu par des gens du foot amateur',
 		// Club qui utilise ELAZYO.
 		'preuve_afficher'    => true,
@@ -178,4 +180,17 @@ function elazyo_announce_text( $short = false ) {
 function elazyo_nbsp( $text ) {
 	$text = preg_replace( '/ ([;?!])/u', "\u{202F}$1", $text );
 	return preg_replace( '/ ([%:»])/u', "\u{00A0}$1", $text );
+}
+
+/**
+ * Attributs d’un bouton « Essayer » : il mène au bloc de téléchargement de la page d’accueil ;
+ * sur un iPhone ou un téléphone Android, le script ouvre directement la bonne boutique.
+ */
+function elazyo_store_attrs() {
+	printf(
+		'href="%s" data-store data-ios="%s" data-android="%s"',
+		esc_url( elazyo_anchor( 'telecharger' ) ),
+		esc_url( (string) elazyo_mod( 'appstore_url' ) ),
+		esc_url( (string) elazyo_mod( 'playstore_url' ) )
+	);
 }
