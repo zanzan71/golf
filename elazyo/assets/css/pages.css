@@ -44,7 +44,14 @@
   .prose p, .prose li { color: var(--fg-muted); }
   .prose strong { color: var(--fg); }
   .prose a:not(.btn):not(.wp-block-button__link) { color: var(--bleu); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
-  .prose ol { padding-left: 1.3em; display: grid; gap: 6px; }
+  .prose ol, .prose ul { padding-left: 1.3em; display: grid; gap: 6px; }
+  .prose ul { list-style: disc; }
+  .prose li::marker { color: var(--bleu); font-weight: 800; }
+  .prose .wp-block-table { overflow-x: auto; }
+  .prose table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: .9375rem; line-height: 1.45; }
+  .prose th, .prose td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); color: var(--fg-muted); }
+  .prose thead th { color: var(--fg); font-weight: 800; border-bottom: 2px solid var(--fg); }
+  .prose tbody td:first-child { color: var(--fg); font-weight: 700; }
   .prose img { max-width: 100%; height: auto; border-radius: var(--r-md); }
   .prose figure { margin: 8px 0; }
   .prose figcaption { margin-top: 8px; font-size: .875rem; color: var(--fg-muted); }

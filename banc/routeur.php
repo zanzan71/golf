@@ -49,6 +49,7 @@ $article = '<!-- wp:paragraph --><p>Un exemple d’article pour vérifier la mis
 	. '<h2 class="wp-block-heading">Un intertitre</h2><ul><li>Premier point</li><li>Deuxième point</li></ul>'
 	. '<blockquote class="wp-block-quote"><p>Une citation pour voir le style.</p><cite>Quelqu’un du club</cite></blockquote>'
 	. '<p>Dernier paragraphe, assez long pour voir la largeur de lecture et l’interligne sur ordinateur comme sur téléphone, avec une phrase de plus.</p>';
+if ( ! empty( $_GET['article_file'] ) ) { $article = file_get_contents( '/home/claude/article/seance-u7-u9.html' ); }
 $thumb   = BANC_URL . '/wp-content/themes/elazyo/assets/img/photos/action-960.webp';
 $pages   = array( 'mentions-legales' => 'Mentions légales', 'confidentialite' => 'Confidentialité et cookies', 'merci' => 'Merci, c’est envoyé.' );
 
