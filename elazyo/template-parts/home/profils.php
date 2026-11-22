@@ -34,6 +34,7 @@ $a = elazyo_asset_base();
         <div class="tabs__panels">
           <div class="tabs__panel" role="tabpanel" id="panel-president" aria-labelledby="tab-president" tabindex="0">
             <div class="panel__text">
+              <div class="panel__band"><picture><source type="image/webp" srcset="<?php echo $a; ?>img/photos/tablette-600.webp 600w, <?php echo $a; ?>img/photos/tablette-1100.webp 1100w" sizes="(min-width: 900px) 420px, 92vw"><img src="<?php echo $a; ?>img/photos/tablette-1100.webp" width="1152" height="941" alt="" loading="lazy" decoding="async"></picture><span class="photo-ia">Image générée par IA</span></div>
               <h3 class="display display--2">Piloter tout le club.</h3>
               <ul class="ticks">
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>La mise en route du club, étape par étape</li>
@@ -43,7 +44,7 @@ $a = elazyo_asset_base();
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>La page publique du club et le direct des matchs</li>
               </ul>
             </div>
-            <div class="panel__media panel__media--photo"><div class="panel__photo" aria-hidden="true"><picture><source type="image/webp" srcset="<?php echo $a; ?>img/photos/tablette-600.webp 600w, <?php echo $a; ?>img/photos/tablette-1100.webp 1100w" sizes="(min-width: 900px) 460px, 92vw"><img src="<?php echo $a; ?>img/photos/tablette-1100.webp" width="1152" height="941" alt="" loading="lazy" decoding="async"></picture><span class="photo-ia">Image générée par IA</span></div><figure class="phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
+            <div class="panel__media"><figure class="phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
               
               <source type="image/webp" srcset="<?php echo $a; ?>img/ecrans/accueil-president-360.webp 360w, <?php echo $a; ?>img/ecrans/accueil-president-720.webp 720w" sizes="(min-width: 1100px) 250px, (min-width: 700px) 220px, 56vw">
               <img src="<?php echo $a; ?>img/ecrans/accueil-president-360.webp" width="1080" height="2004" alt="Accueil du président : mise en route du club et demandes à traiter." loading="lazy" decoding="async">
@@ -52,6 +53,7 @@ $a = elazyo_asset_base();
 
           <div class="tabs__panel" role="tabpanel" id="panel-coach" aria-labelledby="tab-coach" tabindex="0" hidden>
             <div class="panel__text">
+              <div class="panel__band"><picture><source type="image/webp" srcset="<?php echo $a; ?>img/photos/entrainement-600.webp 600w, <?php echo $a; ?>img/photos/entrainement-1040.webp 1040w" sizes="(min-width: 900px) 420px, 92vw"><img src="<?php echo $a; ?>img/photos/entrainement-1040.webp" width="1040" height="941" alt="" loading="lazy" decoding="async"></picture><span class="photo-ia">Image générée par IA</span></div>
               <h3 class="display display--2">Convoquer, faire l’appel, transmettre.</h3>
               <ul class="ticks">
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Son équipe en un écran&nbsp;: effectif, présences, prochain match</li>
@@ -61,7 +63,7 @@ $a = elazyo_asset_base();
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>L’évaluation après chaque séance, qui remplit MY CARD</li>
               </ul>
             </div>
-            <div class="panel__media panel__media--photo"><div class="panel__photo" aria-hidden="true"><picture><source type="image/webp" srcset="<?php echo $a; ?>img/photos/entrainement-600.webp 600w, <?php echo $a; ?>img/photos/entrainement-1040.webp 1040w" sizes="(min-width: 900px) 460px, 92vw"><img src="<?php echo $a; ?>img/photos/entrainement-1040.webp" width="1040" height="941" alt="" loading="lazy" decoding="async"></picture><span class="photo-ia">Image générée par IA</span></div><figure class="phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
+            <div class="panel__media"><figure class="phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
               
               <source type="image/webp" srcset="<?php echo $a; ?>img/ecrans/equipe-coach-360.webp 360w, <?php echo $a; ?>img/ecrans/equipe-coach-720.webp 720w" sizes="(min-width: 1100px) 250px, (min-width: 700px) 220px, 56vw">
               <img src="<?php echo $a; ?>img/ecrans/equipe-coach-360.webp" width="1080" height="2004" alt="Écran Équipe du coach : effectif et présences, prochain match, bouton pour inviter un joueur." loading="lazy" decoding="async">
@@ -86,6 +88,7 @@ $a = elazyo_asset_base();
 
           <div class="tabs__panel" role="tabpanel" id="panel-familles" aria-labelledby="tab-familles" tabindex="0" hidden>
             <div class="panel__text">
+              <div class="panel__band"><picture><source type="image/webp" srcset="<?php echo $a; ?>img/photos/famille-600.webp 600w, <?php echo $a; ?>img/photos/famille-860.webp 860w" sizes="(min-width: 900px) 420px, 92vw"><img src="<?php echo $a; ?>img/photos/famille-860.webp" width="860" height="724" alt="" loading="lazy" decoding="async"></picture><span class="photo-ia">Image générée par IA</span></div>
               <h3 class="display display--2">Toutes les infos de l’enfant au même endroit.</h3>
               <ul class="ticks">
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Répondre aux convocations pour son enfant</li>
@@ -94,15 +97,16 @@ $a = elazyo_asset_base();
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Déclarer une indisponibilité, suivre plusieurs enfants</li>
               </ul>
             </div>
-            <div class="panel__media panel__media--photo"><div class="panel__photo" aria-hidden="true"><picture><source type="image/webp" srcset="<?php echo $a; ?>img/photos/famille-600.webp 600w, <?php echo $a; ?>img/photos/famille-860.webp 860w" sizes="(min-width: 900px) 460px, 92vw"><img src="<?php echo $a; ?>img/photos/famille-860.webp" width="860" height="724" alt="" loading="lazy" decoding="async"></picture><span class="photo-ia">Image générée par IA</span></div><figure class="phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
+            <div class="panel__media"><figure class="phone phone--panel"><div class="phone__frame"><div class="phone__screen"><picture class="phone__shot is-active">
               
-              <source type="image/webp" srcset="<?php echo $a; ?>img/ecrans/covoiturage-depart-360.webp 360w, <?php echo $a; ?>img/ecrans/covoiturage-depart-720.webp 720w" sizes="(min-width: 900px) 240px, 52vw">
-              <img src="<?php echo $a; ?>img/ecrans/covoiturage-depart-360.webp" width="1080" height="2004" alt="Écran Transport : une offre de covoiturage publiée par un parent." loading="lazy" decoding="async">
+              <source type="image/webp" srcset="<?php echo $a; ?>img/ecrans/covoiturage-360.webp 360w, <?php echo $a; ?>img/ecrans/covoiturage-720.webp 720w" sizes="(min-width: 900px) 240px, 52vw">
+              <img src="<?php echo $a; ?>img/ecrans/covoiturage-360.webp" width="1080" height="2004" alt="Écran Transport : les voitures proposées par les parents pour le match, avec les places restantes à l’aller et au retour." loading="lazy" decoding="async">
             </picture></div></div></figure></div>
           </div>
 
           <div class="tabs__panel" role="tabpanel" id="panel-joueurs" aria-labelledby="tab-joueurs" tabindex="0" hidden>
             <div class="panel__text">
+              <div class="panel__band"><picture><source type="image/webp" srcset="<?php echo $a; ?>img/photos/joueur-600.webp 600w, <?php echo $a; ?>img/photos/joueur-880.webp 880w" sizes="(min-width: 900px) 420px, 92vw"><img src="<?php echo $a; ?>img/photos/joueur-880.webp" width="880" height="724" alt="" style="object-position: 50% 18%" loading="lazy" decoding="async"></picture><span class="photo-ia">Image générée par IA</span></div>
               <h3 class="display display--2">Sa saison, ses rendez-vous.</h3>
               <ul class="ticks">
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Les convocations et le planning de l’équipe</li>
@@ -110,7 +114,7 @@ $a = elazyo_asset_base();
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Ses statistiques de match et le Top assiduité et vie du club</li>
               </ul>
             </div>
-            <div class="panel__media panel__media--photo panel__media--card"><div class="panel__photo" aria-hidden="true"><picture><source type="image/webp" srcset="<?php echo $a; ?>img/photos/joueur-600.webp 600w, <?php echo $a; ?>img/photos/joueur-880.webp 880w" sizes="(min-width: 900px) 460px, 92vw"><img src="<?php echo $a; ?>img/photos/joueur-880.webp" width="880" height="724" alt="" loading="lazy" decoding="async"></picture><span class="photo-ia">Image générée par IA</span></div>
+            <div class="panel__media panel__media--card">
               <div class="card card--argent card--static" aria-label="Aperçu de la carte MY CARD, palier Argent">
                 <div class="card__inner">
                   <div class="card__top"><img class="card__logo" src="<?php echo $a; ?>img/logo/elazyo-fond-fonce.png" alt="" width="84" height="15"><span class="card__brand">MY CARD</span><span class="card__tier">Argent</span></div>

@@ -933,16 +933,15 @@
   .panel__media { justify-self: center; }
   .phone--panel { --w: clamp(200px, 19vw, 250px); }
   .panel__media--card .card { --card-w: clamp(200px, 19vw, 250px); }
-  /* Profils : une photo derrière le téléphone ou la carte (reprise des anciens « univers »). */
-  .panel__media--photo { position: relative; isolation: isolate; display: grid; place-items: center end; width: 100%; padding-block: clamp(24px, 3vw, 40px); }
-  .panel__media--photo > .phone, .panel__media--photo > .card { margin-right: 4%; }
-  .panel__photo { position: absolute; z-index: -1; inset: 14% 24% 14% 0; overflow: hidden; border-radius: var(--r-lg); box-shadow: 0 0 0 1px rgb(255 255 255 / .1); }
-  .panel__photo picture, .panel__photo img { display: block; width: 100%; height: 100%; }
-  .panel__photo img { object-fit: cover; }
-  .panel__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 90% at 50% 50%, rgb(1 40 79 / .55), rgb(1 40 79 / .1) 75%); pointer-events: none; }
-  /* Mention IA à la verticale, le long du bord gauche : elle reste lisible même quand le téléphone couvre la photo. */
-  .panel__photo .photo-ia { right: auto; top: auto; left: 8px; bottom: 10px; writing-mode: vertical-rl; rotate: 180deg; padding: 9px 3px; }
-  @media (min-width: 900px) { .panel__media--photo { justify-self: stretch; } }
+  /* Profils : la photo forme un bandeau au-dessus du texte ; le téléphone ou la carte reste seul, sans rien derrière. */
+  .panel__band { position: relative; overflow: hidden; aspect-ratio: 3 / 1; border-radius: var(--r-md); box-shadow: 0 0 0 1px rgb(255 255 255 / .12); margin-bottom: 6px; }
+  .panel__band picture, .panel__band img { display: block; width: 100%; height: 100%; }
+  .panel__band img { object-fit: cover; object-position: 50% 45%; }
+  .panel__band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(1 40 79 / 0) 55%, rgb(1 40 79 / .45)); pointer-events: none; }
+  .panel__media .phone, .panel__media .card { position: relative; }
+  .panel__media::before { content: ""; position: absolute; z-index: -1; inset: 8% -6%; border-radius: 50%; background: radial-gradient(closest-side, rgb(204 247 9 / .16), rgb(204 247 9 / 0)); pointer-events: none; }
+  .panel__media { position: relative; isolation: isolate; }
+  @media (min-width: 900px) { .panel__band { aspect-ratio: 16 / 7; } }
   @media (min-width: 900px) {
     .tabs { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: var(--gap); align-items: start; }
     .tabs__list { flex-direction: column; gap: 0; margin: 0; padding: 0 0 0 20px; overflow: visible; border-left: 2px solid var(--line); }
