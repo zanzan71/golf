@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'ELAZYO_VERSION', '1.0.1' );
+define( 'ELAZYO_VERSION', '1.0.2' );
 
 foreach ( array( 'helpers', 'setup', 'customizer', 'content', 'contact', 'seo' ) as $elazyo_module ) {
 	require_once get_template_directory() . '/inc/' . $elazyo_module . '.php';

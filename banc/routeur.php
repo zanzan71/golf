@@ -49,13 +49,13 @@ $article = '<!-- wp:paragraph --><p>Un exemple d’article pour vérifier la mis
 	. '<h2 class="wp-block-heading">Un intertitre</h2><ul><li>Premier point</li><li>Deuxième point</li></ul>'
 	. '<blockquote class="wp-block-quote"><p>Une citation pour voir le style.</p><cite>Quelqu’un du club</cite></blockquote>'
 	. '<p>Dernier paragraphe, assez long pour voir la largeur de lecture et l’interligne sur ordinateur comme sur téléphone, avec une phrase de plus.</p>';
-$thumb   = BANC_URL . '/wp-content/themes/elazyo/assets/img/photos/entrainement-1040.webp';
+$thumb   = BANC_URL . '/wp-content/themes/elazyo/assets/img/photos/action-960.webp';
 $pages   = array( 'mentions-legales' => 'Mentions légales', 'confidentialite' => 'Confidentialité et cookies', 'merci' => 'Merci, c’est envoyé.' );
 
 if ( '/' === $path ) {
 	require BANC_THEME . '/front-page.php';
 } elseif ( '/actualites/' === $path ) {
-	$GLOBALS['banc_view'] = array( 'home' => true, 'news' => true, 'title' => 'Actualités' );
+	$GLOBALS['banc_view'] = array( 'home' => true, 'news' => empty( $_GET['vide'] ), 'title' => 'Actualités' );
 	$GLOBALS['banc_posts'] = array(
 		array( 'slug' => 'un-article', 'title' => 'Convocations : 5 conseils pour obtenir toutes les réponses avant vendredi', 'content' => $article, 'thumb' => $thumb ),
 		array( 'slug' => 'un-article', 'title' => 'MY CARD : comment la carte du joueur se remplit', 'content' => $article, 'thumb' => '' ),

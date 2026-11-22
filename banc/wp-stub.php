@@ -90,8 +90,13 @@ function wp_head() {
 	do_action( 'wp_enqueue_scripts' );
 	$title = apply_filters( 'pre_get_document_title', '' );
 	if ( '' === $title ) {
-		$title = ( isset( $GLOBALS['banc_view']['title'] ) ? $GLOBALS['banc_view']['title'] . ' | ' : '' ) . 'ELAZYO';
+		$parts = apply_filters( 'document_title_parts', array_filter( array( 'title' => $GLOBALS['banc_view']['title'] ?? '', 'site' => 'Elazyo' ) ) );
+		$title = implode( ' ' . apply_filters( 'document_title_separator', '-' ) . ' ', $parts );
 	}
+	$robots = apply_filters( 'wp_robots', array( 'max-image-preview' => 'large' ) );
+	$r = array();
+	foreach ( $robots as $k => $v ) { $r[] = true === $v ? $k : $k . ':' . $v; }
+	echo '<meta name="robots" content="' . esc_attr( implode( ', ', $r ) ) . '">' . "\n";
 	echo '<title>' . esc_html( $title ) . "</title>\n";
 	$hooks = isset( $GLOBALS['banc_hooks']['wp_head'] ) ? $GLOBALS['banc_hooks']['wp_head'] : array();
 	ksort( $hooks );
@@ -207,3 +212,9 @@ function wp_next_scheduled() { return true; }
 function wp_schedule_event() {}
 function wp_send_json( $body, $status = 200 ) { http_response_code( $status ); header( 'Content-Type: application/json; charset=UTF-8' ); echo json_encode( $body, JSON_UNESCAPED_UNICODE ); exit; }
 function wp_safe_redirect( $u, $s = 302 ) { header( 'Location: ' . $u, true, $s ); }
+
+if ( ! function_exists( 'excerpt_remove_blocks' ) ) { function excerpt_remove_blocks( $c ) { return $c; } }
+if ( ! function_exists( 'get_query_var' ) ) { function get_query_var( $k ) { return $GLOBALS['banc_view'][ $k ] ?? 0; } }
+if ( ! function_exists( 'user_trailingslashit' ) ) { function user_trailingslashit( $s ) { return trailingslashit( $s ); } }
+if ( ! function_exists( 'get_the_modified_date' ) ) { function get_the_modified_date( $f = '' ) { return '2026-11-21T09:00:00+01:00'; } }
+if ( ! function_exists( 'get_the_author_meta' ) ) { function get_the_author_meta( $k, $id = 0 ) { return 'Alan'; } }

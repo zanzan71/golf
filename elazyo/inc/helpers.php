@@ -23,7 +23,7 @@ function elazyo_defaults() {
 		'fondateurs_places'  => 10,
 		'fondateurs_date'    => '30 juin 2027',
 		// Haut de page.
-		'hero_label'         => 'L’appli des clubs de foot amateur',
+		'hero_label'         => 'L’appli de gestion des clubs de foot amateur',
 		'hero_l1'            => 'Le sport nous',
 		'hero_l2'            => 'rassemble.',
 		'hero_l3'            => 'ELAZYO nous',
@@ -48,8 +48,11 @@ function elazyo_defaults() {
 		'temoignage_texte'   => '',
 		'temoignage_auteur'  => '',
 		// Référencement, utilisé seulement sans extension SEO (Yoast, Rank Math, SEOPress).
-		'seo_title'          => 'ELAZYO, l’appli des clubs de foot amateur',
-		'seo_description'    => 'Convocations, présences, covoiturage, bénévoles, licences : ELAZYO simplifie la vie des coachs et des présidents de clubs amateurs. Gratuit pour les joueurs.',
+		'seo_title'          => 'ELAZYO : l’appli de gestion des clubs de foot amateur',
+		'seo_description'    => 'Gérer son club de foot amateur sans tableur ni groupes WhatsApp : convocations, présences, covoiturage, bénévoles, cotisations. Gratuit pour les joueurs.',
+		'seo_google'         => '',
+		'seo_bing'           => '',
+		'instagram_url'      => '',
 	);
 }
 

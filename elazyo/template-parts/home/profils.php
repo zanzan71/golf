@@ -34,7 +34,6 @@ $a = elazyo_asset_base();
         <div class="tabs__panels">
           <div class="tabs__panel" role="tabpanel" id="panel-president" aria-labelledby="tab-president" tabindex="0">
             <div class="panel__text">
-              <div class="panel__band"><picture><source type="image/webp" srcset="<?php echo $a; ?>img/photos/tablette-600.webp 600w, <?php echo $a; ?>img/photos/tablette-1100.webp 1100w" sizes="(min-width: 900px) 420px, 92vw"><img src="<?php echo $a; ?>img/photos/tablette-1100.webp" width="1152" height="941" alt="" loading="lazy" decoding="async"></picture><span class="photo-ia">Image générée par IA</span></div>
               <h3 class="display display--2">Piloter tout le club.</h3>
               <ul class="ticks">
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>La mise en route du club, étape par étape</li>
@@ -53,7 +52,6 @@ $a = elazyo_asset_base();
 
           <div class="tabs__panel" role="tabpanel" id="panel-coach" aria-labelledby="tab-coach" tabindex="0" hidden>
             <div class="panel__text">
-              <div class="panel__band"><picture><source type="image/webp" srcset="<?php echo $a; ?>img/photos/entrainement-600.webp 600w, <?php echo $a; ?>img/photos/entrainement-1040.webp 1040w" sizes="(min-width: 900px) 420px, 92vw"><img src="<?php echo $a; ?>img/photos/entrainement-1040.webp" width="1040" height="941" alt="" loading="lazy" decoding="async"></picture><span class="photo-ia">Image générée par IA</span></div>
               <h3 class="display display--2">Convoquer, faire l’appel, transmettre.</h3>
               <ul class="ticks">
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Son équipe en un écran&nbsp;: effectif, présences, prochain match</li>
@@ -88,7 +86,6 @@ $a = elazyo_asset_base();
 
           <div class="tabs__panel" role="tabpanel" id="panel-familles" aria-labelledby="tab-familles" tabindex="0" hidden>
             <div class="panel__text">
-              <div class="panel__band"><picture><source type="image/webp" srcset="<?php echo $a; ?>img/photos/famille-600.webp 600w, <?php echo $a; ?>img/photos/famille-860.webp 860w" sizes="(min-width: 900px) 420px, 92vw"><img src="<?php echo $a; ?>img/photos/famille-860.webp" width="860" height="724" alt="" loading="lazy" decoding="async"></picture><span class="photo-ia">Image générée par IA</span></div>
               <h3 class="display display--2">Toutes les infos de l’enfant au même endroit.</h3>
               <ul class="ticks">
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Répondre aux convocations pour son enfant</li>
@@ -106,7 +103,6 @@ $a = elazyo_asset_base();
 
           <div class="tabs__panel" role="tabpanel" id="panel-joueurs" aria-labelledby="tab-joueurs" tabindex="0" hidden>
             <div class="panel__text">
-              <div class="panel__band"><picture><source type="image/webp" srcset="<?php echo $a; ?>img/photos/joueur-600.webp 600w, <?php echo $a; ?>img/photos/joueur-880.webp 880w" sizes="(min-width: 900px) 420px, 92vw"><img src="<?php echo $a; ?>img/photos/joueur-880.webp" width="880" height="724" alt="" style="object-position: 50% 18%" loading="lazy" decoding="async"></picture><span class="photo-ia">Image générée par IA</span></div>
               <h3 class="display display--2">Sa saison, ses rendez-vous.</h3>
               <ul class="ticks">
                 <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Les convocations et le planning de l’équipe</li>

@@ -81,9 +81,12 @@ function elazyo_customize_register( $wp_customize ) {
 		// Liens et contact.
 		array( 'app_url', 'elazyo_liens', 'url', 'Adresse de l’appli' ),
 		array( 'contact_email', 'elazyo_liens', 'email', 'E-mail qui reçoit les demandes' ),
+		array( 'instagram_url', 'elazyo_liens', 'url', 'Compte Instagram d’ELAZYO', 'Adresse complète. Sert à Google pour relier le site au compte.' ),
 		// Référencement.
 		array( 'seo_title', 'elazyo_seo', 'text', 'Titre de la page d’accueil dans Google' ),
 		array( 'seo_description', 'elazyo_seo', 'textarea', 'Description dans Google (150 caractères environ)' ),
+		array( 'seo_google', 'elazyo_seo', 'text', 'Code de validation Google Search Console', 'Méthode « Balise HTML » : collez seulement le code entre content="…".' ),
+		array( 'seo_bing', 'elazyo_seo', 'text', 'Code de validation Bing Webmaster Tools', 'Facultatif. Même principe que pour Google.' ),
 	);
 
 	$sanitizers = array(
