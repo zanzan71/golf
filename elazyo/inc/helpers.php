@@ -18,8 +18,8 @@ function elazyo_defaults() {
 		// Liens et contact.
 		'app_url'            => 'https://app.elazyo.fr/',
 		'contact_email'      => '',
-		'appstore_url'       => '',
-		'playstore_url'      => '',
+		'appstore_url'       => 'https://apps.apple.com/fr/app/elazyo/id6824994771',
+		'playstore_url'      => 'https://play.google.com/store/apps/details?id=fr.elazyo.app',
 		// Bandeau et offre Clubs Fondateurs.
 		'annonce_afficher'   => true,
 		'fondateurs_places'  => 10,
